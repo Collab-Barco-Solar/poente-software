@@ -2,9 +2,9 @@ import serial
 import sqlite3
 
 # conexões relacionadas ao db e a porta serial
-#db = sqlite3.connect('teste.db')
+db = sqlite3.connect('teste.db')
 
-#cursor = db.cursor()
+cursor = db.cursor()
 
 #porta = "/dev/ttyUSB0"
 #velocidade = 9600
@@ -231,7 +231,7 @@ def Decodifica(dados,pacote):
     dados.setCorrenteBarramento(float(correnteBarramento))
     dados.setCorrenteModulos(float(correnteModulo))
     dados.setCorrenteBaterias(float(correnteBaterias))
-    dados.setTensaoBateriasAux(float(correnteBateriasAux))
+    dados.setCorrenteBateriasAux(float(correnteBateriasAux))
     dados.setPosicaoPotenciometro(float(posicaoPotenciometro))
     dados.setVelocidade(float(velocidade))
     dados.setLatitude(float(latitude))
@@ -243,18 +243,60 @@ def Decodifica(dados,pacote):
 
     return dados
 
-teste = dados()
+
+
+def AtualizaDB(dados):
+    emergencia_db = dados.acionamentos.getEmergencia()
+    dms_db = dados.acionamentos.getDms()
+    onOFF_db = dados.acionamentos.getOnOff()
+    re_db = dados.acionamentos.getRe()
+    freio_db = dados.acionamentos.getFreio()
+    cruzeiro_db = dados.acionamentos.getCruzeiro()
+    temperatura_db = dados.getTemperatura()
+    tBarramento_db = dados.getTensaoBarramento()
+    tModulos_db = dados.getTensaoModulos()
+    tBaterias_db = dados.getTensaoBaterias()
+    tBateriasAux_db = dados.getTensaoBateriasAux()
+    cBarramento_db = dados.getCorrenteBarramento()
+    cModulos_db = dados.getCorrenteModulos()
+    cBaterias_db = dados.getCorrenteBaterias()
+    cBateriasAux_db = dados.getCorrenteBateriasAux()
+    pPotenciometro_db = dados.getPosicaoPotenciometro()
+    velocidade_db = dados.getVelocidade()
+    latitude_db = dados.getLatitude()
+    longitude_db = dados.getLongitude()
+
+
+
+    cursor.execute("""
+    INSERT INTO dados (emergencia,dms,onOFF,re,freio,cruzeiro,temperatura,tBarramento,tModulos,tBaterias,
+    tBateriasAux,cBarramento,cModulos,cBaterias,cBateriasAux,pPotenciometro,velocidade,latitude,longitude)
+    VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+    """,(emergencia_db,dms_db,onOFF_db,re_db,freio_db,cruzeiro_db,temperatura_db,tBarramento_db,
+    tModulos_db,tBaterias_db,tBateriasAux_db,cBarramento_db,cModulos_db,cBaterias_db,cBateriasAux_db,
+    pPotenciometro_db,velocidade_db,latitude_db,longitude_db
+    ))
+    db.commit()    
+
+
+
+
+
+dados = dados()
 pacote = '¬423.132.5443.4334.5656.3256.7843.6787.5465.6345.956.76-32.45365+34.32453' #pacote teste
-teste = Decodifica(teste,pacote)
+dados = Decodifica(dados,pacote)
+AtualizaDB(dados)
+print("Banco de dados atualizado com sucesso!")
+
 
 
 #prints para testar acionamentos
-print(teste.acionamentos.getEmergencia())
-print(teste.acionamentos.getDms())
-print(teste.acionamentos.getOnOff())
-print(teste.acionamentos.getRe())
-print(teste.acionamentos.getFreio())
-print(teste.acionamentos.getCruzeiro())
+# print(teste.acionamentos.getEmergencia())
+# print(teste.acionamentos.getDms())
+# print(teste.acionamentos.getOnOff())
+# print(teste.acionamentos.getRe())
+# print(teste.acionamentos.getFreio())
+# print(teste.acionamentos.getCruzeiro())
 
 
 
@@ -263,19 +305,22 @@ print(teste.acionamentos.getCruzeiro())
 
 
 #prints para testar
-print(teste.getTemperatura())
-print(teste.getTensaoBarramento())
-print(teste.getTensaoModulos())
-print(teste.getTensaoBaterias())
-print(teste.getTensaoBateriasAux())
-print(teste.getCorrenteBarramento())
-print(teste.getCorrenteModulos())
-print(teste.getCorrenteBaterias())
-print(teste.getCorrenteBateriasAux())
-print(teste.getPosicaoPotenciometro())
-print(teste.getVelocidade())
-print(teste.getLatitude())
-print(teste.getLongitude())
+# print(teste.getTemperatura())
+# print(teste.getTensaoBarramento())
+# print(teste.getTensaoModulos())
+# print(teste.getTensaoBaterias())
+# print(teste.getTensaoBateriasAux())
+# print(teste.getCorrenteBarramento())
+# print(teste.getCorrenteModulos())
+# print(teste.getCorrenteBaterias())
+# print(teste.getCorrenteBateriasAux())
+# print(teste.getPosicaoPotenciometro())
+# print(teste.getVelocidade())
+# print(teste.getLatitude())
+# print(teste.getLongitude())
+
+
+
 
 
 
