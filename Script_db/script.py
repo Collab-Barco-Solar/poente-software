@@ -6,10 +6,10 @@ db = sqlite3.connect('teste.db')
 
 cursor = db.cursor()
 
-#porta = "/dev/ttyUSB0"
-#velocidade = 9600
+porta = "/dev/ttyUSB0"
+velocidade = 9600
 
-#conexao = serial.Serial(porta,velocidade)
+conexao = serial.Serial(porta,velocidade)
 
 class Acionamento:
     def __init__(self):
@@ -280,23 +280,50 @@ def AtualizaDB(dados):
 
 
 
-
-
 dados = dados()
-pacote = '¬423.132.5443.4334.5656.3256.7843.6787.5465.6345.956.76-32.45365+34.32453' #pacote teste
-dados = Decodifica(dados,pacote)
-AtualizaDB(dados)
-print("Banco de dados atualizado com sucesso!")
+
+while(True):
+
+    pacote = conexao.readline().decode("utf-8")
+    #print(pacote)
 
 
 
-#prints para testar acionamentos
-# print(teste.acionamentos.getEmergencia())
-# print(teste.acionamentos.getDms())
-# print(teste.acionamentos.getOnOff())
-# print(teste.acionamentos.getRe())
-# print(teste.acionamentos.getFreio())
-# print(teste.acionamentos.getCruzeiro())
+    dados = Decodifica(dados,pacote)
+    AtualizaDB(dados)
+    print("Banco de dados atualizado com sucesso!")
+    
+
+
+    # prints para testes
+
+    # print(dados.acionamentos.getEmergencia())
+    # print(dados.acionamentos.getDms())
+    # print(dados.acionamentos.getOnOff())
+    # print(dados.acionamentos.getRe())
+    # print(dados.acionamentos.getFreio())
+    # print(dados.acionamentos.getCruzeiro())
+
+
+
+
+
+
+    # prints para testes
+
+    # print(dados.getTemperatura())
+    # print(dados.getTensaoBarramento())
+    # print(dados.getTensaoModulos())
+    # print(dados.getTensaoBaterias())
+    # print(dados.getTensaoBateriasAux())
+    # print(dados.getCorrenteBarramento())
+    # print(dados.getCorrenteModulos())
+    # print(dados.getCorrenteBaterias())
+    # print(dados.getCorrenteBateriasAux())
+    # print(dados.getPosicaoPotenciometro())
+    # print(dados.getVelocidade())
+    # print(dados.getLatitude())
+    # print(dados.getLongitude())
 
 
 
@@ -304,20 +331,7 @@ print("Banco de dados atualizado com sucesso!")
 
 
 
-#prints para testar
-# print(teste.getTemperatura())
-# print(teste.getTensaoBarramento())
-# print(teste.getTensaoModulos())
-# print(teste.getTensaoBaterias())
-# print(teste.getTensaoBateriasAux())
-# print(teste.getCorrenteBarramento())
-# print(teste.getCorrenteModulos())
-# print(teste.getCorrenteBaterias())
-# print(teste.getCorrenteBateriasAux())
-# print(teste.getPosicaoPotenciometro())
-# print(teste.getVelocidade())
-# print(teste.getLatitude())
-# print(teste.getLongitude())
+
 
 
 
