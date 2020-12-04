@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
-/*import styled from 'styled-components'
-
-
-const Box = styled.div`
-    background-color: #15141c;
-`;*/
-
-
+import {Bg, ParteUm} from "./style/styleBg.js";
 
 class Area extends Component {
     constructor() {
@@ -32,9 +25,9 @@ class Area extends Component {
                                 <div class="card-body">
                                     <p class="card-title">Instantâneas</p>
                                     <p class="card-text">Corrente do Mortor</p>
-                                    
+
                                     <p class="card-text">Tensão Módulos</p>
-                                    
+
                                     <p class="card-text">Corrente Baterias</p>
                                     <p class="card-text">Tensão Baterias</p>
                                     <p class="card-text">Corrente Baterias Aux</p>
@@ -59,15 +52,15 @@ class Area extends Component {
                                     <p class="card-text"></p>
                                     <form>
                                         <label>
-                                        <input type="text" name="Distancia total" />
+                                            <input type="text" name="Distancia total" />
                                         </label>
                                     </form>
                                     <form>
                                         <label>
-                                        <input type="text" name="Numero de voltas" />
-                                        </label> 
+                                            <input type="text" name="Numero de voltas" />
+                                        </label>
                                     </form>
-                                    
+
                                     <a href="#" class="btn btn-primary">Iniciar</a>
                                     <a href="#" class="btn btn-primary">Resetar</a>
                                 </div>
