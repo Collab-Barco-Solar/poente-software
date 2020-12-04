@@ -22,6 +22,7 @@ class Cabecalho extends React.Component {
                     </h2>
                     <h3>
                         <p class="card-text">TEMPO</p>
+                        <img src="./img/Bandeira_do_Espírito_Santo.svg" alt = ""></img>
                     </h3>
 
                 </div>
