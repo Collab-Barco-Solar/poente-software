@@ -9,9 +9,11 @@ class Area extends Component {
     render() {
         return (
             <Container fluid>
-                <Row>
+                <Row noGutters>
+                    <Col>Telemetria</Col>
+                    <Col>Gerenciador de Provas</Col>
+                    <div class="w-100"></div>
                     <Col>
-                        Telemetria
                         <div class="box">
                             <div class="card">
                                 <Obj>
@@ -26,12 +28,13 @@ class Area extends Component {
                                                 <a class="dropdown-item" href="#">Alguma coisa aqui</a>
                                             </div>
                                         </div>
-
                                     </div>
                                 </Obj>
                             </div>
 
                         </div>
+                    </Col>
+                    <Col>
                         <div class="box">
                             <div class="card">
                                 <Obj>
@@ -72,7 +75,7 @@ class Area extends Component {
                     </Col>
 
                     <Col>
-                        Gerenciador de Provas
+
                         <div class="box">
                             <div class="card">
                                 <Obj>
