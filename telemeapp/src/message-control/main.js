@@ -5,9 +5,12 @@ const database = new sqlite3.Database('./public/db.db', (err) => {
     if (err) console.error('Database opening error: ', err);
 });
 
+
 ipcMain.on('asynchronous-message', (event, arg) => {
     const sql = arg;
+
+    //usar .each em vez de .all Talvez
     database.all(sql, (err, rows) => {
-        event.reply('asynchronous-reply', (err && err.message) || rows);
+      event.reply('asynchronous-reply', (err && err.message) || rows);
     });
 });

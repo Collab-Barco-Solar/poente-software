@@ -11,14 +11,13 @@ import sendAsync from './message-control/renderer';
 
 
 function App() {
-  const [message, setMessage] = useState('SELECT * FROM Teste1');
+  const [message, setMessage] = useState('SELECT * FROM Dados WHERE ID = (SELECT MAX(ID) FROM Dados);'); //INSERT into Dados values('1')
   const [response, setResponse] = useState();
   
-  function send(sql) {
-    sendAsync(sql).then((result) => setResponse(result));
+  function send(sql_message) {
+    sendAsync(sql_message).then((result) => setResponse(result));
   }
-
-
+ 
   
   return (
     <div>
@@ -26,26 +25,6 @@ function App() {
         <Cabecalho />
         <Area />
       </Bg>
-      <article>
-          <p>
-              Say <i>ping</i> to the main process.
-          </p>
-          <input
-              type="text"
-              value={message}
-              onChange={({ target: { value } }) => setMessage(value)}
-          />
-          <button type="button" onClick={() => send(message)}>
-              Send
-          </button>
-          <br />
-          <p>Main process responses:</p>
-          <br />
-          <pre>
-              {(JSON.stringify(response, null, 2)) ||
-                  'No query results yet!'}
-          </pre>
-      </article>
     </div>
   );
 
