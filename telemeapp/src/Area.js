@@ -11,6 +11,7 @@ class Area extends Component {
         this.data = null;
     }
 
+
     fetchData(sql_message) {
       sendAsync(sql_message).then((result) => this.data = result);  
       if(this.data != null){
@@ -20,7 +21,7 @@ class Area extends Component {
 
     componentDidMount() {      
       this.fetchData('SELECT * FROM Dados WHERE ID = (SELECT MAX(ID) FROM Dados);');
-      this.timer = setInterval(() => this.fetchData('SELECT * FROM Dados WHERE ID = (SELECT MAX(ID) FROM Dados);'), 5000); //5000 ms
+      this.timer = setInterval(() => this.fetchData('SELECT * FROM Dados WHERE ID = (SELECT MAX(ID) FROM Dados);'), 2000); //5000 ms
     }
 
     componentWillUnmount(){
