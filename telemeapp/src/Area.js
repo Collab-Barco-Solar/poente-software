@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component , useState } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { Bg, Obj, BtnRed, BtnGreen, BtnRound } from "./style/styleBg.js";
 
@@ -8,20 +8,21 @@ class Area extends Component {
     constructor() {
         super();
         this.timer = null;
-        this.data = null;
+        this.state = {data: null};
+
     }
 
 
     fetchData(sql_message) {
-      sendAsync(sql_message).then((result) => this.data = result);  
-      if(this.data != null){
-        console.log(this.data[0].emergencia); //data é um vetor, com cada posição sendo uma linha
+      sendAsync(sql_message).then((result) => this.setState({data: result}));  
+      if(this.state.data != null){
+        console.log(this.state.data[0].emergencia); //data é um vetor, com cada posição sendo uma linha
       }      
     }
 
     componentDidMount() {      
       this.fetchData('SELECT * FROM Dados WHERE ID = (SELECT MAX(ID) FROM Dados);');
-      this.timer = setInterval(() => this.fetchData('SELECT * FROM Dados WHERE ID = (SELECT MAX(ID) FROM Dados);'), 2000); //5000 ms
+      this.timer = setInterval(() => this.fetchData('SELECT * FROM Dados WHERE ID = (SELECT MAX(ID) FROM Dados);'), 500); //5000 ms
     }
 
     componentWillUnmount(){
@@ -41,7 +42,7 @@ class Area extends Component {
                           <div class="card">
                               <Obj>
                                   <div class="card-body">
-                                      <h5 class="card-title">Gráficos</h5>
+                                      <h5 class="card-title">Informação: {( this.state.data && this.state.data[0].emergencia ) || "Carregando"}</h5>
 
                                       <div class="dropdown">
                                           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Selecione</button>
