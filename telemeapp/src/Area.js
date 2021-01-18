@@ -1,4 +1,4 @@
-import React, { Component , useState } from 'react';
+import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { Bg, Obj, BtnRed, BtnGreen, BtnRound } from "./style/styleBg.js";
 
@@ -22,7 +22,7 @@ class Area extends Component {
 
     componentDidMount() {      
       this.fetchData('SELECT * FROM Dados WHERE ID = (SELECT MAX(ID) FROM Dados);');
-      this.timer = setInterval(() => this.fetchData('SELECT * FROM Dados WHERE ID = (SELECT MAX(ID) FROM Dados);'), 500); //5000 ms
+      this.timer = setInterval(() => this.fetchData('SELECT * FROM Dados WHERE ID = (SELECT MAX(ID) FROM Dados);'), 5000); //5000 ms
     }
 
     componentWillUnmount(){

@@ -7,10 +7,10 @@ const database = new sqlite3.Database('./banco_dados/banco1.db', sqlite3.OPEN_RE
 
 
 ipcMain.on('asynchronous-message', (event, arg) => {
-    const sql = arg;
+    const sql_command = arg;
 
     //usar .each em vez de .all Talvez
-    database.all(sql, (err, rows) => {
+    database.all(sql_command, (err, rows) => {
       event.reply('asynchronous-reply', (err && err.message) || rows);
     });
 });
