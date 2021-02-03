@@ -1,0 +1,66 @@
+.instantaneas{
+    display: flex;
+    background-color: #393640;
+    font-size: 0.8em;
+    justify-content: center;
+    color: white;
+    margin: 0px;
+    margin-top: 14px;
+    margin-left: 10px;
+    width: 27.88%;
+    height: 70vh;
+}
+.nomes{
+    width: 50%;
+    height: 70vh;
+}
+.valores{
+    width: 50%;
+    height: 70vh;
+}
+.nomes--itens{
+    margin-left: 10px;
+    margin-top: 12px;
+}
+.valores--itens{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    margin-right: 30px;
+}
+
+
+
+
+/* .CM{
+    margin-left: 10px;
+    margin-top: 5px;
+    display: flex;
+    height: 5%;
+    width: 300px;
+}
+#info--CM{
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    margin-left: 40%;
+
+}
+.TM{
+    margin-left: 10px;
+    margin-top: 5px;
+    display: flex;
+    height: 5%;
+    width: 300px;
+}
+
+#info--TM{
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    margin-left: 40%;
+} */

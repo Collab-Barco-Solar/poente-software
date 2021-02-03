@@ -1,0 +1,13 @@
+.grafico{
+    background-color: #393640;
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin: 0px;
+    margin-top: 14px;
+    margin-left: 10px;
+    width: 29.4%;
+    height: 70vh;
+}

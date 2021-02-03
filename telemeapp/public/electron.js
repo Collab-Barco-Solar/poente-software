@@ -1,6 +1,7 @@
 const electron = require('electron');
 
 const { app } = electron;
+const Tray = electron.Tray;
 const { BrowserWindow } = electron;
 
 const path = require('path');
@@ -9,12 +10,14 @@ const isDev = require('electron-is-dev');
 let mainWindow;
 
 function createWindow() {
+  const appIcon = new Tray(__dirname+'/logo_Sol.png')
   mainWindow = new BrowserWindow({
     width: 1920,
     height: 1080,
     webPreferences: {
       nodeIntegration: true,
     },
+    icon :__dirname+'/logo_Sol.png'
   });
 
   mainWindow.loadURL(
