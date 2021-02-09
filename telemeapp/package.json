@@ -15,9 +15,9 @@
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.0",
     "reactstrap": "^8.7.1",
-    "sqlite3": "^5.0.1",
+    "sqlite3": "^5.0.0",
     "styled-components": "^5.2.1",
-    "wait-on": "^5.2.0",
+    "wait-on": "^5.2.1",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
