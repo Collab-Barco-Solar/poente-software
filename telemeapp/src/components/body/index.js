@@ -3,7 +3,7 @@ import './style.css'
 import Gerenciador from './gerenciador/index'
 import Graficos from './gráficos/index'
 import Instantaneas from './instantaneas/index'
-import TempoDeVoltaEmapa from './temepoDeVoltaEmapa/index'
+
 
 const Body = ()=>(
     <div className="corpo">
@@ -19,7 +19,6 @@ const Body = ()=>(
         <div className="container--infos">
             <Graficos/>
             <Instantaneas/>
-            <TempoDeVoltaEmapa/>
          </div>
 
     </div>

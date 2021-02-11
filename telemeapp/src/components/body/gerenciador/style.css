@@ -1,15 +1,27 @@
 
 
-.inputs{
-    display: flex;
+.gerenciador{
     width: 39.1%;
-    height: 80px;
+    height: 76.3vh;
     flex-wrap: wrap;
-    align-items: center;
-    background-color: #393640;
+    background-color: #16121c;
     margin-left: 15px;
     margin-top: 7px;
 }
+.inputs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    height: 15%;
+    background-color: #393640;
+}
+
+
+
+
+
+
 input{
     display: flex;
     padding: 0px;
@@ -34,7 +46,9 @@ input{
 }
 .entradas--B{
     margin-left: 5px;
-    margin-top: 3px;
     display: flex;
     height: 30px;
 }
+
+
+

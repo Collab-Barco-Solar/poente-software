@@ -1,0 +1,12 @@
+
+.mapa{
+    color: white;
+    font-size: 1.2em;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex: 1;
+    margin-top: 7px;
+    height: 52.3%;
+    background-color: #393640 ;
+}
