@@ -2,12 +2,32 @@ import React from 'react'
 import './style.css'
 import Logo from './icones/logo_Sol.png'
 import Bandeira from './icones/espirito_santo.png'
-import Voltas from './voltas/index'
+import Voltas from './voltas/voltas'
+//import Voltas from '../../components/body/gerenciador/indexTempoVolta.js'
+
 import Tempo from './tempo/index'
+import Gerenciador from '../../components/body/gerenciador/indexTempoVolta.js'
+
+/*import { render } from 'react-dom'
+import './style.css'
+import voltaAtualizada from '../../components/body/gerenciador/indexTempoVolta.js'
+
+class Voltas extends React.Component {
+    state = {
+        title : voltaAtualizada,
+    }
+
+    render(){
+        return(
+            <div className="voltas">{this.props.title}</div>
+        );
+    }
+}*/
 
 
 const Header = ()=> (
 
+    
     <div className= "cabecalho">
         <p id="poente--name">POENTE</p>
         <img src= {Logo} width ="50px" height="50px" id="logo" alt=""/>

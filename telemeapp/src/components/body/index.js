@@ -1,6 +1,6 @@
 import React from 'react'
 import './style.css'
-import Gerenciador from './gerenciador/index'
+import Gerenciador from './gerenciador/indexTempoVolta'
 import Graficos from './gráficos/index'
 import Instantaneas from './instantaneas/index'
 
