@@ -6,7 +6,7 @@ import Voltas from './voltas/voltas'
 //import Voltas from '../../components/body/gerenciador/indexTempoVolta.js'
 
 import Tempo from './tempo/index'
-import Gerenciador from '../../components/body/gerenciador/indexTempoVolta.js'
+//import Gerenciador from '../../components/body/gerenciador/indexTempoVolta.js'
 
 
 const Header = ()=> (

@@ -1,19 +1,23 @@
 import React, { Component } from 'react'
-import { render } from 'react-dom'
 import './style.css'
 import '../../body/gerenciador/indexTempoVolta.js'
 
+import { ContextoVoltas } from "../../../contextos/contexto-voltas";
+
+class Voltas extends Component {
 
 
-let voltaAtual='0';
-
-const Voltas = () => (
-
-
-    <div className="voltas">0/0</div> 
-
-
-)
+    render(){
+        return ( 
+            <div>
+                <ContextoVoltas.Consumer> 
+                    {voltas => ( 
+                        <div className="voltas">{voltas.voltasAtuais}/{voltas.voltasTotais}</div> )} 
+                </ContextoVoltas.Consumer>
+            </div> 
+        );
+    }
+}
 
 
 export default Voltas;

@@ -4,12 +4,13 @@ import './style.css'
 
 import Mapa from './mapa/index'
 import TempoDeVolta from './tempoDeVolta/index'
+import { ContextoVoltas } from "../../../contextos/contexto-voltas";
 
 
 class Botao extends Component{
 
     render(){
-        return <button className="botao">{this.props.label}</button>
+        return <button className="botao" onClick={this.props.onClick}>{this.props.label}</button>
     }
 }
 
@@ -23,20 +24,6 @@ class Input extends Component{
         placeholder={this.props.name} />
     }
 }
-/*
-let voltaAtual='0';
-
-class Voltas extends React.Component {
-    state = {
-        title : '0/0',
-    }
-
-    render(){
-        return(
-            <div className="voltas">{this.props.title}</div>
-        );
-    }
-}*/
 
 class Gerenciador extends Component{
 
@@ -44,33 +31,43 @@ class Gerenciador extends Component{
         super(props);
 
         this.state = {
-            entradaV: '0',
+            entradaV: 0,
+            entradaD: 0,
         };
     }
 
-    atualizaNumeroDeVOltas = (event) => {
-        this.setState({entradaV: event.target.value});
-        console.log(event.target.value);
+    atualizaNumeroDeVoltas = (event) => {
+        this.setState({entradaV: parseInt(event.target.value, 10)});
+        //voltaAtualizada = voltaAtual + '/' + this.entradaV;
+    };
+
+    atualizaDistancia = (event) => {
+        this.setState({entradaD: parseFloat(event.target.value)});
         //voltaAtualizada = voltaAtual + '/' + this.entradaV;
     };
 
     render(){
-    return(
-        <div className="gerenciador">
-            <div className= "inputs">
-                <div className="entradas--A">
-                    <Input value={this.state.entradaV} onChange={this.atualizaNumeroDeVOltas} name="distanciaTotal" id="distanciaTotal" placeholder="Distância total"/>  
-                    <Botao  label = "INICIAR"/>
-                    <Botao  label = "RESETAR"/>
-                </div>
+        return(
+            <ContextoVoltas.Consumer>
+                { voltas => (
+                    <div className="gerenciador">
+                        <div className= "inputs">
+                            <div className="entradas--A">
+                                <Input onChange={this.atualizaDistancia} value={this.state.entradaD} name="distanciaTotal" id="distanciaTotal" placeholder="Distância total"/>  
+                                <Botao onClick={() => voltas.alteraVoltasTotais(this.state.entradaV)} label = "INICIAR"/>
+                                <Botao  label = "RESETAR"/>
+                            </div>
 
-                <div className="entradas--B">
-                    <input type="text" name="numeroVoltas"placeholder="Número de voltas"/>
-                </div>
-            </div>
-            <TempoDeVolta/>
-            <Mapa/>
-        </div>
+                            <div className="entradas--B">
+                                <Input onChange={this.atualizaNumeroDeVoltas} value={this.state.entradaV} name="numeroVoltas" id="Número de voltas" placeholder="Número de voltas"/>  
+                            </div>
+                        </div>
+                    
+                        <TempoDeVolta/>
+                        <Mapa/>
+                    </div>
+                )}       
+            </ContextoVoltas.Consumer>             
         )
     }
 
