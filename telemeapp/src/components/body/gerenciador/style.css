@@ -1,12 +1,13 @@
 
 
 .gerenciador{
-    width: 39.1%;
+    width: 38.3%;
     height: 76.3vh;
     flex-wrap: wrap;
     background-color: #16121c;
-    margin-left: 15px;
+    margin-left: auto;
     margin-top: 7px;
+    margin-right: 15px;
 }
 .inputs {
     display: flex;

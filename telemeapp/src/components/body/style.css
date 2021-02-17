@@ -32,8 +32,9 @@
     justify-content: center;
     color: white;
     margin: 0px;
-    margin-left: 15px;
-    width: 39.1%;
+    margin-left: auto;
+    margin-right: 15px;
+    width: 38.3%;
     height: 25px;
     background-color: #393640;
 }
@@ -55,7 +56,7 @@
     margin: 0px;
     margin-top: 7px;
     margin-left: 10px;
-    width: 29.4%;
+    width: 28.5%;
     height: 35px;
     background-color: #393640;
 }
@@ -67,8 +68,8 @@
     color: white;
     margin: 0px;
     margin-top: 7px;
-    margin-left: 10px;
-    width: 27.83%;
+    margin-left: 1%;
+    width: 28.5%;
     height: 35px;
     background-color: #393640;
 }
