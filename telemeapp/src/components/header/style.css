@@ -19,7 +19,7 @@ p{
 }
 #voltas--name{
     font-size: 1.5em;
-    margin-left: 27%;
+    margin-left: auto;
     color: white;
     margin-right: 5px;
 }
@@ -28,7 +28,7 @@ p{
 #tempo--name{
     font-size: 1.5em;
     color: white;
-    margin-left: 10%;
+    margin-left: auto;
     margin-right: 5px;
 }
 
