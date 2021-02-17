@@ -8,22 +8,6 @@ import Voltas from './voltas/voltas'
 import Tempo from './tempo/index'
 import Gerenciador from '../../components/body/gerenciador/indexTempoVolta.js'
 
-/*import { render } from 'react-dom'
-import './style.css'
-import voltaAtualizada from '../../components/body/gerenciador/indexTempoVolta.js'
-
-class Voltas extends React.Component {
-    state = {
-        title : voltaAtualizada,
-    }
-
-    render(){
-        return(
-            <div className="voltas">{this.props.title}</div>
-        );
-    }
-}*/
-
 
 const Header = ()=> (
 
