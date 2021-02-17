@@ -1,21 +1,17 @@
-
-
-//import { Renderer } from "electron";
 import React from 'react';
-import Cabecalho from './Cabecalho';
-import Area from './Area';
-import {Bg} from "./style/styleBg.js";
 
+import Header from './components/header/index'
+import Body from './components/body/index'
+import Footer from './components/footer/index'
 
 
 class App extends React.Component {
   render() {
     return (
       <div>
-        <Bg>
-          <Cabecalho />
-          <Area />
-        </Bg>
+        <Header/>
+        <Body/>
+        <Footer/>
       </div>
     );
   }
