@@ -33,17 +33,6 @@ class Instantaneas extends Component {
     render() {
         return(
             <div className= "instantaneas">
-                <div className="nomes">
-                    <p className="nomes--itens">Corrente Motor</p>
-                    <p className="nomes--itens">Tensão Módulos</p>
-                    <p className="nomes--itens">Corrente Baterias</p>
-                    <p className="nomes--itens">Tensão Baterias</p>
-                    <p className="nomes--itens">Corrente Bateria Aux</p>
-                    <p className="nomes--itens">Tensão Bateria Aux</p>
-                    <p className="nomes--itens">Posição Potenciômetro</p>
-                    <p className="nomes--itens">Velocidade</p>
-                    <p className="nomes--itens">Temperatura</p>
-                </div>
                 <div className="valores">
                     <p className="valores--itens">{( this.state.data && this.state.data[0].cBarramento ) || "Carregando"} A</p>
                     <p className="valores--itens">{( this.state.data && this.state.data[0].tModulos ) || "Carregando"} V</p>
@@ -55,6 +44,17 @@ class Instantaneas extends Component {
                     <p className="valores--itens">{( this.state.data && this.state.data[0].velocidade ) || "Carregando"} nós</p>
                     <p className="valores--itens">{( this.state.data && this.state.data[0].temperatura ) || "Carregando"} ºC</p>
                 </div>
+                <div className="nomes">
+                    <p className="nomes--itens">Corrente Motor</p>
+                    <p className="nomes--itens">Tensão Módulos</p>
+                    <p className="nomes--itens">Corrente Baterias</p>
+                    <p className="nomes--itens">Tensão Baterias</p>
+                    <p className="nomes--itens">Corrente Bateria Aux</p>
+                    <p className="nomes--itens">Tensão Bateria Aux</p>
+                    <p className="nomes--itens">Posição Potenciômetro</p>
+                    <p className="nomes--itens">Velocidade</p>
+                    <p className="nomes--itens">Temperatura</p>
+                </div>                
             </div>
         );
     }
