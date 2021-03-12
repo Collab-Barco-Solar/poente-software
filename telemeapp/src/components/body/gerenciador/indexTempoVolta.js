@@ -55,6 +55,7 @@ class Gerenciador extends Component{
                                     voltas.alteraVoltasTotais(0); 
                                     voltas.alteraVoltasAtuais(0); 
                                     }}  label = "RESETAR"/>
+                                <Botao label = "PAUSAR"/>
                             </div>
 
                             <div className="entradas--B">
