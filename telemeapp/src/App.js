@@ -46,6 +46,12 @@ class App extends React.Component {
             
         }
 
+        this.alteraTempoVoltas = (novoTempoDasVoltas) => {
+            this.setState(state => ({
+                tempoDasVoltas: novoTempoDasVoltas,
+            }))
+        }
+
 
         this.state = {
             voltasAtuais: 0,
@@ -53,7 +59,9 @@ class App extends React.Component {
             alteraVoltasTotais: this.alteraVoltasTotais,
             alteraVoltasAtuais: this.alteraVoltasAtuais,
             Iniciar: this.Iniciar,
-
+            
+            tempoDasVoltas: [],
+            alteraTempoVoltas: this.alteraTempoVoltas,
 
             //Coisas internas
             timer: new Timer(),

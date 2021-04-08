@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './style.css'
-
 import Mapa from './mapa/index'
 import TempoDeVolta from './tempoDeVolta/index'
 import { ContextoVoltas } from "../../../contextos/contexto-voltas";

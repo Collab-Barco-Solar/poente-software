@@ -13,7 +13,7 @@ class Instantaneas extends Component {
     fetchData(sql_message) {
         sendAsync(sql_message).then((result) => this.setState({data: result})); 
         if(this.state.data != null){
-            console.log(this.state.data[0].emergencia); //data é um vetor, com cada posição sendo uma linha
+            //console.log(this.state.data[0].emergencia); //data é um vetor, com cada posição sendo uma linha
         } else {
             console.log("Não foram encontrados dados no banco de dados"); 
         }

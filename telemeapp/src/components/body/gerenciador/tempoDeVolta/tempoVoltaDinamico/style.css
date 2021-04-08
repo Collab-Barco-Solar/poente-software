@@ -1,0 +1,21 @@
+.info-tempo{
+    color: white;
+    display: flex;
+
+}
+
+
+.info-tempo-key{
+    margin-top: 10px;
+    margin-left: 10px;
+
+}
+
+.info-tempo-valor{
+    margin-top: 10px;
+    display: flex;
+    margin-left: 10px;
+
+
+
+}

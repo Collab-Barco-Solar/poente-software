@@ -1,19 +1,58 @@
-import React, { Component } from 'react'
+import React  from 'react'
 import './style.css'
 import { ContextoVoltas  } from "../../../../contextos/contexto-voltas";
+import TempoVoltaDinamico from "./tempoVoltaDinamico"
 
-class TempoDeVolta extends Component {
+class TempoDeVolta extends React.Component {
+    
+    constructor(props) {
+        super(props);
+        this.state = {
+          temposVoltaDinamico: []
+        };
+      }
+    
     IncrementaVolta(voltas) {
+        //console.log("Timer is running? " + voltas.timer.isRunning());
+
+        //Incrementa o número de voltas no contexto
         if(voltas.voltasAtuais + 1 > voltas.voltasTotais){
             console.log("Número de voltas máximo atingido")
         } else {
             voltas.alteraVoltasAtuais(voltas.voltasAtuais + 1);
-        }        
+        } 
+
+        //Salva o tempo da última volta 
+        //Cria novo array
+        let novoTempoDasVoltas = voltas.tempoDasVoltas;
+        let tempoTotalAteUltimaVolta=0;
+        // participando nao ativamente - passei por aqui. att agricio
+        if(novoTempoDasVoltas.length > 0){
+            novoTempoDasVoltas.forEach(tempoVolta => {
+                tempoTotalAteUltimaVolta += tempoVolta.seconds + tempoVolta.minutes*60 + tempoVolta.hours*3600;
+            });
+        }
+        console.log("Tempo total até a penúltima volta: " + tempoTotalAteUltimaVolta);
+        
+        //Acha o tempo da última volta
+        let tempoUltimaVolta = voltas.timer.seconds + voltas.timer.minutes*60 + voltas.timer.hours*3600
+                                - tempoTotalAteUltimaVolta;
+        console.log("Tempo ultima volta: " + tempoUltimaVolta);
+        novoTempoDasVoltas.push({seconds: tempoUltimaVolta%60, minutes: Math.floor(tempoUltimaVolta/60) - Math.floor(tempoUltimaVolta/3600), hours: Math.floor(tempoUltimaVolta/3600)});
+
+        
+        
+        
+        //Cria mais um componente tempoVoltaDinamico
+        this.setState(state => ({
+            temposVoltaDinamico: [...this.state.temposVoltaDinamico, this.state.temposVoltaDinamico.length + 1],
+        })); 
     };
 
 
 
    render(){
+       //disabled={voltas.timer.isRunning() ? true : false}
         return(
             <ContextoVoltas.Consumer>
                 { voltas => (
@@ -25,16 +64,36 @@ class TempoDeVolta extends Component {
                         </div>
 
                         <div className="infos">
-                            <div id="infos--A">
-                                <p className="infos--A-P">1- 00:26:12</p>
-                                <p className="infos--A-P">2- 00:34:52</p>
-                                <p className="infos--A-P">3- 00:20:23</p>
+
+                            <div className="placeHolderTime">
+                                <div id="infos--A">
+                                    {(this.state.temposVoltaDinamico.length >= 1) &&
+                                        this.state.temposVoltaDinamico.map((item, index) => {
+                                            if(index < 5){
+                                                return (
+                                                    <TempoVoltaDinamico key={index} id={index} tempo={voltas.tempoDasVoltas[index]}/>
+                                                );
+                                            } else {
+                                                return null
+                                            }
+                                    })}
+                                </div>
+                                <div id = "infos--B">
+                                    {this.state.temposVoltaDinamico.length >= 5 &&
+                                        this.state.temposVoltaDinamico.map((item, index) => {
+                                            if(index >= 5){
+                                                return (
+                                                    <TempoVoltaDinamico key={index} id={index} tempo={voltas.tempoDasVoltas[index]}/>
+                                                );
+                                            } else {
+                                                return null
+                                            }
+                                    })}
+                                </div>
+
                             </div>
-                            <div id = "infos--B">
-                                <p className="infos--B-P">4- 00:26:12</p>
-                                <p className="infos--B-P">5- 00:34:52</p>
-                                <p className="infos--B-P">6- 00:20:23</p>
-                            </div>
+
+                            
                             <div id = "infos--C">
                                 <p className = "infos--C-P">Tempo Restante de Volta</p>
                                 <p className = "infos--C-P">Tempo Restante de Corrida</p>

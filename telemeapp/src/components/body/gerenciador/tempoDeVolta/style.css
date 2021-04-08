@@ -75,3 +75,8 @@
     margin-top: 10px;
     margin-left: 35px;
 }
+
+.placeHolderTime{
+    display: flex;
+    width: 40%;
+}
