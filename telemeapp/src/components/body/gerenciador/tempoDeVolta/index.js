@@ -5,51 +5,19 @@ import TempoVoltaDinamico from "./tempoVoltaDinamico"
 
 class TempoDeVolta extends React.Component {
     
-    constructor(props) {
-        super(props);
-        this.state = {
-          temposVoltaDinamico: []
-        };
-      }
-    
     IncrementaVolta(voltas) {
         //Incrementa o número de voltas no contexto
         if(voltas.voltasAtuais + 1 > voltas.voltasTotais){
             console.log("Número de voltas máximo atingido")
         } else {
             voltas.alteraVoltasAtuais(voltas.voltasAtuais + 1);
-        } 
-
-        //Salva o tempo da última volta 
-        //Cria novo array
-        let novoTempoDasVoltas = voltas.tempoDasVoltas;
-        let tempoTotalAteUltimaVolta=0;
-        // participando nao ativamente - passei por aqui. att agricio
-        if(novoTempoDasVoltas.length > 0){
-            novoTempoDasVoltas.forEach(tempoVolta => {
-                tempoTotalAteUltimaVolta += tempoVolta.seconds + tempoVolta.minutes*60 + tempoVolta.hours*3600;
-            });
-        }
-        console.log("Tempo total até a penúltima volta: " + tempoTotalAteUltimaVolta);
-        
-        //Acha o tempo da última volta
-        let tempoUltimaVolta = voltas.timer.seconds + voltas.timer.minutes*60 + voltas.timer.hours*3600
-                                - tempoTotalAteUltimaVolta;
-        console.log("Tempo ultima volta: " + tempoUltimaVolta);
-        novoTempoDasVoltas.push({seconds: tempoUltimaVolta%60, minutes: Math.floor(tempoUltimaVolta/60) - Math.floor(tempoUltimaVolta/3600), hours: Math.floor(tempoUltimaVolta/3600)});
-
-        
-        
-        
-        //Cria mais um componente tempoVoltaDinamico
-        this.setState(state => ({
-            temposVoltaDinamico: [...this.state.temposVoltaDinamico, this.state.temposVoltaDinamico.length + 1],
-        })); 
+            if(voltas.voltasAtuais + 1 < voltas.voltasTotais){
+                voltas.tempoDasVoltas.push({seconds: 0, minutes: 0, hours: 0});
+            }
+        }         
     };
 
-
-
-   render(){
+    render(){
         return(
             <ContextoVoltas.Consumer>
                 { voltas => (
@@ -58,7 +26,7 @@ class TempoDeVolta extends React.Component {
                             <p id="tempoDeVolta--name">Tempos de volta</p>
                             <button onClick={() => this.IncrementaVolta(voltas)} 
                                 id="botao--tempoDeVolta" 
-                                disabled={voltas.timer.isRunning ? true : false}>
+                                disabled={!voltas.timer.isRunning() || (voltas.voltasAtuais>=voltas.voltasTotais)}>
                                     Mais uma volta
                             </button>
                             <p id="estimativa--name">Estimativas</p>
@@ -68,28 +36,30 @@ class TempoDeVolta extends React.Component {
 
                             <div className="placeHolderTime">
                                 <div id="infos--A">
-                                    {(this.state.temposVoltaDinamico.length >= 1) &&
-                                        this.state.temposVoltaDinamico.map((item, index) => {
+                                    {(voltas.tempoDasVoltas.length >= 1) && 
+                                        voltas.tempoDasVoltas.map((item, index) => {
                                             if(index < 5){
                                                 return (
-                                                    <TempoVoltaDinamico key={index} id={index} tempo={voltas.tempoDasVoltas[index]}/>
+                                                    <TempoVoltaDinamico key={index} id={index} tempo={item}/>
                                                 );
                                             } else {
                                                 return null
                                             }
-                                    })}
+                                        })                                       
+                                    }
                                 </div>
                                 <div id = "infos--B">
-                                    {this.state.temposVoltaDinamico.length >= 5 &&
-                                        this.state.temposVoltaDinamico.map((item, index) => {
+                                    {(voltas.tempoDasVoltas.length >= 1) && 
+                                        voltas.tempoDasVoltas.map((item, index) => {
                                             if(index >= 5){
                                                 return (
-                                                    <TempoVoltaDinamico key={index} id={index} tempo={voltas.tempoDasVoltas[index]}/>
+                                                    <TempoVoltaDinamico key={index} id={index} tempo={item}/>
                                                 );
                                             } else {
                                                 return null
                                             }
-                                    })}
+                                        }) 
+                                    }
                                 </div>
                             </div>
 

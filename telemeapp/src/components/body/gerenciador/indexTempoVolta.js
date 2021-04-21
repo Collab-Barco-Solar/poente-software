@@ -28,17 +28,17 @@ class Gerenciador extends Component{
         super(props);
 
         this.state = {
-            entradaV: 0,
-            entradaD: 0,
+            entradaVoltas: 0,
+            entradaDistancia: 0,
         };
     }
 
     atualizaNumeroDeVoltas = (event) => {
-        this.setState({entradaV: parseInt(event.target.value, 10)});
+        this.setState({entradaVoltas: parseInt(event.target.value, 10)});
     };
 
     atualizaDistancia = (event) => {
-        this.setState({entradaD: parseFloat(event.target.value)});
+        this.setState({entradaDistancia: parseFloat(event.target.value)});
     };
 
     render(){
@@ -48,8 +48,8 @@ class Gerenciador extends Component{
                     <div className="gerenciador">
                         <div className= "inputs">
                             <div className="entradas--A">
-                                <Input onChange={this.atualizaDistancia} value={this.state.entradaD} name="Distancia Total" id="distanciaTotal" placeholder="Distância total"/>  
-                                <Botao onClick={() => voltas.Iniciar(this.state.entradaV)} label = "INICIAR"/>
+                                <Input onChange={this.atualizaDistancia} value={this.state.entradaDistancia} name="Distancia Total" id="distanciaTotal" placeholder="Distância total"/>  
+                                <Botao onClick={() => voltas.Iniciar(this.state.entradaVoltas)} label = "INICIAR"/>
                                 <Botao onClick={() => {
                                     voltas.alteraVoltasTotais(0); 
                                     voltas.alteraVoltasAtuais(0); 
@@ -58,7 +58,7 @@ class Gerenciador extends Component{
                             </div>
 
                             <div className="entradas--B">
-                                <Input onChange={this.atualizaNumeroDeVoltas} value={this.state.entradaV} name="Numero Voltas" id="Número de voltas" placeholder="Número de voltas"/>  
+                                <Input onChange={this.atualizaNumeroDeVoltas} value={this.state.entradaVoltas} name="Numero Voltas" id="Número de voltas" placeholder="Número de voltas"/>  
                             </div>
                         </div>
                     

@@ -11,9 +11,9 @@ class Tempo extends Component{
             <div>
                 <ContextoVoltas.Consumer> 
                     {voltas => (
-                    <div className="tempo">{voltas.timer.hours ? ('00'+voltas.timer.hours).slice(-2) : "00"}:{
-                                            voltas.timer.minutes ? ('00'+voltas.timer.minutes).slice(-2) : "00"}:{
-                                            voltas.timer.seconds ? ('00'+voltas.timer.seconds).slice(-2) : "00"}</div> )}
+                    <div className="tempo">{voltas.timer.getTimeValues().hours ? ('00'+voltas.timer.getTimeValues().hours).slice(-2) : "00"}:{
+                                            voltas.timer.getTimeValues().minutes ? ('00'+voltas.timer.getTimeValues().minutes).slice(-2) : "00"}:{
+                                            voltas.timer.getTimeValues().seconds ? ('00'+voltas.timer.getTimeValues().seconds).slice(-2) : "00"}</div> )}
                 </ContextoVoltas.Consumer> 
             </div>
         );
