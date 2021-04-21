@@ -13,8 +13,6 @@ class TempoDeVolta extends React.Component {
       }
     
     IncrementaVolta(voltas) {
-        //console.log("Timer is running? " + voltas.timer.isRunning());
-
         //Incrementa o número de voltas no contexto
         if(voltas.voltasAtuais + 1 > voltas.voltasTotais){
             console.log("Número de voltas máximo atingido")
@@ -52,14 +50,17 @@ class TempoDeVolta extends React.Component {
 
 
    render(){
-       //disabled={voltas.timer.isRunning() ? true : false}
         return(
             <ContextoVoltas.Consumer>
                 { voltas => (
                     <div className="tempoDeVolta">
                         <div className="title--tempoDeVolta">
                             <p id="tempoDeVolta--name">Tempos de volta</p>
-                            <button onClick={() => this.IncrementaVolta(voltas)} id="botao--tempoDeVolta">Mais uma volta</button>
+                            <button onClick={() => this.IncrementaVolta(voltas)} 
+                                id="botao--tempoDeVolta" 
+                                disabled={voltas.timer.isRunning ? true : false}>
+                                    Mais uma volta
+                            </button>
                             <p id="estimativa--name">Estimativas</p>
                         </div>
 
@@ -90,7 +91,6 @@ class TempoDeVolta extends React.Component {
                                             }
                                     })}
                                 </div>
-
                             </div>
 
                             
