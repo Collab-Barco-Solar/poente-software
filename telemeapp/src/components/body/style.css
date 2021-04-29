@@ -13,6 +13,7 @@
 
 
 #telemetria--name {
+    border-radius: 10px;
     font-size: 1.2em;
     display: flex;
     align-items: center;
@@ -25,7 +26,7 @@
     background-color: #393640;
 }
 #gerenciador--name {
-
+    border-radius: 10px;
     font-size: 1.2em;
     display: flex;
     align-items: center;
@@ -48,6 +49,7 @@
 
 
 #graficos--name{
+    border-radius: 10px;
     font-size: 1.2em;
     display: flex;
     align-items: center;
@@ -61,6 +63,7 @@
     background-color: #393640;
 }
 #instantaneas--name{
+    border-radius: 10px;
     font-size: 1.2em;
     display: flex;
     align-items: center;

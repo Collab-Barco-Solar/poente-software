@@ -10,6 +10,7 @@
     margin-right: 15px;
 }
 .inputs {
+    border-radius: 10px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -24,6 +25,7 @@
 
 
 input{
+    border-radius: 10px;
     display: flex;
     padding: 0px;
 }

@@ -2,6 +2,25 @@ p{
     margin: 0px;
 }
 
+.voltas--componente-container{
+    display: flex;
+    margin-left: 15px;
+    width: 10%;
+    background-color: white;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.tempo--componente--container{
+    display: flex;
+    margin-left: 15px;
+    width: 10%;
+    background-color: white;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+}
 
 .cabecalho{
     display: flex;

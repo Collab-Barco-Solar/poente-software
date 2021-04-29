@@ -1,4 +1,5 @@
 .grafico{
+    border-radius: 10px;
     background-color: #393640;
     font-size: 1.2em;
     display: flex;
