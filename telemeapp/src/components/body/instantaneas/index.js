@@ -3,10 +3,7 @@ import './style.css'
 
 import sendAsync from '../../../message-control/renderer';
 
-let onOff = 1;
-let dms = 0;
-let re = 1;
-let bombBB = 1;
+let bombBB = 0;
 let bombBE = 0;
 
 class Instantaneas extends Component {
@@ -67,15 +64,15 @@ class Instantaneas extends Component {
                 <div className="acionamentos">
                     <div className="acionamentos--superior">
                         <div className="on-off-display">
-                           {onOff === 1 ? <div className="on-off-ON"></div> : <div className="on-off-OFF"></div>}
+                           {(this.state.data && this.state.data[0].onOFF) !== 0 ? <div className="on-off-ON"></div> : <div className="on-off-OFF"></div>}
                             <p className="on-off-name">ON/OFF</p>
                         </div>
                         <div className="dms-display">
-                            {dms === 1 ? <div className="dms-ON"></div> : <div className="dms-OFF"></div>}
+                            {(this.state.data && this.state.data[0].dms) !== 0 ? <div className="dms-ON"></div> : <div className="dms-OFF"></div>}
                             <p className="dms-name">DMS</p>
                         </div>
                         <div className="re-display">
-                            {re === 1 ? <div className="re-ON"></div> : <div className="re-OFF"></div>}
+                            {(this.state.data && this.state.data[0].re) !== 0 ? <div className="re-ON"></div> : <div className="re-OFF"></div>}
                             <p className="re-name">RÉ</p>
                         </div>
                     </div>
