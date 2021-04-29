@@ -90,9 +90,117 @@
     font-size: 0.7em;
 }
 
+.re-display{
+    display: flex;
+    flex-direction: column;
+    height: 50px;
+    width: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+.re-ON{
+    color: white;
+    font-size: 0.5em;
+    display: flex;
+    border-radius: 20px;
+    background-color:green;
+    height: 35px;
+    width: 35px;
+}
+
+.re-OFF{
+    color: white;
+    font-size: 0.5em;
+    display: flex;
+    border-radius: 20px;
+    background-color:red;
+    height: 35px;
+    width: 35px;
+}
+
+.re-name {
+    color: white;
+    font-size: 0.7em;
+    
+}
+
+.bomba-bb-display{
+    display: flex;
+    flex-direction: column;
+    height: 50px;
+    width: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+.bomba-bb-ON{
+    color: white;
+    font-size: 0.5em;
+    display: flex;
+    border-radius: 20px;
+    background-color:green;
+    height: 35px;
+    width: 35px;
+}
+
+.bomba-bb-OFF{
+    color: white;
+    font-size: 0.5em;
+    display: flex;
+    border-radius: 20px;
+    background-color:red;
+    height: 35px;
+    width: 35px;
+}
+.bomba-bb-name{
+    color: white;
+    font-size: 0.7em;
+}
+
+.bomba-be-display{
+    display: flex;
+    flex-direction: column;
+    height: 50px;
+    width: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+.bomba-be-ON{
+    color: white;
+    font-size: 0.5em;
+    display: flex;
+    border-radius: 20px;
+    background-color:green;
+    height: 35px;
+    width: 35px;
+}
+
+.bomba-be-OFF{
+    color: white;
+    font-size: 0.5em;
+    display: flex;
+    border-radius: 20px;
+    background-color:red;
+    height: 35px;
+    width: 35px;
+}
+
+.bomba-be-name{
+    color: white;
+    font-size: 0.7em;
+}
+
+
+
+
 .acionamentos--inferior{
+    padding: 10% 20% 0 20%;
+    display: flex;
     height: 50%;
     width: 100%;
+    justify-content: space-between;
 }
 
 .nomes{

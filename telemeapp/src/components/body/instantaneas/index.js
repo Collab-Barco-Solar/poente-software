@@ -5,6 +5,9 @@ import sendAsync from '../../../message-control/renderer';
 
 let onOff = 1;
 let dms = 0;
+let re = 1;
+let bombBB = 1;
+let bombBE = 0;
 
 class Instantaneas extends Component {
     constructor() {
@@ -71,14 +74,20 @@ class Instantaneas extends Component {
                             {dms === 1 ? <div className="dms-ON"></div> : <div className="dms-OFF"></div>}
                             <p className="dms-name">DMS</p>
                         </div>
-                        <div>
-                            <div className="re"></div>
-                            <p>RÉ</p>
+                        <div className="re-display">
+                            {re === 1 ? <div className="re-ON"></div> : <div className="re-OFF"></div>}
+                            <p className="re-name">RÉ</p>
                         </div>
                     </div>
                     <div className="acionamentos--inferior">
-                        <div>BOMBA BB</div>
-                        <div>BOMBA BE</div>
+                        <div className="bomba-bb-display">
+                            {bombBB === 1 ? <div className="bomba-bb-ON"></div> : <div className="bomba-bb-OFF"></div>}
+                            <p className="bomba-bb-name">BMB-BB</p>
+                        </div>
+                        <div className="bomba-be-display">
+                            {bombBE === 1 ? <div className="bomba-be-ON"></div> : <div className="bomba-be-OFF"></div>}
+                            <p className="bomba-be-name">BMB-BE</p>
+                        </div>
                     </div>
                 </div>
             </div>
