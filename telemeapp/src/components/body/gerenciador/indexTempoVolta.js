@@ -46,6 +46,11 @@ class Gerenciador extends Component{
             <ContextoVoltas.Consumer>
                 { voltas => (
                     <div className="gerenciador">
+                        <div className="bandeiras-largada">
+                            <button className="tempo-largada">10min</button>
+                            <button className="tempo-largada">5min</button>
+                            <button className="tempo-largada">3min</button>
+                        </div>
                         <div className= "inputs">
                             <div className="entradas--A">
                                 <Input onChange={this.atualizaDistancia} value={this.state.entradaDistancia} name="Distancia Total" id="distanciaTotal" placeholder="Distância total"/>  
