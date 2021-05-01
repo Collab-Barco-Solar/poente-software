@@ -7,6 +7,127 @@
     width: 28.5%;
     height: 70vh;
 }
+.container-infos-instantaneas{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 100%;
+}
+
+.display-motor{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color: green;
+}
+
+.display-modulos{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color: green;
+}
+
+.display-corrente-baterias{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color: green;
+}
+
+.display-tensao-baterias{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color: red;
+}
+
+.display-corrente-bateriasAux{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color: red;
+}
+
+.display-tensao-bateriasAux{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color: red;
+}
+
+.display-potenciometro{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color:orange;
+}
+
+.velocidade{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color:orange;
+}
+
+.temperatura{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color:orange; 
+}
+
+
+
+
+
+
+
+
+
+.valores--itens{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    margin-left: 10px;
+    margin-right: 30px;
+}
+
+/* .valores--itens{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    margin-left: 10px;
+    margin-right: 30px;
+} */
+
 
 .instantaneas--superior{
     display: flex;
@@ -217,17 +338,7 @@
 .nomes--itens{
     margin-top: 12px;
 }
-.valores--itens{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: white;
-    margin-left: 10px;
-    margin-right: 30px;
-}
+
 
 
 

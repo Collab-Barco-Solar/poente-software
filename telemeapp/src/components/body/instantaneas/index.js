@@ -39,15 +39,51 @@ class Instantaneas extends Component {
                 <div className="instantaneas--superior">
 
                     <div className="valores">
-                        <p className="valores--itens">{( this.state.data && this.state.data[0].cBarramento ) || "Carregando"} A</p>
-                        <p className="valores--itens">{( this.state.data && this.state.data[0].tModulos ) || "Carregando"} V</p>
-                        <p className="valores--itens">{( this.state.data && this.state.data[0].cBaterias ) || "Carregando"} A</p>
-                        <p className="valores--itens">{( this.state.data && this.state.data[0].tBaterias ) || "Carregando"} V</p>
-                        <p className="valores--itens">{( this.state.data && this.state.data[0].cBateriasAux ) || "Carregando"} A</p>
-                        <p className="valores--itens">{( this.state.data && this.state.data[0].tBateriasAux ) || "Carregando"} V</p>
-                        <p className="valores--itens">{( this.state.data && this.state.data[0].pPotenciometro ) || "Carregando"}</p>
-                        <p className="valores--itens">{( this.state.data && this.state.data[0].velocidade ) || "Carregando"} nós</p>
-                        <p className="valores--itens">{( this.state.data && this.state.data[0].temperatura ) || "Carregando"} ºC</p>
+                        <div className="container-infos-instantaneas">
+                            <div className="display-motor"></div>
+                            <p className="valores--itens">{( this.state.data && this.state.data[0].cBarramento ) || "Carregando"} A</p>
+                        </div>
+
+                        <div className="container-infos-instantaneas">
+                            <div className="display-modulos"></div>
+                            <p className="valores--itens">{( this.state.data && this.state.data[0].tModulos ) || "Carregando"} V</p>
+                        </div>
+
+                        <div className="container-infos-instantaneas">
+                            <div className="display-corrente-baterias"></div>
+                            <p className="valores--itens">{( this.state.data && this.state.data[0].cBaterias ) || "Carregando"} A</p>
+                        </div>
+
+                        <div className="container-infos-instantaneas">
+                            <div className="display-tensao-baterias"></div>
+                            <p className="valores--itens">{( this.state.data && this.state.data[0].tBaterias ) || "Carregando"} V</p>
+                        </div>
+
+                        <div className="container-infos-instantaneas">
+                            <div className="display-corrente-bateriasAux"></div>
+                            <p className="valores--itens">{( this.state.data && this.state.data[0].cBateriasAux ) || "Carregando"} A</p>
+                        </div>
+
+                        <div className="container-infos-instantaneas">
+                            <div className="display-tensao-bateriasAux"></div>
+                            <p className="valores--itens">{( this.state.data && this.state.data[0].tBateriasAux ) || "Carregando"} V</p>
+                        </div>
+
+                        <div className="container-infos-instantaneas">
+                            <div className="display-potenciometro"></div>
+                            <p className="valores--itens">{( this.state.data && this.state.data[0].pPotenciometro ) || "Carregando"}</p>
+                        </div>
+
+                        <div className="container-infos-instantaneas">
+                            <div className="velocidade"></div>
+                            <p className="valores--itens">{( this.state.data && this.state.data[0].velocidade ) || "Carregando"} nós</p>
+                        </div>
+
+                        <div className="container-infos-instantaneas">
+                            <div className="temperatura"></div>
+                            <p className="valores--itens">{( this.state.data && this.state.data[0].temperatura ) || "Carregando"} ºC</p>
+                        </div>
+
                     </div>
                     <div className="nomes">
                         <p className="nomes--itens">Corrente Motor</p>
