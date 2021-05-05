@@ -2,7 +2,12 @@ import React, { Component } from 'react'
 import './style.css'
 import { Line, LineChart, XAxis, YAxis, Tooltip, CartesianGrid, Legend, ResponsiveContainer, Label } from 'recharts'
 
+let fontAxis = 'Arial';
+let fontLabel = 'Arial';
+let fontSizeAxis = '1rem';
+let fontSizeLabel = '1.2rem';
 
+let intervalID;
 
 class Graficos extends Component {
     constructor() {
@@ -26,7 +31,7 @@ class Graficos extends Component {
 	
     componentDidMount(){
         this.setState({data: this.generateDataPoints(500)});
-        setInterval(() => { 
+        intervalID = setInterval(() => { 
             var novoData = this.state.data;
             novoData.shift();
             novoData.push({tempo: 0, Corrente: this.state.data[this.state.data.length-1].Corrente + 5 + Math.random()*(-10)});
@@ -42,6 +47,10 @@ class Graficos extends Component {
         }, 500);
     }
 
+    componentWillUnmount(){
+        clearInterval(intervalID);
+    }
+
 	render() {
 
 		return (
@@ -54,11 +63,17 @@ class Graficos extends Component {
                     >
                     <CartesianGrid  verticalFill={['rgba(0, 0, 0, 0.4)', 'rgba(0, 0, 0, 0.6)']} horizontalFill={['#ccc', '#fff']} />
                     <Tooltip contentStyle={{backgroundColor:'rgba(0, 0, 0, 0.6)'}}/>
-                    <XAxis dataKey="tempo" stroke='white' minTickGap={50} interval="preserveStartEnd">
-                        <Label value="Tempo" stroke='white' offset={-20} position="insideBottomRight" />
+                    <XAxis dataKey="tempo" stroke='white' minTickGap={50} interval="preserveStartEnd" style={{  fontSize: fontSizeAxis,
+                                                                                                                fontFamily: fontAxis, }}>
+                        <Label value="Tempo" stroke='white' offset={-20} position="insideBottomRight" style={{  fontSize: fontSizeLabel,
+                                                                                                                fontFamily: fontLabel,
+                                                                                                                fill: 'white', }}/>
                     </XAxis>
-                    <YAxis stroke='white'>
-                        <Label value="Corrente" stroke='white' offset={20} position="top" />
+                    <YAxis stroke='white'                                                             style={{  fontSize: fontSizeAxis,
+                                                                                                                fontFamily: fontAxis, }}>
+                        <Label value="Corrente" stroke='white' offset={20} position="top"             style={{  fontSize: fontSizeLabel,
+                                                                                                                fontFamily: fontLabel,
+                                                                                                                fill: 'white', }} />
                     </YAxis>
                     <Legend/>
                     <Line type='monotone' dataKey='Corrente' stroke='white' dot={false} />
