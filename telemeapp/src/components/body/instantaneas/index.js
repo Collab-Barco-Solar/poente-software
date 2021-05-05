@@ -6,6 +6,8 @@ import sendAsync from '../../../message-control/renderer';
 let bombBB = 0;
 let bombBE = 0;
 
+let bancoEncontrado = false;
+
 class Instantaneas extends Component {
     constructor() {
         super();
@@ -17,8 +19,13 @@ class Instantaneas extends Component {
         sendAsync(sql_message).then((result) => this.setState({data: result})); 
         if(this.state.data != null){
             //console.log(this.state.data[0].emergencia); //data é um vetor, com cada posição sendo uma linha
+            if(!bancoEncontrado){
+                console.log("Banco de dados conectado com sucesso!");
+                bancoEncontrado = true;
+            }
         } else {
-            console.log("Não foram encontrados dados no banco de dados"); 
+            console.log("Buscando dados no banco de dados..."); 
+            bancoEncontrado = false;
         }
     }
 

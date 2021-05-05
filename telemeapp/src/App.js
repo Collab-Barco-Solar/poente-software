@@ -4,7 +4,7 @@ import Header from './components/header/index'
 import Body from './components/body/index'
 import Footer from './components/footer/index'
 
-import { ContextoVoltas } from "./contextos/contexto-voltas";
+import { ContextoGeral } from "./contextos/contexto-geral";
 
 var { Timer } = require('easytimer.js');
 
@@ -106,11 +106,11 @@ class App extends React.Component {
     render() {
         return (
             <div>
-            <ContextoVoltas.Provider value={ this.state }>
+            <ContextoGeral.Provider value={ this.state }>
                 <Header/>
                 <Body/>
                 <Footer/>
-            </ContextoVoltas.Provider>
+            </ContextoGeral.Provider>
             </div>
         );  
     }

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './style.css'
 import Mapa from './mapa/index'
 import TempoDeVolta from './tempoDeVolta/index'
-import { ContextoVoltas } from "../../../contextos/contexto-voltas";
+import { ContextoGeral } from "../../../contextos/contexto-geral";
 
 
 class Botao extends Component{
@@ -43,8 +43,8 @@ class Gerenciador extends Component{
 
     render(){
         return(
-            <ContextoVoltas.Consumer>
-                { voltas => (
+            <ContextoGeral.Consumer>
+                { contextoGeral => (
                     <div className="gerenciador">
                         <div className="bandeiras-largada">
                             <button className="tempo-largada">10min</button>
@@ -54,10 +54,10 @@ class Gerenciador extends Component{
                         <div className= "inputs">
                             <div className="entradas--A">
                                 <Input onChange={this.atualizaDistancia} value={this.state.entradaDistancia} name="Distancia Total" id="distanciaTotal" placeholder="Distância total"/>  
-                                <Botao onClick={() => voltas.Iniciar(this.state.entradaVoltas)} label = "INICIAR"/>
+                                <Botao onClick={() => contextoGeral.Iniciar(this.state.entradaVoltas)} label = "INICIAR"/>
                                 <Botao onClick={() => {
-                                    voltas.alteraVoltasTotais(0); 
-                                    voltas.alteraVoltasAtuais(0); 
+                                    contextoGeral.alteraVoltasTotais(0); 
+                                    contextoGeral.alteraVoltasAtuais(0); 
                                     }}  label = "RESETAR"/>
                                 <Botao label = "PAUSAR"/>
                             </div>
@@ -71,7 +71,7 @@ class Gerenciador extends Component{
                         <Mapa/>
                     </div>
                 )}       
-            </ContextoVoltas.Consumer>             
+            </ContextoGeral.Consumer>             
         )
     }
 

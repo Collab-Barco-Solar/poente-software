@@ -1,32 +1,32 @@
 import React  from 'react'
 import './style.css'
-import { ContextoVoltas  } from "../../../../contextos/contexto-voltas";
+import { ContextoGeral  } from "../../../../contextos/contexto-geral";
 import TempoVoltaDinamico from "./tempoVoltaDinamico"
 
 class TempoDeVolta extends React.Component {
     
-    IncrementaVolta(voltas) {
+    IncrementaVolta(contextoGeral) {
         //Incrementa o número de voltas no contexto
-        if(voltas.voltasAtuais + 1 > voltas.voltasTotais){
+        if(contextoGeral.voltasAtuais + 1 > contextoGeral.voltasTotais){
             console.log("Número de voltas máximo atingido")
         } else {
-            voltas.alteraVoltasAtuais(voltas.voltasAtuais + 1);
-            if(voltas.voltasAtuais + 1 < voltas.voltasTotais){
-                voltas.tempoDasVoltas.push({seconds: 0, minutes: 0, hours: 0});
+            contextoGeral.alteraVoltasAtuais(contextoGeral.voltasAtuais + 1);
+            if(contextoGeral.voltasAtuais + 1 < contextoGeral.voltasTotais){
+                contextoGeral.tempoDasVoltas.push({seconds: 0, minutes: 0, hours: 0});
             }
         }         
     };
 
     render(){
         return(
-            <ContextoVoltas.Consumer>
-                { voltas => (
+            <ContextoGeral.Consumer>
+                { contextoGeral => (
                     <div className="tempoDeVolta">
                         <div className="title--tempoDeVolta">
                             <p id="tempoDeVolta--name">Tempos de volta</p>
-                            <button onClick={() => this.IncrementaVolta(voltas)} 
+                            <button onClick={() => this.IncrementaVolta(contextoGeral)} 
                                 id="botao--tempoDeVolta" 
-                                disabled={!voltas.timer.isRunning() || (voltas.voltasAtuais>=voltas.voltasTotais)}>
+                                disabled={!contextoGeral.timer.isRunning() || (contextoGeral.voltasAtuais>=contextoGeral.voltasTotais)}>
                                     Mais uma volta
                             </button>
                             <p id="estimativa--name">Estimativas</p>
@@ -36,8 +36,8 @@ class TempoDeVolta extends React.Component {
 
                             <div className="placeHolderTime">
                                 <div id="infos--A">
-                                    {(voltas.tempoDasVoltas.length >= 1) && 
-                                        voltas.tempoDasVoltas.map((item, index) => {
+                                    {(contextoGeral.tempoDasVoltas.length >= 1) && 
+                                        contextoGeral.tempoDasVoltas.map((item, index) => {
                                             if(index < 5){
                                                 return (
                                                     <TempoVoltaDinamico key={index} id={index} tempo={item}/>
@@ -49,8 +49,8 @@ class TempoDeVolta extends React.Component {
                                     }
                                 </div>
                                 <div id = "infos--B">
-                                    {(voltas.tempoDasVoltas.length >= 1) && 
-                                        voltas.tempoDasVoltas.map((item, index) => {
+                                    {(contextoGeral.tempoDasVoltas.length >= 1) && 
+                                        contextoGeral.tempoDasVoltas.map((item, index) => {
                                             if(index >= 5){
                                                 return (
                                                     <TempoVoltaDinamico key={index} id={index} tempo={item}/>
@@ -77,7 +77,7 @@ class TempoDeVolta extends React.Component {
                         </div>
                     </div>
                 )}       
-            </ContextoVoltas.Consumer>             
+            </ContextoGeral.Consumer>             
         )
     }
 }
