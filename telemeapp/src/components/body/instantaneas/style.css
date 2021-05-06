@@ -1,3 +1,8 @@
+
+
+
+
+
 .instantaneas{
     border-radius: 10px;
     background-color: #393640;
@@ -335,12 +340,20 @@
 }
 
 
+.input-area{
+    background-color: blueviolet;
+    width: 100px;
+}
+
 .nomes--itens{
+    display: flex;
     margin-top: 12px;
 }
 
-
-
+.config-input{
+    margin-left: auto;
+    margin-right: 10px;
+}
 
 
 /* .CM{
