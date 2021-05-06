@@ -63,31 +63,31 @@ async function config(value) {
             tensaoModulosMin = formValues[0];
             tensaoModulosMax = formValues[1];
         }
-        else if (value == 3) {
+        else if (value === 3) {
             correnteBateriasMin = formValues[0];
             correnteBateriasMax = formValues[1];
         }
-        else if (value == 4) {
+        else if (value === 4) {
             tensaoBateriasMin = formValues[0];
             tensaoBateriasMax = formValues[1];
         }
-        else if (value == 5) {
+        else if (value === 5) {
             correnteBateriasAuxMin = formValues[0];
             correnteBateriasAuxMax = formValues[1];
         }
-        else if (value == 6) {
+        else if (value === 6) {
             tensaoBateriasAuxMin = formValues[0];
             tensaoBateriasAuxMax = formValues[1];
         }
-        else if (value == 7) {
+        else if (value === 7) {
             posPotenciometroMin = formValues[0];
             posPotenciometroMax = formValues[1];
         }
-        else if (value == 8) {
+        else if (value === 8) {
             velocidadeMin = formValues[0];
             velocidadeMax = formValues[1];
         }
-        else if (value == 9) {
+        else if (value === 9) {
             temperaturaMin = formValues[0];
             temperaturaMax = formValues[1];
         }
