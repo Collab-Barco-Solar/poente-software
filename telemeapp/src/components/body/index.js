@@ -12,7 +12,20 @@ const Body = ()=>(
             <h6 id="gerenciador--name">Gerenciador de Prova</h6>
         </div>
         <div id="title-2">
-            <h6 id ="graficos--name">Gráficos</h6>
+            <h6 id ="graficos--name--box">
+                <div id="graficos--name">Gráficos</div>
+                <select name="graficos" id="graficos-select">
+                    <option>Corrente Motor</option>
+                    <option>Tensão Mod</option>
+                    <option>Corrente Baterias</option>
+                    <option>Tensão Baterias</option>
+                    <option>Corrente BatAux</option>
+                    <option>Tensão BatAux</option>
+                    <option>Posição Pot.</option>
+                    <option>Velocidade</option>
+                    <option>Temperatura</option>
+                </select>
+            </h6>
             <h6 id="instantaneas--name">Instantâneas</h6>
             <Gerenciador/>
         </div>
