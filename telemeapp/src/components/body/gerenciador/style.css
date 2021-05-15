@@ -44,7 +44,7 @@
 input{
     border-radius: 10px;
     display: flex;
-    padding: 0px;
+    padding: 10px;
 }
 .botao{
     font-size: 0.7em;
