@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './style.css'
-import { TileLayer, MapContainer, Marker, Popup, useMapEvents } from 'react-leaflet';
+import { TileLayer, MapContainer, Marker, Popup, useMapEvents, Polyline } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import boat from './boat.jpeg';
@@ -43,12 +43,9 @@ const positions = [
     [-20.280256, -40.307649],
 ]
 
-let i = 0;
+const percurso = [];
 
-// const bandeiras = [[-20.280080, -40.313748],
-//                 [-20.280075, -40.313448],
-//                 [-20.280075, -40.313099],
-//                 [-20.280034, -40.312767]];
+let i = 0;
 
 let flags = [];
 
@@ -67,6 +64,8 @@ const FlagIcon = L.icon({
 const Mapa = () => {
     const [posicaoAtual, setPosicaoAtual] = useState([-20.279682, -40.314660])
     const [addFlag, setAddFlag] = useState(false);
+    const [completouPercurso, setCompletouPercurso] = useState(false);
+    const limeOptions = { color: 'lime' }
 
     useEffect(() => {
         //Defining the offline layer for the map
@@ -88,6 +87,10 @@ const Mapa = () => {
         setTimeout(() => {
             if( i === 30){
                 i = 0;
+                setCompletouPercurso(true);
+            }
+            if(!completouPercurso){
+                percurso.push(positions[i]);
             }
             setPosicaoAtual(positions[i]);
             // console.log(posicaoAtual)
@@ -107,20 +110,10 @@ const Mapa = () => {
             },            
         })
         return null;
+    }
 
-        // return (
-        //     selectedPosition ? 
-        //         (
-        //             <Marker
-        //                 icon={FlagIcon}           
-        //                 key={selectedPosition[0]}
-        //                 position={selectedPosition}
-        //                 interactive={false} 
-        //             />
-        //         )
-                
-        //     : null
-        // )   
+    const BoatRoute = () => {
+        return <Polyline pathOptions={limeOptions} positions={percurso} />
     }
 
     return(
@@ -142,7 +135,7 @@ const Mapa = () => {
             
                 <MapContainer 
                     center={[-20.2769499, -40.3068654]} 
-                    zoom={12} 
+                    zoom={15} 
                     style={{width: '100%', height: '100%' }}
                     
                 >
@@ -161,6 +154,9 @@ const Mapa = () => {
                 )}
                 
                 <Markers />
+
+                <BoatRoute />
+
             </MapContainer>
         </div>
     )
