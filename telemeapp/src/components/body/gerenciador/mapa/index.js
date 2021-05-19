@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import './style.css'
-import { TileLayer, MapContainer, Marker, Popup } from 'react-leaflet';
+import { TileLayer, MapContainer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-import icon from './boat.jpeg';
+import boat from './boat.jpeg';
+import flag from './flag.png';
 import localforage from 'localforage';
 import 'leaflet-offline';
-
-const BoatIcon = L.icon({
-    iconUrl: icon,
-    iconSize:     [30, 30], // size of the icon
-});
+import { FiCornerUpLeft, FiFlag } from "react-icons/fi";
 
 const positions = [
     [-20.280080, -40.313748],
@@ -48,10 +45,28 @@ const positions = [
 
 let i = 0;
 
-L.Marker.prototype.options.icon = BoatIcon;
+// const bandeiras = [[-20.280080, -40.313748],
+//                 [-20.280075, -40.313448],
+//                 [-20.280075, -40.313099],
+//                 [-20.280034, -40.312767]];
+
+let flags = [];
+
+const BoatIcon = L.icon({
+    iconUrl: boat,
+    iconSize: [30, 30], // size of the icon
+});
+
+const FlagIcon = L.icon({
+    iconUrl: flag,
+    iconSize: [30, 30], // size of the icon
+});
+
+// L.Marker.prototype.options.icon = BoatIcon;
 
 const Mapa = () => {
     const [posicaoAtual, setPosicaoAtual] = useState([-20.279682, -40.314660])
+    const [addFlag, setAddFlag] = useState(false);
 
     useEffect(() => {
         //Defining the offline layer for the map
@@ -61,7 +76,7 @@ const Mapa = () => {
         const offlineLayer = L.tileLayer.offline('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', localforage, {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
         subdomains: 'abc',
-        minZoom: 13,
+        minZoom: 12,
         maxZoom: 19,
         crossOrigin: true
     });
@@ -80,18 +95,72 @@ const Mapa = () => {
         }, 1000)
     },[posicaoAtual])
 
+    
+    const Markers = () => {
+        useMapEvents({
+            click(e) {
+                if(addFlag === false){
+                    return null;
+                }
+                flags.push([ e.latlng.lat, e.latlng.lng ]);
+                setAddFlag(!addFlag);                
+            },            
+        })
+        return null;
+
+        // return (
+        //     selectedPosition ? 
+        //         (
+        //             <Marker
+        //                 icon={FlagIcon}           
+        //                 key={selectedPosition[0]}
+        //                 position={selectedPosition}
+        //                 interactive={false} 
+        //             />
+        //         )
+                
+        //     : null
+        // )   
+    }
+
     return(
-        <div className ="container" id="map-id">
-            <MapContainer center={[-20.2769499, -40.3068654]} zoom={15} style={{width: '100%', height: '100%' }}>
-            <TileLayer
-                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <Marker position={posicaoAtual}>
-            <Popup>
-                Poente - Solares <br /> Última atualização: 07:30
-            </Popup>
-            </Marker>
+        <div className ="container" id="map-id" style={{backgroundColor: '#393640'}}>
+            <div className="addFlags" >
+                <FiFlag 
+                    color="#FFFFFF"
+                    size={25} 
+                    style={ addFlag ? { fill: 'red' } : {}} 
+                    onClick={() => setAddFlag(!addFlag)}
+                />    
+                {flags.length > 0 && 
+                <FiCornerUpLeft 
+                    color="#FFFFFF"
+                    size={25} 
+                    onClick={() => flags.pop()}
+                />}
+            </div>
+            
+                <MapContainer 
+                    center={[-20.2769499, -40.3068654]} 
+                    zoom={12} 
+                    style={{width: '100%', height: '100%' }}
+                    
+                >
+                <TileLayer
+                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                <Marker position={posicaoAtual} icon={BoatIcon}>
+                    <Popup>
+                        Poente - Solares <br /> Última atualização: 07:30
+                    </Popup>
+                </Marker>
+
+                {flags.map((position, idx) =>
+                    <Marker key={idx} position={position} icon={FlagIcon}></Marker>
+                )}
+                
+                <Markers />
             </MapContainer>
         </div>
     )
