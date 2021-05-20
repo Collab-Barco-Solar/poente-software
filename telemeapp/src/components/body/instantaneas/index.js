@@ -33,14 +33,14 @@ let temperaturaMax = 0;
 
 let bancoEncontrado = false;
 
-
+//<input id="swal-input1" class="swal2-input">
+//<input id="swal-input2" class="swal2-input">
 // 1 -> se refere a configuracao das correntes
 // 2 -> configuracao da bomba
 async function config(value) {
     const { value: formValues } = await Swal.fire({
         title: 'Entradas',
-        html: '<div class="input-area"><p>CORRENTE</p> <input id="swal-input1" class="swal2-input"></div>' +
-            '<input id="swal-input2" class="swal2-input">',
+        html: '<div class="input-area"> <div class="input-1"><p class="input-text">Valor mínimo</p> <input id="swal-input1" class="swal2-input"> </div>  <div class="input-2"><p class="input-text">Valor máximo </p> <input id="swal-input2" class="swal2-input"> </div> </div>',
         focusConfirm: false,
         width: 600,
         padding: '3em',
@@ -134,51 +134,60 @@ class Instantaneas extends Component {
     render() {
         return (
             <div className="instantaneas">
-                <div className="instantaneas--superior">
-
+                <div className="instantaneas--superior"> 
                     <div className="valores">
+                        {/* se o valor que está for > max*0.9 && <max || se valor que está for <min*1.1 && > min */}
                         <div className="container-infos-instantaneas">
-                            <div className="display-motor"></div>
+                            {(this.state.data && this.state.data[0].cBarramento) <= correnteMotorMin || (this.state.data && this.state.data[0].cBarramento)>= correnteMotorMax ? <div className="display-motor-r"></div> : <div className="display-motor-g"></div> }                            
+                            {/* <div className="display-motor-g"></div> */}
                             <p className="valores--itens">{(this.state.data && this.state.data[0].cBarramento) || "Carregando"} A</p>
                         </div>
 
                         <div className="container-infos-instantaneas">
-                            <div className="display-modulos"></div>
+                            {(this.state.data && this.state.data[0].tModulos) <= tensaoModulosMin || (this.state.data && this.state.data[0].tModulos)>= tensaoModulosMax ? <div className="display-modulos-r"></div> : <div className="display-modulos-g"></div> }
+                            {/* <div className="display-modulos"></div> */}
                             <p className="valores--itens">{(this.state.data && this.state.data[0].tModulos) || "Carregando"} V</p>
                         </div>
 
                         <div className="container-infos-instantaneas">
-                            <div className="display-corrente-baterias"></div>
+                            {(this.state.data && this.state.data[0].cBaterias) <= correnteBateriasMin || (this.state.data && this.state.data[0].cBaterias)>= correnteBateriasMax ? <div className="display-corrente-baterias-r"></div> : <div className="display-corrente-baterias-g"></div> }
+                            {/* <div className="display-corrente-baterias"></div> */}
                             <p className="valores--itens">{(this.state.data && this.state.data[0].cBaterias) || "Carregando"} A</p>
                         </div>
 
                         <div className="container-infos-instantaneas">
-                            <div className="display-tensao-baterias"></div>
+                            {(this.state.data && this.state.data[0].tBaterias) <= tensaoBateriasMin || (this.state.data && this.state.data[0].tBaterias)>= tensaoBateriasMax ? <div className="display-tensao-baterias-r"></div> : <div className="display-tensao-baterias-g"></div> }
+                            {/* <div className="display-tensao-baterias"></div> */}
                             <p className="valores--itens">{(this.state.data && this.state.data[0].tBaterias) || "Carregando"} V</p>
                         </div>
 
                         <div className="container-infos-instantaneas">
-                            <div className="display-corrente-bateriasAux"></div>
+                            {(this.state.data && this.state.data[0].cBateriasAux) <= correnteBateriasAuxMin || (this.state.data && this.state.data[0].cBateriasAux)>= correnteBateriasAuxMax ? <div className="display-corrente-bateriasAux-r"></div> : <div className="display-corrente-bateriasAux-g"></div>}
+                            {/* <div className="display-corrente-bateriasAux"></div> */}
                             <p className="valores--itens">{(this.state.data && this.state.data[0].cBateriasAux) || "Carregando"} A</p>
                         </div>
 
                         <div className="container-infos-instantaneas">
-                            <div className="display-tensao-bateriasAux"></div>
+                            {(this.state.data && this.state.data[0].tBateriasAux) <= tensaoBateriasAuxMin || (this.state.data && this.state.data[0].tBateriasAux)>= tensaoBateriasAuxMax ? <div className="display-tensao-bateriasAux-r"></div> : <div className="display-tensao-bateriasAux-g"></div>}
+                            {/* <div className="display-tensao-bateriasAux"></div> */}
                             <p className="valores--itens">{(this.state.data && this.state.data[0].tBateriasAux) || "Carregando"} V</p>
                         </div>
 
                         <div className="container-infos-instantaneas">
-                            <div className="display-potenciometro"></div>
+                            {(this.state.data && this.state.data[0].pPotenciometro) <= posPotenciometroMin || (this.state.data && this.state.data[0].pPotenciometro)>= posPotenciometroMax ? <div className="display-potenciometro-r"></div> : <div className="display-potenciometro-g"></div>}
+                            {/* <div className="display-potenciometro"></div> */}
                             <p className="valores--itens">{(this.state.data && this.state.data[0].pPotenciometro) || "Carregando"}</p>
                         </div>
 
                         <div className="container-infos-instantaneas">
-                            <div className="velocidade"></div>
+                            {(this.state.data && this.state.data[0].velocidade) <= velocidadeMin || (this.state.data && this.state.data[0].velocidade)>= velocidadeMax ? <div className="velocidade-r"></div> : <div className="velocidade-g"></div>}
+                            {/* <div className="velocidade"></div> */}
                             <p className="valores--itens">{(this.state.data && this.state.data[0].velocidade) || "Carregando"} nós</p>
                         </div>
 
                         <div className="container-infos-instantaneas">
-                            <div className="temperatura"></div>
+                            {(this.state.data && this.state.data[0].temperatura) <= temperaturaMin || (this.state.data && this.state.data[0].temperatura)>= temperaturaMax ? <div className="temperatura-r"></div> : <div className="temperatura-g"></div>}
+                            {/* <div className="temperatura"></div> */}
                             <p className="valores--itens">{(this.state.data && this.state.data[0].temperatura) || "Carregando"} ºC</p>
                         </div>
 

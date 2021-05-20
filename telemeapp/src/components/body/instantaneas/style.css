@@ -19,94 +19,6 @@
     width: 100%;
 }
 
-.display-motor{
-    height: 21px;
-    border-radius: 10px;
-    width: 30px;
-    margin-left: 10px;
-    margin-top: 10px;
-    background-color: green;
-}
-
-.display-modulos{
-    height: 21px;
-    border-radius: 10px;
-    width: 30px;
-    margin-left: 10px;
-    margin-top: 10px;
-    background-color: green;
-}
-
-.display-corrente-baterias{
-    height: 21px;
-    border-radius: 10px;
-    width: 30px;
-    margin-left: 10px;
-    margin-top: 10px;
-    background-color: green;
-}
-
-.display-tensao-baterias{
-    height: 21px;
-    border-radius: 10px;
-    width: 30px;
-    margin-left: 10px;
-    margin-top: 10px;
-    background-color: red;
-}
-
-.display-corrente-bateriasAux{
-    height: 21px;
-    border-radius: 10px;
-    width: 30px;
-    margin-left: 10px;
-    margin-top: 10px;
-    background-color: red;
-}
-
-.display-tensao-bateriasAux{
-    height: 21px;
-    border-radius: 10px;
-    width: 30px;
-    margin-left: 10px;
-    margin-top: 10px;
-    background-color: red;
-}
-
-.display-potenciometro{
-    height: 21px;
-    border-radius: 10px;
-    width: 30px;
-    margin-left: 10px;
-    margin-top: 10px;
-    background-color:orange;
-}
-
-.velocidade{
-    height: 21px;
-    border-radius: 10px;
-    width: 30px;
-    margin-left: 10px;
-    margin-top: 10px;
-    background-color:orange;
-}
-
-.temperatura{
-    height: 21px;
-    border-radius: 10px;
-    width: 30px;
-    margin-left: 10px;
-    margin-top: 10px;
-    background-color:orange; 
-}
-
-
-
-
-
-
-
-
 
 .valores--itens{
     width: 100%;
@@ -339,10 +251,33 @@
     height: 60%;
 }
 
+.swal2-title{
+    color:black;
+}
 
+.swal2-input{
+    width: 50%;
+    border-radius: 10px;
+    border-color: black;
+}
+
+.input-1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.input-2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.input-text{
+    color: black;
+    font-weight: bold;
+}
 .input-area{
-    background-color: blueviolet;
-    width: 100px;
+    width: 100%;
+    height: 200px;
 }
 
 .nomes--itens{
@@ -384,3 +319,254 @@
     border-color: white;
     margin-left: 40%;
 } */
+
+
+
+/* MUDAR DEPOIS*/
+
+.display-motor-g{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color: green;
+}
+
+.display-modulos-g{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color: green;
+}
+
+.display-corrente-baterias-g{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color: green;
+}
+
+.display-tensao-baterias-g{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color:green;
+}
+
+.display-corrente-bateriasAux-g{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color:green;
+}
+
+.display-tensao-bateriasAux-g{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color: green;
+}
+
+.display-potenciometro-g{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color:green;
+}
+
+.velocidade-g{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color:green;
+}
+
+.temperatura-g{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color:green; 
+}
+
+
+/*----------------------------*/
+
+.display-motor-r{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color: red;
+}
+
+.display-modulos-r{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color: red;
+}
+
+.display-corrente-baterias-r{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color: red;
+}
+
+.display-tensao-baterias-r{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color:red;
+}
+
+.display-corrente-bateriasAux-r{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color:red;
+}
+
+.display-tensao-bateriasAux-r{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color: red;
+}
+
+.display-potenciometro-r{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color:red;
+}
+
+.velocidade-r{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color:red;
+}
+
+.temperatura-r{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color:red; 
+}
+
+/* ---------------------------*/
+.display-motor-o{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color: orange;
+}
+
+.display-modulos-o{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color: orange;
+}
+
+.display-corrente-baterias-o{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color: orange;
+}
+
+.display-tensao-baterias-o{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color:orange;
+}
+
+.display-corrente-bateriasAux-o{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color:orange;
+}
+
+.display-tensao-bateriasAux-o{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color: orange;
+}
+
+.display-potenciometro-o{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color:orange;
+}
+
+.velocidade-o{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color:orange;
+}
+
+.temperatura-o{
+    height: 21px;
+    border-radius: 10px;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color:orange; 
+}
