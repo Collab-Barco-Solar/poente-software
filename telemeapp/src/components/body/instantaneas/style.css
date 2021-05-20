@@ -1,8 +1,4 @@
 
-
-
-
-
 .instantaneas{
     border-radius: 10px;
     background-color: #393640;
@@ -32,18 +28,6 @@
     margin-left: 10px;
     margin-right: 30px;
 }
-
-/* .valores--itens{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: white;
-    margin-left: 10px;
-    margin-right: 30px;
-} */
 
 
 .instantaneas--superior{
@@ -290,37 +274,6 @@
     margin-right: 10px;
 }
 
-
-/* .CM{
-    margin-left: 10px;
-    margin-top: 5px;
-    display: flex;
-    height: 5%;
-    width: 300px;
-}
-#info--CM{
-    border-style: solid;
-    border-width: 1px;
-    border-color: white;
-    margin-left: 40%;
-
-}
-.TM{
-    margin-left: 10px;
-    margin-top: 5px;
-    display: flex;
-    height: 5%;
-    width: 300px;
-}
-
-#info--TM{
-    border-style: solid;
-    border-width: 1px;
-    border-color: white;
-    margin-left: 40%;
-} */
-
-/*----------------------------*/
 
 .display-instantaneas{
     height: 21px;

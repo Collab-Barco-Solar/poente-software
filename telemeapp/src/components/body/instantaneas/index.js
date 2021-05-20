@@ -5,6 +5,7 @@ import './style.css'
 
 import sendAsync from '../../../message-control/renderer';
 
+// esses dadods ainda não estão dispostos no db
 let bombBB = 0;
 let bombBE = 0;
 
@@ -34,13 +35,11 @@ let paramentros = [
 
 let bancoEncontrado = false;
 
-//<input id="swal-input1" class="swal2-input">
-//<input id="swal-input2" class="swal2-input">
 // 1 -> se refere a configuracao das correntes
 // 2 -> configuracao da bomba
-async function config(value) {
+async function config(value,text) {
     const { value: formValues } = await Swal.fire({
-        title: 'Entradas',
+        title: `Entradas - ${text}`,
         html: `<div class="input-area"> 
                     <div class="input-1">
                         <p class="input-text">Valor mínimo</p> 
@@ -118,7 +117,6 @@ class Instantaneas extends Component {
             <div className="instantaneas">
                 <div className="instantaneas--superior"> 
                     <div className="valores">
-                        {/* se o valor que está for > max*0.9 && <max || se valor que está for <min*1.1 && > min */}
                         <div className="container-infos-instantaneas">
                             <DisplayInstantaneas value={this.state.data?.[0].cBarramento} parametro={0}/>                            
                             <p className="valores--itens">{(this.state.data?.[0].cBarramento) || "Carregando"} A</p>
@@ -168,31 +166,31 @@ class Instantaneas extends Component {
                     <div className="nomes">
         
                         <p className="nomes--itens">Corrente Motor
-                            <FiSettings onClick={() => config(0)} size={15} className="config-input" />
+                            <FiSettings onClick={() => config(0,'Corrente motor')} size={15} className="config-input" />
                         </p>
                         <p className="nomes--itens">Tensão Módulos
-                            <FiSettings onClick={() => config(1)} size={15} className="config-input" />
+                            <FiSettings onClick={() => config(1,'Tensão módulos')} size={15} className="config-input" />
                         </p>
                         <p className="nomes--itens">Corrente Baterias
-                            <FiSettings onClick={() => config(2)} size={15} className="config-input" />
+                            <FiSettings onClick={() => config(2,'Corrente baterias')} size={15} className="config-input" />
                         </p>
                         <p className="nomes--itens">Tensão Baterias
-                            <FiSettings onClick={() => config(3)} size={15} className="config-input" />
+                            <FiSettings onClick={() => config(3,'Tensão baterias')} size={15} className="config-input" />
                         </p>
                         <p className="nomes--itens">Corrente Bateria Aux
-                            <FiSettings onClick={() => config(4)} size={15} className="config-input" />
+                            <FiSettings onClick={() => config(4,'Corrente bateriasAux')} size={15} className="config-input" />
                         </p>
                         <p className="nomes--itens">Tensão Bateria Aux
-                            <FiSettings onClick={() => config(5)} size={15} className="config-input" />
+                            <FiSettings onClick={() => config(5,'Tensão bateriasAux')} size={15} className="config-input" />
                         </p>
                         <p className="nomes--itens">Posição Potenciômetro
-                            <FiSettings onClick={() => config(6)} size={15} className="config-input" />
+                            <FiSettings onClick={() => config(6,'Posição potenciômetro')} size={15} className="config-input" />
                         </p>
                         <p className="nomes--itens">Velocidade
-                            <FiSettings onClick={() => config(7)} size={15} className="config-input" />
+                            <FiSettings onClick={() => config(7,'Velocidade')} size={15} className="config-input" />
                         </p>
                         <p className="nomes--itens">Temperatura
-                            <FiSettings onClick={() => config(8)} size={15} className="config-input" />
+                            <FiSettings onClick={() => config(8,'Temperatura')} size={15} className="config-input" />
                         </p>
                     </div>
                 </div>
