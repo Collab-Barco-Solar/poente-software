@@ -7,7 +7,8 @@ import boat from './boat.jpeg';
 import flag from './flag.png';
 import localforage from 'localforage';
 import 'leaflet-offline';
-import { FiCornerUpLeft, FiFlag } from "react-icons/fi";
+import { FiCornerUpLeft, FiFlag, FiPlus } from "react-icons/fi";
+import Swal from 'sweetalert2'
 
 const positions = [
     [-20.280080, -40.313748],
@@ -43,11 +44,11 @@ const positions = [
     [-20.280256, -40.307649],
 ]
 
-const percurso = [];
-
 let i = 0;
 
 let flags = [];
+const percurso = [];
+
 
 const BoatIcon = L.icon({
     iconUrl: boat,
@@ -59,7 +60,40 @@ const FlagIcon = L.icon({
     iconSize: [30, 30], // size of the icon
 });
 
-// L.Marker.prototype.options.icon = BoatIcon;
+
+
+async function addFlagCoords() {
+    const { value: formValues } = await Swal.fire({
+        title: `Coordenadas`,
+        html: `<div class="input-area"> 
+                    <div class="input-1">
+                        <p class="input-text">Latitude</p> 
+                        <input id="swal-input1" class="swal2-input" /> 
+                    </div>  
+                    <div class="input-2">
+                        <p class="input-text">Longitude </p> 
+                        <input id="swal-input2" class="swal2-input" /> 
+                    </div> 
+                </div>`,
+        focusConfirm: false,
+        width: 600,
+        padding: '3em',
+        background: '#fff',
+        preConfirm: () => {
+            return [
+                document.getElementById('swal-input1').value,
+                document.getElementById('swal-input2').value
+            ]
+        }
+    })
+
+    if (formValues) {
+        if(formValues[0] !== "" && formValues[1] !== "")
+            flags.push([ formValues[0], formValues[1]]);
+
+        Swal.fire(JSON.stringify(formValues))
+    }
+}
 
 const Mapa = () => {
     const [posicaoAtual, setPosicaoAtual] = useState([-20.279682, -40.314660])
@@ -119,6 +153,11 @@ const Mapa = () => {
     return(
         <div className ="container" id="map-id" style={{backgroundColor: '#393640'}}>
             <div className="addFlags" >
+                <FiPlus 
+                    color="#FFFFFF"
+                    size={25} 
+                    onClick={() => addFlagCoords()}
+                />
                 <FiFlag 
                     color="#FFFFFF"
                     size={25} 
@@ -133,12 +172,12 @@ const Mapa = () => {
                 />}
             </div>
             
-                <MapContainer 
-                    center={[-20.2769499, -40.3068654]} 
-                    zoom={15} 
-                    style={{width: '100%', height: '100%' }}
-                    
-                >
+            <MapContainer 
+                center={[-20.2769499, -40.3068654]} 
+                zoom={15} 
+                style={{width: '100%', height: '100%' }}
+                
+            >
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

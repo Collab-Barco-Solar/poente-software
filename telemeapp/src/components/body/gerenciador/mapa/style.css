@@ -22,3 +22,18 @@
 .addFlags:hover {
     cursor: pointer;
 }
+
+.input-area{
+    width: 100%;
+    height: 200px;
+}
+
+.nomes--itens{
+    display: flex;
+    margin-top: 12px;
+}
+
+.config-input{
+    margin-left: auto;
+    margin-right: 10px;
+}
