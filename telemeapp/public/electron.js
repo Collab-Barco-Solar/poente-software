@@ -1,4 +1,5 @@
 const electron = require('electron');
+const {dialog} = require('electron');
 
 const { app } = electron;
 const Tray = electron.Tray;
@@ -7,6 +8,65 @@ const {Menu,MenuItem} = require('electron')
 
 const path = require('path');
 const isDev = require('electron-is-dev');
+
+
+function buscarArquivo(){
+  // If the platform is 'win32' or 'Linux'
+  if (process.platform !== 'darwin') {
+      // Resolves to a Promise<Object>
+      dialog.showOpenDialog({
+          title: 'Select the File to be uploaded',
+          defaultPath: path.join(__dirname, '../assets/'),
+          buttonLabel: 'Upload',
+          // Restricting the user to only Text Files.
+          filters: [
+              {
+                  name: 'Text Files',
+                  extensions: ['txt', 'docx']
+              }, ],
+          // Specifying the File Selector Property
+          properties: ['openFile']
+      }).then(file => {
+          // Stating whether dialog operation was
+          // cancelled or not.
+          console.log(file.canceled);
+          if (!file.canceled) {
+            // Updating the GLOBAL filepath variable 
+            // to user-selected file.
+            global.filepath = file.filePaths[0].toString();
+            console.log(global.filepath);
+          }  
+      }).catch(err => {
+          console.log(err)
+      });
+  }
+  else {
+      // If the platform is 'darwin' (macOS)
+      dialog.showOpenDialog({
+          title: 'Select the File to be uploaded',
+          defaultPath: path.join(__dirname, '../assets/'),
+          buttonLabel: 'Upload',
+          filters: [
+              {
+                  name: 'Text Files',
+                  extensions: ['txt', 'docx']
+              }, ],
+          // Specifying the File Selector and Directory 
+          // Selector Property In macOS
+          properties: ['openFile', 'openDirectory']
+      }).then(file => {
+          console.log(file.canceled);
+          if (!file.canceled) {
+            global.filepath = file.filePaths[0].toString();
+            console.log(global.filepath);
+          }  
+      }).catch(err => {
+          console.log(err)
+      });
+  }
+}
+
+
 
 //Message Control
 require('../src/message-control/main'); 
@@ -19,6 +79,7 @@ function createWindow() {
     width: 1920,
     height: 1080,
     webPreferences: {
+      enableRemoteModule: true,
       nodeIntegration: true,
     },
     icon :__dirname+'/logo_Sol.png'
@@ -43,6 +104,7 @@ const menu = Menu.buildFromTemplate([
     submenu: [
       {
         label:"Inserir corrida",
+        click: (MenuItem,BrowserWindow,event) =>{buscarArquivo()}
       }
     ]
   },
@@ -86,3 +148,5 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+
