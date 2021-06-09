@@ -58,8 +58,8 @@ class Gerenciador extends Component{
                                 <Botao onClick={() => {
                                     contextoGeral.alteraVoltasTotais(0); 
                                     contextoGeral.alteraVoltasAtuais(0); 
-                                    }}  label = "RESETAR"/>
-                                <Botao label = "PAUSAR"/>
+                                    }}  label = "PAUSAR"/>
+                                <Botao label = "PARADO"/>
                             </div>
 
                             <div className="entradas--B">

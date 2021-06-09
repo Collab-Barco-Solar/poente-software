@@ -3,10 +3,34 @@ import './style.css'
 import Logo from './icones/logo_Sol.png'
 import Bandeira from './icones/espirito_santo.png'
 import Voltas from './voltas/voltas'
+import Swal from 'sweetalert2'
+
+import { FcSettings } from "react-icons/fc";
+
 //import Voltas from '../../components/body/gerenciador/indexTempoVolta.js'
 
 import Tempo from './tempo/index'
 //import Gerenciador from '../../components/body/gerenciador/indexTempoVolta.js'
+
+
+async function configMenu() {
+    const { value: formValues } = await Swal.fire({
+        title: 'Menu de configurações',
+        html: `<div class="container-config"> 
+
+                </div>`,
+        focusConfirm: false,
+        width: 600,
+        padding: '3em',
+        background: '#fff',
+        preConfirm: () => {
+            return [
+
+            ]
+        }
+    })
+}
+
 
 
 const Header = ()=> (
@@ -28,6 +52,8 @@ const Header = ()=> (
         </div>
 
         <img src={Bandeira} width ="70px" height="50px" id="bandeira" alt=""/>
+       
+        <FcSettings onClick = {()=>{configMenu()}} className="menu-config"/>
 
     </div>
 );
