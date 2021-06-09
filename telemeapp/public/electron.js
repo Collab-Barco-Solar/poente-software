@@ -3,6 +3,7 @@ const electron = require('electron');
 const { app } = electron;
 const Tray = electron.Tray;
 const { BrowserWindow } = electron;
+const {Menu,MenuItem} = require('electron')
 
 const path = require('path');
 const isDev = require('electron-is-dev');
@@ -35,6 +36,42 @@ function createWindow() {
     mainWindow = null;
   });
 }
+
+const menu = Menu.buildFromTemplate([
+  {
+    label:"File",
+    submenu: [
+      {
+        label:"Inserir corrida",
+      }
+    ]
+  },
+  {
+    label:"Visualizador",
+    submenu: [
+      {
+        role:'reload'
+      },
+      {
+        role:'toggleDevTools'
+      },
+      {
+        role:'resetZoom'
+      },
+      {
+        role:'zoomIn'
+      },
+      {
+        role:'zoomOut'
+      },
+      {
+        role:'togglefullscreen'
+      }
+    ]
+  }
+]);
+
+Menu.setApplicationMenu(menu);
 
 app.on('ready', createWindow);
 
