@@ -41,7 +41,7 @@ class Graficos extends Component {
                     </XAxis>
                     <YAxis stroke='white'                                                             style={{  fontSize: fontSizeAxis,
                                                                                                                 fontFamily: fontAxis, }}>
-                        <Label value="valor" stroke='white' offset={20} position="top"             style={{  fontSize: fontSizeLabel,
+                        <Label value={dadoExibido} stroke='white' offset={20} position="top"             style={{  fontSize: fontSizeLabel,
                                                                                                                 fontFamily: fontLabel,
                                                                                                                 fill: 'white', }} />
                     </YAxis>

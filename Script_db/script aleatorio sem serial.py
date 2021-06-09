@@ -2,13 +2,7 @@ import sqlite3
 import random
 import time
 
-# conexões relacionadas ao db e a porta serial
-db = sqlite3.connect('../telemeapp/banco_dados/banco1.db')
-
-cursor = db.cursor()
-
-
-def AtualizaDB():
+def AtualizaDB(vetor):
     emergencia_db = random.randint(0, 1)
     dms_db = random.randint(0, 1)
     onOFF_db = random.randint(0, 1)
@@ -17,19 +11,33 @@ def AtualizaDB():
     cruzeiro_db = random.randint(0, 1)
 
 
-    temperatura_db = random.uniform(20.0, 50.0)
-    tBarramento_db = random.uniform(20.0, 50.0)
-    tModulos_db = random.uniform(20.0, 50.0)
-    tBaterias_db = random.uniform(20.0, 50.0)
-    tBateriasAux_db = random.uniform(20.0, 50.0)
-    cBarramento_db = random.uniform(20.0, 50.0)
-    cModulos_db = random.uniform(20.0, 50.0)
-    cBaterias_db = random.uniform(20.0, 50.0)
-    cBateriasAux_db = random.uniform(20.0, 50.0)
-    pPotenciometro_db = random.uniform(20.0, 50.0)
-    velocidade_db = random.uniform(20.0, 50.0)
-    latitude_db = random.uniform(20.0, 50.0)
-    longitude_db = random.uniform(20.0, 50.0)
+    vetor[0] = vetor[0] + random.uniform(-2.0, 2.0)
+    vetor[1] = vetor[1] + random.uniform(-2.0, 2.0)
+    vetor[2] = vetor[2] + random.uniform(-2.0, 2.0)
+    vetor[3] = vetor[3] + random.uniform(-2.0, 2.0)
+    vetor[4] = vetor[4] + random.uniform(-2.0, 2.0)
+    vetor[5] = vetor[5] + random.uniform(-2.0, 2.0)
+    vetor[6] = vetor[6] + random.uniform(-2.0, 2.0)
+    vetor[7] = vetor[7] + random.uniform(-2.0, 2.0)
+    vetor[8] = vetor[8] + random.uniform(-2.0, 2.0)
+    vetor[9] = vetor[9] + random.uniform(-2.0, 2.0)
+    vetor[10] = vetor[10] + random.uniform(-2.0, 2.0)
+    vetor[11] = vetor[11] + random.uniform(-2.0, 2.0)
+    vetor[12] = vetor[12] + random.uniform(-2.0, 2.0)
+
+    temperatura_db = vetor[0]
+    tBarramento_db = vetor[1]
+    tModulos_db = vetor[2]
+    tBaterias_db = vetor[3]
+    tBateriasAux_db = vetor[4]
+    cBarramento_db = vetor[5]
+    cModulos_db = vetor[6]
+    cBaterias_db = vetor[7]
+    cBateriasAux_db = vetor[8]
+    pPotenciometro_db = vetor[9]
+    velocidade_db = vetor[10]
+    latitude_db = vetor[11]
+    longitude_db = vetor[12]
 
 
 
@@ -43,9 +51,31 @@ def AtualizaDB():
     ))
     db.commit()    
 
+    return vetor
+
+
+# conexões relacionadas ao db e a porta serial
+db = sqlite3.connect('../telemeapp/banco_dados/banco1.db')
+
+cursor = db.cursor()
+
+vetor = [0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+vetor[0] = random.uniform(20.0, 50.0)
+vetor[1] = random.uniform(20.0, 50.0)
+vetor[2] = random.uniform(20.0, 50.0)
+vetor[3] = random.uniform(20.0, 50.0)
+vetor[4] = random.uniform(20.0, 50.0)
+vetor[5] = random.uniform(20.0, 50.0)
+vetor[6] = random.uniform(20.0, 50.0)
+vetor[7] = random.uniform(20.0, 50.0)
+vetor[8] = random.uniform(20.0, 50.0)
+vetor[9] = random.uniform(20.0, 50.0)
+vetor[10] = random.uniform(20.0, 50.0)
+vetor[11] = random.uniform(20.0, 50.0)
+vetor[12] = random.uniform(20.0, 50.0)
 
 while(True):
-    AtualizaDB()
+    vetor = AtualizaDB(vetor)
     print("Banco de dados atualizado com sucesso!")
 
     time.sleep(0.1)
