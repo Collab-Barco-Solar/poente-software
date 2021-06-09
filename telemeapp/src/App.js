@@ -5,10 +5,14 @@ import Body from './components/body/index'
 import Footer from './components/footer/index'
 
 import { ContextoGeral } from "./contextos/contexto-geral";
+import sendAsync from './message-control/renderer';
 
 var { Timer } = require('easytimer.js');
 
 let timer = new Timer();
+let timerDatabase;
+let bancoEncontrado = false;
+
 class App extends React.Component {
     constructor(){
         super();
@@ -95,12 +99,46 @@ class App extends React.Component {
             tempoDasVoltas: [],
             alteraTempoVoltas: this.alteraTempoVoltas,
 
+            dadosRecebidos: [],
+
             //Coisas internas
             timer: new Timer(),
         };
     } 
 
-    
+
+
+
+
+    /////////////////////////////////////////////////////////////
+    // Busca as informações no banco de dados //////////////////
+    fetchData(sql_message) {
+        sendAsync(sql_message).then((result) => this.setState({ dadosRecebidos: result }));
+        if (this.state.dadosRecebidos != null) {
+            //console.log(this.state.data[0].emergencia); //data é um vetor, com cada posição sendo uma linha
+            if (!bancoEncontrado) {
+                console.log("Banco de dados conectado com sucesso!");
+                bancoEncontrado = true;
+            }
+        } else {
+            console.log("Buscando dados no banco de dados...");
+        }
+    }
+
+    componentDidMount(){
+        let sqlCommandMaxId = 'SELECT * FROM (SELECT * FROM Dados ORDER BY id DESC LIMIT 500) ORDER BY id ASC;';
+        this.fetchData(sqlCommandMaxId);
+        timerDatabase = setInterval(() => this.fetchData(sqlCommandMaxId), 500);
+    }
+
+    componentWillUnmount(){
+        clearInterval(timerDatabase);
+        timerDatabase = null;
+    }
+
+
+
+
 
 
     render() {
