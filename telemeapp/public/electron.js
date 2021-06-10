@@ -1,5 +1,6 @@
 const electron = require('electron');
 const {dialog} = require('electron');
+const fs = require('fs')
 
 const { app } = electron;
 const Tray = electron.Tray;
@@ -35,6 +36,18 @@ function buscarArquivo(){
             // to user-selected file.
             global.filepath = file.filePaths[0].toString();
             console.log(global.filepath);
+            
+            //lendo arquivo de texto usando modulo fs do node
+            if (global.filepath && !file.canceled) {
+              fs.readFile(global.filepath, {encoding: 'utf-8'}, function(err,data) {
+                 if (!err) {
+                      console.log('received data: ' + data);
+                 } else {
+                      console.log(err);
+                  }
+               });
+             }
+
           }  
       }).catch(err => {
           console.log(err)
@@ -59,11 +72,27 @@ function buscarArquivo(){
           if (!file.canceled) {
             global.filepath = file.filePaths[0].toString();
             console.log(global.filepath);
+            //lendo arquivo de texto usando modulo fs do node
+            if (global.filepath && !file.canceled) {
+              fs.readFile(global.filepath, {encoding: 'utf-8'}, function(err,data) {
+                 if (!err) {
+                      console.log('received data: ' + data);
+                 } else {
+                      console.log(err);
+                  }
+               });
+             }
+
+
           }  
       }).catch(err => {
           console.log(err)
       });
   }
+
+
+  //testando
+  
 }
 
 
