@@ -12,7 +12,7 @@ let fontSizeLabel = '1.2rem';
 
 
 //Configurações do conteúdo do gráfico
-let dadoExibido = 'tModulos';
+let dadosExibidos = ['tModulos', 'tModulos', 'cBaterias', 'velocidade'];
 var dictionaryInfoNames = {
     "Corrente Motor": "cBarramento",
     "Tensão Mod": "tModulos",
@@ -24,16 +24,23 @@ var dictionaryInfoNames = {
     "Velocidade": "velocidade",
     "Temperatura": "temperatura"
   };
+var colors = ['white', 'yellow', 'black', 'blue', 'red'];
 
 
 //Pega o Array completo retirado do banco de dados e extrai a informação a ser exibida no gráfico
 function organizarDadosParaGrafico(linhaAtual){
-    return {tempo: linhaAtual.id , valor: linhaAtual[dadoExibido] };
+    var dict = [];
+    dadosExibidos.forEach(dado => { //Pega cada dado a ser exibido e organiza num dictionary no formato {nomeDoDado: valorDoDado_nessaLinha}
+        dict[dado] = linhaAtual[dado];
+    });
+    
+    return dict;
 }
 
 class Graficos extends Component {
 	render() {
-        dadoExibido = dictionaryInfoNames[this.props.info_name];
+        //Modificar isso aqui para preencher o array dadosExibidos apenas com o que for inserido pelo usuário
+        dadosExibidos[0] = dictionaryInfoNames[this.props.info_name]; 
 
 		return (
         <ContextoGeral.Consumer> 
@@ -55,12 +62,17 @@ class Graficos extends Component {
                     </XAxis>
                     <YAxis stroke='white'                                                             style={{  fontSize: fontSizeAxis,
                                                                                                                 fontFamily: fontAxis, }}>
-                        <Label value="Valor" stroke='white' offset={20} position="top"             style={{  fontSize: fontSizeLabel,
+                        <Label value='Valor' stroke='white' offset={20} position="top"             style={{  fontSize: fontSizeLabel,
                                                                                                                 fontFamily: fontLabel,
                                                                                                                 fill: 'white', }} />
                     </YAxis>
                     <Legend/>
-                    <Line type='monotone' dataKey='valor' stroke='white' dot={false} isAnimationActive={false} />
+                        
+                    {dadosExibidos.map((item, index) => {
+                        //Passa por todos os dados a serem exibidos e cria uma linha no gráfico para ele, com a próxima cor do array colors
+                        return (
+                            <Line type='monotone' dataKey={dadosExibidos[index]} stroke={colors[index]} dot={false} isAnimationActive={false} />
+                        ); })}
                 </LineChart>
             </ResponsiveContainer>
             
