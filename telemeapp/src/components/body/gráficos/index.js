@@ -71,7 +71,7 @@ class Graficos extends Component {
                     {dadosExibidos.map((item, index) => {
                         //Passa por todos os dados a serem exibidos e cria uma linha no gráfico para ele, com a próxima cor do array colors
                         return (
-                            <Line type='monotone' dataKey={dadosExibidos[index]} stroke={colors[index]} dot={false} isAnimationActive={false} />
+                            <Line type='monotone' dataKey={dadosExibidos[index]} key={index} stroke={colors[index]} dot={false} isAnimationActive={false} />
                         ); })}
                 </LineChart>
             </ResponsiveContainer>

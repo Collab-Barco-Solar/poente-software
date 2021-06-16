@@ -7,8 +7,9 @@ import boat from './boat.jpeg';
 import flag from './flag.png';
 import localforage from 'localforage';
 import 'leaflet-offline';
-import { FiCornerUpLeft, FiFlag, FiPlus, FiEye } from "react-icons/fi";
+import { FiCornerUpLeft, FiFlag, FiPlus, FiEye, FiPlayCircle, FiStopCircle } from "react-icons/fi";
 import Swal from 'sweetalert2'
+import lineColor from './lineColor';
 
 const positions = [
     [-20.280080, -40.313748],
@@ -99,10 +100,25 @@ async function addFlagCoords() {
 const Mapa = () => {
     const [posicaoAtual, setPosicaoAtual] = useState([-20.279682, -40.314660])
     const [addFlag, setAddFlag] = useState(false);
-    const [completouPercurso, setCompletouPercurso] = useState(false);
     const [numVoltas, setNumVoltas] = useState(0);
     const [numVoltaEspecifica, setNumVoltaEspecifica] = useState(-1);
-    const lineColor = [{ color: '#a83e32' }, { color: '#a8a232' }, { color: '#4aa832' }, { color: '#3252a8' }, { color: '#5e38c7' }, { color: '#b438c7' }]
+    const [startRecording, setStartRecording] = useState(false)
+    const [stopRecording, setStopRecording] = useState(false)
+
+    function recordingRoute(){
+        if(startRecording === true && stopRecording === false){
+            percurso.push(positions[i]);
+        }
+        else if(startRecording === true && stopRecording === true){
+            voltas.push(percurso);
+            let pos = numVoltas;
+            pos = pos + 1;
+            percurso = [];
+            setNumVoltas(pos);
+            setStartRecording(false);
+            setStopRecording(false);
+        }
+    }
 
     useEffect(() => {
         //Defining the offline layer for the map
@@ -122,22 +138,10 @@ const Mapa = () => {
 
     useEffect(() => {
         setTimeout(() => {
-            if( i === 30){
+            if(i === 30){
                 i = 0;
-                if(numVoltas >= 5){
-                    setCompletouPercurso(true);
-                }
-                else{
-                    voltas.push(percurso);
-                    let pos = numVoltas;
-                    pos = pos + 1;
-                    setNumVoltas(pos);
-                    percurso = [];
-                }
             }
-            if(!completouPercurso){
-                percurso.push(positions[i]);
-            }
+            recordingRoute();
             setPosicaoAtual(positions[i]);
             // console.log(posicaoAtual)
             i++;
@@ -201,30 +205,51 @@ const Mapa = () => {
 
 
     return(
-        <div className ="container" id="map-id" style={{backgroundColor: '#393640'}}>
-            <div className="addFlags" >
-                <FiEye 
-                    color="#FFFFFF"
-                    size={25} 
-                    onClick={() => selectEspecificRoute()}
-                />
-                <FiPlus 
-                    color="#FFFFFF"
-                    size={25} 
-                    onClick={() => addFlagCoords()}
-                />
-                <FiFlag 
-                    color="#FFFFFF"
-                    size={25} 
-                    style={ addFlag ? { fill: 'red' } : {}} 
-                    onClick={() => setAddFlag(!addFlag)}
-                />    
-                {flags.length > 0 && 
-                <FiCornerUpLeft 
-                    color="#FFFFFF"
-                    size={25} 
-                    onClick={() => flags.pop()}
-                />}
+        <div className="container" id="map-id" style={{backgroundColor: '#393640'}}>
+            <div className="mapHeader">
+                <div className="addRoute">
+                    {
+                        startRecording === true ?
+                        <FiStopCircle 
+                            color="#FFFFFF"
+                            size={25} 
+                            style={{ fill: 'red' }}
+                            onClick={() => setStopRecording(true)}
+                        />:
+                        <FiPlayCircle 
+                            color="#FFFFFF"
+                            size={25} 
+                            style={{ fill: 'green' }}
+                            onClick={() => setStartRecording(true)}
+                        />
+                    }
+                    
+                    <FiEye 
+                        color="#FFFFFF"
+                        size={25} 
+                        onClick={() => selectEspecificRoute()}
+                    />
+                </div>
+
+                <div className="addFlags" >
+                    <FiPlus 
+                        color="#FFFFFF"
+                        size={25} 
+                        onClick={() => addFlagCoords()}
+                    />
+                    <FiFlag 
+                        color="#FFFFFF"
+                        size={25} 
+                        style={ addFlag ? { fill: 'red' } : {}} 
+                        onClick={() => setAddFlag(!addFlag)}
+                    />    
+                    {flags.length > 0 && 
+                    <FiCornerUpLeft 
+                        color="#FFFFFF"
+                        size={25} 
+                        onClick={() => flags.pop()}
+                    />}
+                </div>
             </div>
             
             <MapContainer 
@@ -249,7 +274,7 @@ const Mapa = () => {
                 
                 <Markers />
 
-                <BoatRoute />
+                {startRecording === true && <BoatRoute />}
 
                 {numVoltaEspecifica !== -1 && <ShowEspecificRoute pos={numVoltaEspecifica}/>}
 
