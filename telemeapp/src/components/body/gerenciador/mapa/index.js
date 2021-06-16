@@ -7,7 +7,7 @@ import boat from './boat.jpeg';
 import flag from './flag.png';
 import localforage from 'localforage';
 import 'leaflet-offline';
-import { FiCornerUpLeft, FiFlag, FiPlus } from "react-icons/fi";
+import { FiCornerUpLeft, FiFlag, FiPlus, FiEye } from "react-icons/fi";
 import Swal from 'sweetalert2'
 
 const positions = [
@@ -62,7 +62,6 @@ const FlagIcon = L.icon({
 });
 
 
-
 async function addFlagCoords() {
     const { value: formValues } = await Swal.fire({
         title: `Coordenadas`,
@@ -96,11 +95,13 @@ async function addFlagCoords() {
     }
 }
 
+
 const Mapa = () => {
     const [posicaoAtual, setPosicaoAtual] = useState([-20.279682, -40.314660])
     const [addFlag, setAddFlag] = useState(false);
     const [completouPercurso, setCompletouPercurso] = useState(false);
     const [numVoltas, setNumVoltas] = useState(0);
+    const [numVoltaEspecifica, setNumVoltaEspecifica] = useState(-1);
     const lineColor = [{ color: '#a83e32' }, { color: '#a8a232' }, { color: '#4aa832' }, { color: '#3252a8' }, { color: '#5e38c7' }, { color: '#b438c7' }]
 
     useEffect(() => {
@@ -168,9 +169,45 @@ const Mapa = () => {
         return null;
     }
 
+
+    async function selectEspecificRoute(){
+        let voltasFeitas = []
+        voltasFeitas.push("nenhuma")
+        for(let i = 1; i <= numVoltas; i++){
+            voltasFeitas.push(i)
+        }
+        const { value: voltaSelecionada } = await Swal.fire({
+            title: 'Selecione a volta que deseja ver',
+            input: 'select',
+            inputOptions: {
+              voltasFeitas
+            },
+            inputPlaceholder: 'Voltas feitas',
+            showCancelButton: true,
+    
+          })
+          
+          if (voltaSelecionada) {
+              if(voltaSelecionada > 0){
+                let pos = voltaSelecionada - 1;
+                setNumVoltaEspecifica(pos);
+                Swal.fire(`Você selecionou a volta ${voltaSelecionada}`)
+              }
+              else{
+                setNumVoltaEspecifica(-1);
+              }
+          }
+    }
+
+
     return(
         <div className ="container" id="map-id" style={{backgroundColor: '#393640'}}>
             <div className="addFlags" >
+                <FiEye 
+                    color="#FFFFFF"
+                    size={25} 
+                    onClick={() => selectEspecificRoute()}
+                />
                 <FiPlus 
                     color="#FFFFFF"
                     size={25} 
@@ -214,7 +251,7 @@ const Mapa = () => {
 
                 <BoatRoute />
 
-                <ShowEspecificRoute pos={0}/>
+                {numVoltaEspecifica !== -1 && <ShowEspecificRoute pos={numVoltaEspecifica}/>}
 
             </MapContainer>
         </div>

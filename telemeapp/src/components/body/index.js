@@ -30,7 +30,7 @@ const Body = ()=>(
             <Gerenciador/>
         </div>
         <div className="container--infos">
-            <Graficos info_name={document.getElementById("graficos-select").value}/>
+            <Graficos info_name={document.getElementById("graficos-select")?.value}/>
             <Instantaneas/>
          </div>
 
