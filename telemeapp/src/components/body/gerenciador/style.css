@@ -47,6 +47,7 @@ input{
     padding: 10px;
 }
 .botao{
+    font-weight: bold;
     font-size: 0.7em;
     display: flex;
     align-items: center;

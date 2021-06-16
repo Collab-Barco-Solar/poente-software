@@ -9,9 +9,11 @@ export const ContextoGeral = React.createContext({
     alteraVoltasAtuais: () => {},
     Iniciar: () => {},
 
-
     //Contagem do tempo
     tempoDasVoltas: [],
     alteraTempoVoltas: () => {},
+
+    dadosRecebidos: [],
+
     timer: new Timer(),
 }) ;

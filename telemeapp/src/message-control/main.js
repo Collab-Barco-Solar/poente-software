@@ -10,6 +10,6 @@ ipcMain.on('asynchronous-message', (event, arg) => {
     const sql_command = arg;
 
     database.all(sql_command, (err, rows) => {
-      event.reply('asynchronous-reply', (err && err.message) || rows);
+        event.reply('asynchronous-reply', (err && err.message) || rows);
     });
 }); 

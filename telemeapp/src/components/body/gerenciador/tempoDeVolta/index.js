@@ -27,7 +27,7 @@ class TempoDeVolta extends React.Component {
                             <button onClick={() => this.IncrementaVolta(contextoGeral)} 
                                 id="botao--tempoDeVolta" 
                                 disabled={!contextoGeral.timer.isRunning() || (contextoGeral.voltasAtuais>=contextoGeral.voltasTotais)}>
-                                    Mais uma volta
+                                    +1 VOLTA
                             </button>
                             <p id="estimativa--name">Estimativas</p>
                         </div>
