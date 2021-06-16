@@ -47,7 +47,8 @@ const positions = [
 let i = 0;
 
 let flags = [];
-const percurso = [];
+let percurso = [];
+const voltas = [];
 
 
 const BoatIcon = L.icon({
@@ -99,7 +100,8 @@ const Mapa = () => {
     const [posicaoAtual, setPosicaoAtual] = useState([-20.279682, -40.314660])
     const [addFlag, setAddFlag] = useState(false);
     const [completouPercurso, setCompletouPercurso] = useState(false);
-    const limeOptions = { color: 'lime' }
+    const [numVoltas, setNumVoltas] = useState(0);
+    const lineColor = [{ color: '#a83e32' }, { color: '#a8a232' }, { color: '#4aa832' }, { color: '#3252a8' }, { color: '#5e38c7' }, { color: '#b438c7' }]
 
     useEffect(() => {
         //Defining the offline layer for the map
@@ -121,7 +123,16 @@ const Mapa = () => {
         setTimeout(() => {
             if( i === 30){
                 i = 0;
-                setCompletouPercurso(true);
+                if(numVoltas >= 5){
+                    setCompletouPercurso(true);
+                }
+                else{
+                    voltas.push(percurso);
+                    let pos = numVoltas;
+                    pos = pos + 1;
+                    setNumVoltas(pos);
+                    percurso = [];
+                }
             }
             if(!completouPercurso){
                 percurso.push(positions[i]);
@@ -147,7 +158,14 @@ const Mapa = () => {
     }
 
     const BoatRoute = () => {
-        return <Polyline pathOptions={limeOptions} positions={percurso} />
+        return <Polyline pathOptions={lineColor[numVoltas]} positions={percurso} />
+    }
+
+    const ShowEspecificRoute = (props) => {
+        if(voltas.length > 0){
+            return <Polyline pathOptions={lineColor[props.pos]} positions={voltas[props.pos]} />
+        }
+        return null;
     }
 
     return(
@@ -195,6 +213,8 @@ const Mapa = () => {
                 <Markers />
 
                 <BoatRoute />
+
+                <ShowEspecificRoute pos={0}/>
 
             </MapContainer>
         </div>
