@@ -10,11 +10,6 @@
     width: 100%;
     height: 25px;
 }
-#graficos-select{
-    margin-left: auto;
-    margin-right: 10px;
-    border-radius: 10px;
-}
 
 #telemetria--name {
     border-radius: 10px;
