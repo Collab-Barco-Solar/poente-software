@@ -65,7 +65,7 @@
     height: 35px;
     background-color: #393640;
 }
-#instantaneas--name{
+#instantaneas--name--box{
     border-radius: 10px;
     font-size: 1.2em;
     display: flex;
@@ -78,6 +78,9 @@
     width: 28.5%;
     height: 35px;
     background-color: #393640;
+}
+#button-switch{
+    margin-top: 10px;
 }
 
 .container--infos{
