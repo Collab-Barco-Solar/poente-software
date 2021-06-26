@@ -86,7 +86,7 @@ class Instantaneas extends Component {
             <ContextoGeral.Consumer> 
                     {contextoGeral => (
                         <div className="instantaneas">
-                            <div className="instantaneas--superior"> 
+                            <div className="instantaneas--superior">
                                 <div className="valores">
                                     <div className="container-infos-instantaneas">
                                         <DisplayInstantaneas value={contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.cBarramento} parametro={0}/>                            

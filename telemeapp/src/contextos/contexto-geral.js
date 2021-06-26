@@ -15,5 +15,8 @@ export const ContextoGeral = React.createContext({
 
     dadosRecebidos: [],
 
+    alteraSwitchButton: () => {},
+
     timer: new Timer(),
+    switchButton: false,
 }) ;

@@ -88,6 +88,14 @@ class App extends React.Component {
             }))
         }
 
+        this.alteraSwitchButton = () =>{
+            if(this.state.switchButton == false){
+                this.setState(state => ({switchButton:true}))
+            }
+            else this.setState(state =>({switchButton:false}))
+    
+        }
+
 
         this.state = {
             voltasAtuais: 0,
@@ -101,8 +109,10 @@ class App extends React.Component {
 
             dadosRecebidos: [],
 
+            alteraSwitchButton: this.alteraSwitchButton,
             //Coisas internas
             timer: new Timer(),
+            switchButton: false,
         };
     } 
 
