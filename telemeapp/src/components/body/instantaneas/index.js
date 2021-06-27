@@ -31,6 +31,15 @@ let paramentros = [
     { minimo: 0, maximo: 0 },
     { minimo: 0, maximo: 0 },
     { minimo: 0, maximo: 0 },
+    { minimo: 0, maximo: 0 },
+    { minimo: 0, maximo: 0 },
+    { minimo: 0, maximo: 0 },
+    { minimo: 0, maximo: 0 },
+    { minimo: 0, maximo: 0 },
+    { minimo: 0, maximo: 0 },
+    { minimo: 0, maximo: 0 },
+    { minimo: 0, maximo: 0 },
+    { minimo: 0, maximo: 0 },
     { minimo: 0, maximo: 0 }
 ];
 
@@ -87,92 +96,126 @@ class Instantaneas extends Component {
                     {contextoGeral => (
                         <div className="instantaneas">
                             <div className="instantaneas--superior">
+
                                 <div className="valores">
                                     <div className="container-infos-instantaneas">
                                         <DisplayInstantaneas value={contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.cBarramento} parametro={0}/>                            
-                                        <p className="valores--itens">{contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.cBarramento?.toFixed(2) 
+                                        <p className="valores--itens">
+                                            {contextoGeral.switchButton ? "?":(contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.cBarramento?.toFixed(2)) 
                                         || "Carregando"} A</p>
                                     </div>
 
                                     <div className="container-infos-instantaneas">
                                         <DisplayInstantaneas value={contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.tModulos} parametro={1}/>
-                                        <p className="valores--itens">{(contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.tModulos?.toFixed(2)) 
+                                        <p className="valores--itens">{contextoGeral.switchButton ? "?":(contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.tModulos?.toFixed(2)) 
                                         || "Carregando"} V</p>
                                     </div>
 
                                     <div className="container-infos-instantaneas">
                                         <DisplayInstantaneas value={contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.cBaterias} parametro={2}/>
-                                        <p className="valores--itens">{(contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.cBaterias?.toFixed(2)) 
+                                        <p className="valores--itens">{contextoGeral.switchButton ? "?":(contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.cBaterias?.toFixed(2)) 
                                         || "Carregando"} A</p>
                                     </div>
 
                                     <div className="container-infos-instantaneas">
                                         <DisplayInstantaneas value={contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.tBaterias} parametro={3}/>
-                                        <p className="valores--itens">{(contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.tBaterias?.toFixed(2)) 
+                                        <p className="valores--itens">{contextoGeral.switchButton ? "?":(contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.tBaterias?.toFixed(2)) 
                                         || "Carregando"} V</p>
                                     </div>
 
                                     <div className="container-infos-instantaneas">
                                         <DisplayInstantaneas value={contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.cBateriasAux} parametro={4}/>
-                                        <p className="valores--itens">{(contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.cBateriasAux?.toFixed(2)) 
+                                        <p className="valores--itens">{contextoGeral.switchButton ? "?":(contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.cBateriasAux?.toFixed(2)) 
                                         || "Carregando"} A</p>
                                     </div>
 
                                     <div className="container-infos-instantaneas">
                                         <DisplayInstantaneas value={contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.tBateriasAux} parametro={5}/>
-                                        <p className="valores--itens">{(contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.tBateriasAux?.toFixed(2)) 
+                                        <p className="valores--itens">{contextoGeral.switchButton ? "?":(contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.tBateriasAux?.toFixed(2)) 
                                         || "Carregando"} V</p>
                                     </div>
 
                                     <div className="container-infos-instantaneas">
                                         <DisplayInstantaneas value={contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.pPotenciometro} parametro={6}/>
-                                        <p className="valores--itens">{(contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.pPotenciometro?.toFixed(2)) 
+                                        <p className="valores--itens">{contextoGeral.switchButton ? "?":(contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.pPotenciometro?.toFixed(2)) 
                                         || "Carregando"}</p>
                                     </div>
 
                                     <div className="container-infos-instantaneas">
                                         <DisplayInstantaneas value={contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.velocidade} parametro={7}/>
-                                        <p className="valores--itens">{(contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.velocidade?.toFixed(2)) 
+                                        <p className="valores--itens">{contextoGeral.switchButton ? "?":(contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.velocidade?.toFixed(2)) 
                                         || "Carregando"} nós</p>
                                     </div>
 
                                     <div className="container-infos-instantaneas">
                                         <DisplayInstantaneas value={contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.temperatura} parametro={8}/>
-                                        <p className="valores--itens">{(contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.temperatura?.toFixed(2)) 
+                                        <p className="valores--itens">{contextoGeral.switchButton ? "?":(contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.temperatura?.toFixed(2)) 
                                         || "Carregando"} ºC</p>
                                     </div>
 
                                 </div>
+                                {!contextoGeral.switchButton ? 
+                                
                                 <div className="nomes">
-                    
                                     <p className="nomes--itens">Corrente Motor
-                                        <FiSettings onClick={() => config(0,'Corrente motor')} size={15} className="config-input" />
+                                        <FiSettings onClick={() => config(0,'Corrente motor INST')} size={15} className="config-input" />
                                     </p>
                                     <p className="nomes--itens">Tensão Módulos
-                                        <FiSettings onClick={() => config(1,'Tensão módulos')} size={15} className="config-input" />
+                                        <FiSettings onClick={() => config(1,'Tensão módulos INST')} size={15} className="config-input" />
                                     </p>
                                     <p className="nomes--itens">Corrente Baterias
-                                        <FiSettings onClick={() => config(2,'Corrente baterias')} size={15} className="config-input" />
+                                        <FiSettings onClick={() => config(2,'Corrente baterias INST')} size={15} className="config-input" />
                                     </p>
                                     <p className="nomes--itens">Tensão Baterias
-                                        <FiSettings onClick={() => config(3,'Tensão baterias')} size={15} className="config-input" />
+                                        <FiSettings onClick={() => config(3,'Tensão baterias INST')} size={15} className="config-input" />
                                     </p>
                                     <p className="nomes--itens">Corrente Bateria Aux
-                                        <FiSettings onClick={() => config(4,'Corrente bateriasAux')} size={15} className="config-input" />
+                                        <FiSettings onClick={() => config(4,'Corrente bateriasAux INST')} size={15} className="config-input" />
                                     </p>
                                     <p className="nomes--itens">Tensão Bateria Aux
-                                        <FiSettings onClick={() => config(5,'Tensão bateriasAux')} size={15} className="config-input" />
+                                        <FiSettings onClick={() => config(5,'Tensão bateriasAux INST')} size={15} className="config-input" />
                                     </p>
                                     <p className="nomes--itens">Posição Potenciômetro
-                                        <FiSettings onClick={() => config(6,'Posição potenciômetro')} size={15} className="config-input" />
+                                        <FiSettings onClick={() => config(6,'Posição potenciômetro INST')} size={15} className="config-input" />
                                     </p>
                                     <p className="nomes--itens">Velocidade
-                                        <FiSettings onClick={() => config(7,'Velocidade')} size={15} className="config-input" />
+                                        <FiSettings onClick={() => config(7,'Velocidade INST')} size={15} className="config-input" />
                                     </p>
                                     <p className="nomes--itens">Temperatura
-                                        <FiSettings onClick={() => config(8,'Temperatura')} size={15} className="config-input" />
+                                        <FiSettings onClick={() => config(8,'Temperatura INST')} size={15} className="config-input" />
                                     </p>
                                 </div>
+                                :                                 
+                                <div className="nomes">
+                                    <p className="nomes--itens">Corrente Motor
+                                        <FiSettings onClick={() => config(9,'Corrente motor MED')} size={15} className="config-input" />
+                                    </p>
+                                    <p className="nomes--itens">Tensão Módulos
+                                        <FiSettings onClick={() => config(10,'Tensão módulos MED')} size={15} className="config-input" />
+                                    </p>
+                                    <p className="nomes--itens">Corrente Baterias
+                                        <FiSettings onClick={() => config(11,'Corrente baterias MED')} size={15} className="config-input" />
+                                    </p>
+                                    <p className="nomes--itens">Tensão Baterias
+                                        <FiSettings onClick={() => config(12,'Tensão baterias MED')} size={15} className="config-input" />
+                                    </p>
+                                    <p className="nomes--itens">Corrente Bateria Aux
+                                        <FiSettings onClick={() => config(13,'Corrente bateriasAux MED')} size={15} className="config-input" />
+                                    </p>
+                                    <p className="nomes--itens">Tensão Bateria Aux
+                                        <FiSettings onClick={() => config(14,'Tensão bateriasAux MED')} size={15} className="config-input" />
+                                    </p>
+                                    <p className="nomes--itens">Posição Potenciômetro
+                                        <FiSettings onClick={() => config(15,'Posição potenciômetro MED')} size={15} className="config-input" />
+                                    </p>
+                                    <p className="nomes--itens">Velocidade
+                                        <FiSettings onClick={() => config(16,'Velocidade MED')} size={15} className="config-input" />
+                                    </p>
+                                    <p className="nomes--itens">Temperatura
+                                        <FiSettings onClick={() => config(17,'Temperatura MED')} size={15} className="config-input" />
+                                    </p>
+                                </div>
+                                }
                             </div>
                             <div className="acionamentos">
                                 <div className="acionamentos--superior">
