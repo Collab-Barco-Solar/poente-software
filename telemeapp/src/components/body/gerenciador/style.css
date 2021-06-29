@@ -10,6 +10,8 @@
     margin-right: 15px;
 }
 .inputs {
+    margin-top: 7px;
+    border-radius: 10px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -18,21 +20,39 @@
     background-color: #393640;
 }
 
-
+.bandeiras-largada{
+    justify-content: space-between;
+    border-radius: 10px;
+    display: flex;
+    width: 100%;
+    height: 35px;
+    background-color:#393640;
+}
+.tempo-largada{
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+}
 
 
 
 
 input{
+    border-radius: 10px;
     display: flex;
-    padding: 0px;
+    padding: 10px;
 }
 .botao{
+    font-weight: bold;
     font-size: 0.7em;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 15%;
+    margin-left: 5%;
     margin-top: 2%;
     border-radius: 10px;
     width: 12%;

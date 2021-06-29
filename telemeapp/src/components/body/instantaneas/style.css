@@ -1,28 +1,23 @@
+
 .instantaneas{
-    display: flex;
+    border-radius: 10px;
     background-color: #393640;
-    font-size: 0.8em;
-    justify-content: center;
-    color: white;
     margin: 0px;
     margin-top: 14px;
     margin-left: 1%;
     width: 28.5%;
     height: 70vh;
 }
-.nomes{
-    width: 50%;
-    height: 70vh;
+.container-infos-instantaneas{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 100%;
 }
-.valores{
-    width: 50%;
-    height: 70vh;
-}
-.nomes--itens{
-    margin-left: 10px;
-    margin-top: 12px;
-}
+
+
 .valores--itens{
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,37 +25,265 @@
     border-style: solid;
     border-width: 1px;
     border-color: white;
+    margin-left: 10px;
     margin-right: 30px;
 }
 
 
-
-
-/* .CM{
-    margin-left: 10px;
-    margin-top: 5px;
+.instantaneas--superior{
     display: flex;
-    height: 5%;
-    width: 300px;
+    font-size: 0.8em;
+    justify-content: center;
+    color: white;
+    width: 100%;
+    height: 60%;
 }
-#info--CM{
-    border-style: solid;
-    border-width: 1px;
-    border-color: white;
-    margin-left: 40%;
 
+.acionamentos{
+    height: 40%;
+    width: 100%;
 }
-.TM{
-    margin-left: 10px;
-    margin-top: 5px;
+.acionamentos--superior{
+    padding: 12%;
+    justify-content: space-between;
     display: flex;
-    height: 5%;
-    width: 300px;
+    height: 50%;
+    width: 100%;
+}
+.on-off-display{
+    display: flex;
+    flex-direction: column;
+    height: 50px;
+    width: 50px;
+    justify-content: center;
+    align-items: center;
+}
+.on-off-ON{
+    color: white;
+    font-size: 0.5em;
+    display: flex;
+    border-radius: 20px;
+    background-color:green;
+    height: 35px;
+    width: 35px;
+}
+.on-off-OFF{
+    color: white;
+    font-size: 0.5em;
+    display: flex;
+    border-radius: 20px;
+    background-color:red;
+    height: 35px;
+    width: 35px;
+}
+.on-off-name{
+    color: white;
+    font-size: 0.7em;
 }
 
-#info--TM{
-    border-style: solid;
-    border-width: 1px;
-    border-color: white;
-    margin-left: 40%;
-} */
+.dms-display{
+    display: flex;
+    flex-direction: column;
+    height: 50px;
+    width: 50px;
+    justify-content: center;
+    align-items: center;
+}
+.dms-ON{
+    color: white;
+    font-size: 0.5em;
+    display: flex;
+    border-radius: 20px;
+    background-color:green;
+    height: 35px;
+    width: 35px;
+}
+.dms-OFF{
+    color: white;
+    font-size: 0.5em;
+    display: flex;
+    border-radius: 20px;
+    background-color:red;
+    height: 35px;
+    width: 35px;
+}
+
+.dms-name{
+    color: white;
+    font-size: 0.7em;
+}
+
+.re-display{
+    display: flex;
+    flex-direction: column;
+    height: 50px;
+    width: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+.re-ON{
+    color: white;
+    font-size: 0.5em;
+    display: flex;
+    border-radius: 20px;
+    background-color:green;
+    height: 35px;
+    width: 35px;
+}
+
+.re-OFF{
+    color: white;
+    font-size: 0.5em;
+    display: flex;
+    border-radius: 20px;
+    background-color:red;
+    height: 35px;
+    width: 35px;
+}
+
+.re-name {
+    color: white;
+    font-size: 0.7em;
+    
+}
+
+.bomba-bb-display{
+    display: flex;
+    flex-direction: column;
+    height: 50px;
+    width: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+.bomba-bb-ON{
+    color: white;
+    font-size: 0.5em;
+    display: flex;
+    border-radius: 20px;
+    background-color:green;
+    height: 35px;
+    width: 35px;
+}
+
+.bomba-bb-OFF{
+    color: white;
+    font-size: 0.5em;
+    display: flex;
+    border-radius: 20px;
+    background-color:red;
+    height: 35px;
+    width: 35px;
+}
+.bomba-bb-name{
+    color: white;
+    font-size: 0.7em;
+}
+
+.bomba-be-display{
+    display: flex;
+    flex-direction: column;
+    height: 50px;
+    width: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+.bomba-be-ON{
+    color: white;
+    font-size: 0.5em;
+    display: flex;
+    border-radius: 20px;
+    background-color:green;
+    height: 35px;
+    width: 35px;
+}
+
+.bomba-be-OFF{
+    color: white;
+    font-size: 0.5em;
+    display: flex;
+    border-radius: 20px;
+    background-color:red;
+    height: 35px;
+    width: 35px;
+}
+
+.bomba-be-name{
+    color: white;
+    font-size: 0.7em;
+}
+
+
+
+
+.acionamentos--inferior{
+    padding: 10% 20% 0 20%;
+    display: flex;
+    height: 50%;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.nomes{
+    width: 50%;
+    height: 60%;
+}
+.valores{
+    width: 50%;
+    height: 60%;
+}
+
+.swal2-title{
+    color:black;
+}
+
+.swal2-input{
+    width: 50%;
+    border-radius: 10px;
+    border-color: black;
+}
+
+.input-1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.input-2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.input-text{
+    color: black;
+    font-weight: bold;
+}
+.input-area{
+    width: 100%;
+    height: 200px;
+}
+
+.nomes--itens{
+    display: flex;
+    margin-top: 12px;
+}
+
+.config-input{
+    margin-left: auto;
+    margin-right: 10px;
+}
+.config-input:hover{
+    cursor:pointer;
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+.display-instantaneas{
+    height: 21px;
+    border-radius: 50%;
+    width: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color: red;
+}

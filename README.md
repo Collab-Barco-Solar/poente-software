@@ -34,7 +34,7 @@ Tentar fazer commits frequentemente, até mesmo antes de dar push, explicando be
 Para clonar o git repo
 `git@github.com:Collab-Barco-Solar/poente-software/tree/estruturacaobasicalayout/telemeapp`
 
-Para instalar as dependencias use o seguinte comando
+Para instalar as dependencias use o seguinte comando supondo que você já tenha o pacote nodejs instalado
 `npm i`
 
 Para executar

@@ -1,12 +1,55 @@
-
-.mapa{
-    color: white;
-    font-size: 1.2em;
+.container{
+    display: flex;
     justify-content: center;
     align-items: center;
-    display: flex;
-    flex: 1;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 5px;
     margin-top: 7px;
-    height: 52.3%;
-    background-color: #393640 ;
+    height: 44.2%;
+    background-color: #393640;
+}
+
+.mapHeader {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.addRoute {
+    display: flex;
+    justify-content: space-between;
+    width: 60px;
+    cursor: pointer;
+}
+
+.addFlags {
+    display: flex;
+    align-self: flex-end;
+    width: 70px;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.addFlags:hover {
+    cursor: pointer;
+}
+
+.input-area{
+    width: 100%;
+    height: 200px;
+}
+
+.nomes--itens{
+    display: flex;
+    margin-top: 12px;
+}
+
+.config-input{
+    margin-left: auto;
+    margin-right: 10px;
 }

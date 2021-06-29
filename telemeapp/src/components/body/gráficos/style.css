@@ -1,7 +1,9 @@
 .grafico{
+    border-radius: 10px;
     background-color: #393640;
     font-size: 1.2em;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     color: white;
