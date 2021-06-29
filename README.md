@@ -29,7 +29,9 @@ Quando for fazer um pull request, aguardar uma resposta dos revisores da tarefa.
 
 Tentar fazer commits frequentemente, até mesmo antes de dar push, explicando bem o que foi feito em cada um.
 
-## Para utilização do Software na sua maquina
+
+
+# Para utilização do Software na sua maquina
 
 Para clonar o git repo
 `git@github.com:Collab-Barco-Solar/poente-software/tree/estruturacaobasicalayout/telemeapp`
