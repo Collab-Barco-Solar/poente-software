@@ -1,0 +1,15 @@
+.grafico{
+    border-radius: 10px;
+    background-color: #393640;
+    font-size: 1.2em;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin: 0px;
+    margin-top: 14px;
+    margin-left: 10px;
+    width: 28.5%;
+    height: 70vh;
+}
