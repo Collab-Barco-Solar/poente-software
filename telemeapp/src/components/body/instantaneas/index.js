@@ -22,6 +22,7 @@ let bombBE = 0;
  * parametros[7] ---> velocidade
  * parametros[8] ---> temperatura
  */
+
 let paramentros = [
     { minimo: 0, maximo: 0 },
     { minimo: 0, maximo: 0 },
@@ -96,60 +97,85 @@ class Instantaneas extends Component {
                     {contextoGeral => (
                         <div className="instantaneas">
                             <div className="instantaneas--superior">
-
                                 <div className="valores">
                                     <div className="container-infos-instantaneas">
                                         <DisplayInstantaneas value={contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.cBarramento} parametro={0}/>                            
                                         <p className="valores--itens">
-                                            {contextoGeral.switchButton ? "?":(contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.cBarramento?.toFixed(2)) 
+                                            {contextoGeral.switchButton ? 
+                                                contextoGeral.mediasAtuais?.cBarramento.toFixed(2) : 
+                                                (contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.cBarramento?.toFixed(2)) 
                                         || "Carregando"} A</p>
                                     </div>
 
                                     <div className="container-infos-instantaneas">
                                         <DisplayInstantaneas value={contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.tModulos} parametro={1}/>
-                                        <p className="valores--itens">{contextoGeral.switchButton ? "?":(contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.tModulos?.toFixed(2)) 
+                                        <p className="valores--itens">
+                                            {contextoGeral.switchButton ? 
+                                                contextoGeral.mediasAtuais?.tModulos.toFixed(2) : 
+                                                (contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.tModulos?.toFixed(2)) 
                                         || "Carregando"} V</p>
                                     </div>
 
                                     <div className="container-infos-instantaneas">
                                         <DisplayInstantaneas value={contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.cBaterias} parametro={2}/>
-                                        <p className="valores--itens">{contextoGeral.switchButton ? "?":(contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.cBaterias?.toFixed(2)) 
+                                        <p className="valores--itens">
+                                            {contextoGeral.switchButton ? 
+                                                contextoGeral.mediasAtuais?.cBaterias.toFixed(2) :
+                                                (contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.cBaterias?.toFixed(2)) 
                                         || "Carregando"} A</p>
                                     </div>
 
                                     <div className="container-infos-instantaneas">
                                         <DisplayInstantaneas value={contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.tBaterias} parametro={3}/>
-                                        <p className="valores--itens">{contextoGeral.switchButton ? "?":(contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.tBaterias?.toFixed(2)) 
+                                        <p className="valores--itens">
+                                            {contextoGeral.switchButton ? 
+                                                contextoGeral.mediasAtuais?.tBaterias.toFixed(2) :
+                                                (contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.tBaterias?.toFixed(2)) 
                                         || "Carregando"} V</p>
                                     </div>
 
                                     <div className="container-infos-instantaneas">
                                         <DisplayInstantaneas value={contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.cBateriasAux} parametro={4}/>
-                                        <p className="valores--itens">{contextoGeral.switchButton ? "?":(contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.cBateriasAux?.toFixed(2)) 
+                                        <p className="valores--itens">
+                                            {contextoGeral.switchButton ? 
+                                                contextoGeral.mediasAtuais?.cBateriasAux.toFixed(2)  :
+                                                (contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.cBateriasAux?.toFixed(2)) 
                                         || "Carregando"} A</p>
                                     </div>
 
                                     <div className="container-infos-instantaneas">
                                         <DisplayInstantaneas value={contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.tBateriasAux} parametro={5}/>
-                                        <p className="valores--itens">{contextoGeral.switchButton ? "?":(contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.tBateriasAux?.toFixed(2)) 
+                                        <p className="valores--itens">
+                                            {contextoGeral.switchButton ? 
+                                                contextoGeral.mediasAtuais?.tBateriasAux.toFixed(2) :
+                                                (contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.tBateriasAux?.toFixed(2)) 
                                         || "Carregando"} V</p>
                                     </div>
 
                                     <div className="container-infos-instantaneas">
                                         <DisplayInstantaneas value={contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.pPotenciometro} parametro={6}/>
-                                        <p className="valores--itens">{contextoGeral.switchButton ? "?":(contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.pPotenciometro?.toFixed(2)) 
+                                        <p className="valores--itens">
+                                            {contextoGeral.switchButton ? 
+                                                contextoGeral.mediasAtuais?.pPotenciometro.toFixed(2) :
+                                                (contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.pPotenciometro?.toFixed(2)) 
                                         || "Carregando"}</p>
                                     </div>
 
                                     <div className="container-infos-instantaneas">
                                         <DisplayInstantaneas value={contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.velocidade} parametro={7}/>
-                                        <p className="valores--itens">{contextoGeral.switchButton ? "?":(contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.velocidade?.toFixed(2)) 
+                                        <p className="valores--itens">
+                                            {contextoGeral.switchButton ? 
+                                                contextoGeral.mediasAtuais?.velocidade.toFixed(2) :
+                                                (contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.velocidade?.toFixed(2)) 
                                         || "Carregando"} nós</p>
                                     </div>
 
                                     <div className="container-infos-instantaneas">
                                         <DisplayInstantaneas value={contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.temperatura} parametro={8}/>
-                                        <p className="valores--itens">{contextoGeral.switchButton ? "?":(contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.temperatura?.toFixed(2)) 
+                                        <p className="valores--itens">
+                                            {contextoGeral.switchButton ? 
+                                                contextoGeral.mediasAtuais?.temperatura.toFixed(2) :
+                                                (contextoGeral.dadosRecebidos?.[contextoGeral.dadosRecebidos.length-1]?.temperatura?.toFixed(2)) 
                                         || "Carregando"} ºC</p>
                                     </div>
 

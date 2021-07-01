@@ -12,8 +12,13 @@ export const ContextoGeral = React.createContext({
     //Contagem do tempo
     tempoDasVoltas: [],
     alteraTempoVoltas: () => {},
+    pausarTimer: () => {},
 
-    dadosRecebidos: [],
+    dadosRecebidos: [], //Cada posição no vetor é uma linha do banco de dados, podendo acessar cada coluna com um '.' e o nome da informação
+    //Por exemplo:  dadosRecebidos[contextoGeral.dadosRecebidos.length-1].cBarramento
+    mediasAtuais: [],
+
+    atualizaMedias: () => {},
 
     alteraSwitchButton: () => {},
 
