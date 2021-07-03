@@ -59,13 +59,20 @@ class App extends React.Component {
             }
         };
 
+        this.alteraDistanciaTotal = (DistanciaTotal) =>{
+            this.setState(state => ({
+                distanciaTotal: DistanciaTotal,
+            }));
+        };
 
-        this.Iniciar = (TotalVoltas) => {
+        this.Iniciar = (TotalVoltas,DistanciaTotal) => {
             this.alteraVoltasTotais(TotalVoltas);
             this.alteraVoltasAtuais(0);
 
+
             timer.removeEventListener('secondsUpdated', this.eventHandlerSeconds);
 
+            this.alteraDistanciaTotal(DistanciaTotal);
             //Zerar e iniciar cronômetro
             timer.reset();
 
@@ -79,7 +86,9 @@ class App extends React.Component {
                 tempoDasVoltas: [{seconds: 0, minutes: 0, hours: 0}]
             }))
 
-            timer.addEventListener('secondsUpdated', this.eventHandlerSeconds);                  
+            timer.addEventListener('secondsUpdated', this.eventHandlerSeconds);  
+            
+
         }
 
 
@@ -128,7 +137,7 @@ class App extends React.Component {
             novasMedias.velocidade = novasMedias.velocidade / length;
             novasMedias.temperatura = novasMedias.temperatura / length;
 
-            //console.log(novasMedias);
+            
 
 
             this.setState(state => ({
@@ -149,12 +158,16 @@ class App extends React.Component {
             this.state.timer.isRunning() ? this.state.timer.pause() : this.state.timer.start();
         }
 
+     
+
 
         this.state = {
+            distanciaTotal: 0,
             voltasAtuais: 0,
             voltasTotais: 0,
             alteraVoltasTotais: this.alteraVoltasTotais,
             alteraVoltasAtuais: this.alteraVoltasAtuais,
+            alteraDistanciaTotal: this.alteraDistanciaTotal,
             Iniciar: this.Iniciar,
             
             tempoDasVoltas: [],
@@ -204,8 +217,6 @@ class App extends React.Component {
         clearInterval(timerDatabase);
         timerDatabase = null;
     }
-
-
 
 
 

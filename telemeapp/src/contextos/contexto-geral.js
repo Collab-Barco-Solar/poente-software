@@ -5,8 +5,10 @@ export const ContextoGeral = React.createContext({
     //Contagem das voltas
     voltasTotais: 0,
     voltasAtuais: 0,
+    distanciaTotal: 0,
     alteraVoltasTotais: () => {},
     alteraVoltasAtuais: () => {},
+    alteraDistanciaTotal: () => {},
     Iniciar: () => {},
 
     //Contagem do tempo

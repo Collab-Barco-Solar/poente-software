@@ -54,7 +54,7 @@ class Gerenciador extends Component{
                         <div className= "inputs">
                             <div className="entradas--A">
                                 <Input onChange={this.atualizaDistancia} value={this.state.entradaDistancia} name="Distancia Total" id="distanciaTotal" placeholder="Distância total"/>  
-                                <Botao onClick={() => contextoGeral.Iniciar(this.state.entradaVoltas)} label = "INICIAR"/>
+                                <Botao onClick={() => contextoGeral.Iniciar(this.state.entradaVoltas,this.state.entradaDistancia)} label = "INICIAR"/>
                                 <Botao onClick={() => contextoGeral.pausarTimer()}  label = {contextoGeral.timer.isRunning() ? "PAUSAR" : "RETOMAR"}/>
                                 <Botao label = "PARADO"/>
                             </div>
