@@ -97,12 +97,14 @@ class TempoDeVolta extends React.Component {
                                 <p className="infos--C-P">Velocidade Média</p>
                             </div>
                             <div id="infos--D">
-                                {/* <p className="infos--D-P">{this.calculaTempoRestanteDeVolta(
+                                <p className="infos--D-P">
+                                    {/* {this.calculaTempoRestanteDeVolta(
                                     contextoGeral.distanciaTotal,
                                     contextoGeral.voltasTotais,
                                     contextoGeral.mediasAtuais.velocidade,
                                     contextoGeral.tempoDasVoltas?.[contextoGeral.tempoDasVoltas.length-1]
-                                )}</p> */}
+                                    )} */}aaaa
+                                </p>
                                 <p className="infos--D-P">02:47:18</p>
                                 <p className="infos--D-P">4,6 nós</p>
                             </div>
