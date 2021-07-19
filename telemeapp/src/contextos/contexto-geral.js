@@ -9,6 +9,8 @@ export const ContextoGeral = React.createContext({
     alteraVoltasTotais: () => {},
     alteraVoltasAtuais: () => {},
     alteraDistanciaTotal: () => {},
+    alteraIniciado: () => {},
+    iniciado: false,
     Iniciar: () => {},
 
     //Contagem do tempo

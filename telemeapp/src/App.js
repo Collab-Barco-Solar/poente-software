@@ -17,13 +17,13 @@ class App extends React.Component {
     constructor(){
         super();
 
-        this.alteraVoltasTotais = (TotalVoltas) => {
+        this.alteraVoltasTotais = async (TotalVoltas) => {
             this.setState(state => ({
                 voltasTotais: TotalVoltas,
             }));
         };
 
-        this.alteraVoltasAtuais = (VoltasAtuais) => {
+        this.alteraVoltasAtuais = async (VoltasAtuais) => {
             this.setState(state => ({
                 voltasAtuais: VoltasAtuais,
             }));
@@ -59,20 +59,33 @@ class App extends React.Component {
             }
         };
 
-        this.alteraDistanciaTotal = (DistanciaTotal) =>{
+        this.alteraDistanciaTotal = async (DistanciaTotal) =>{
             this.setState(state => ({
                 distanciaTotal: DistanciaTotal,
             }));
         };
 
-        this.Iniciar = (TotalVoltas,DistanciaTotal) => {
-            this.alteraVoltasTotais(TotalVoltas);
-            this.alteraVoltasAtuais(0);
+        this.alteraIniciado = async () =>{
+            this.setState(state => ({iniciado:true}))
+        }
 
+
+        this.Iniciar = async (TotalVoltas,DistanciaTotal) => {
+
+            //condição para o calculo das estimativas, contornando o erro da inicialização dos calculos com 0
+            await this.alteraIniciado()
+
+
+            await this.alteraVoltasTotais(TotalVoltas);
+            await this.alteraVoltasAtuais(0);
+            await this.alteraDistanciaTotal(DistanciaTotal);
+
+
+            
 
             timer.removeEventListener('secondsUpdated', this.eventHandlerSeconds);
 
-            this.alteraDistanciaTotal(DistanciaTotal);
+           
             //Zerar e iniciar cronômetro
             timer.reset();
 
@@ -81,14 +94,18 @@ class App extends React.Component {
                 timer: timer,
             }));
 
+            
             //Zera as voltas
             this.setState(state => ({
                 tempoDasVoltas: [{seconds: 0, minutes: 0, hours: 0}]
             }))
 
-            timer.addEventListener('secondsUpdated', this.eventHandlerSeconds);  
-            
+            timer.addEventListener('secondsUpdated', this.eventHandlerSeconds);
 
+
+  
+            
+          
         }
 
 
@@ -152,11 +169,15 @@ class App extends React.Component {
             else this.setState(state =>({switchButton:false}))
     
         }
+        
+        
+
 
         this.pausarTimer = () => {
 
             this.state.timer.isRunning() ? this.state.timer.pause() : this.state.timer.start();
         }
+
 
      
 
@@ -168,6 +189,8 @@ class App extends React.Component {
             alteraVoltasTotais: this.alteraVoltasTotais,
             alteraVoltasAtuais: this.alteraVoltasAtuais,
             alteraDistanciaTotal: this.alteraDistanciaTotal,
+            alteraIniciado: this.alteraIniciado,
+            iniciado: false,
             Iniciar: this.Iniciar,
             
             tempoDasVoltas: [],
