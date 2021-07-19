@@ -33,6 +33,11 @@ class TempoDeVolta extends React.Component {
             hours: Math.floor(estimativa/3600)
         }
 
+        if(tempo.seconds <=0){
+            return <p>00:00:00</p>
+        }
+
+
         return <p>{tempo.hours ? ('00' + tempo.hours).slice(-2): "00"}:
                     {tempo.minutes ? ('00' + tempo.minutes).slice(-2): "00"}:
                     {tempo.seconds ? ('00' + tempo.seconds).slice(-2): "00"}
@@ -72,6 +77,11 @@ class TempoDeVolta extends React.Component {
                 hours: Math.floor(estimativa/3600)
             }
 
+            if(tempo.seconds <=0){
+                return <p>00:00:00</p>
+            }
+    
+
             return <p>{tempo.hours ? ('00' + tempo.hours).slice(-2): "00"}:
                         {tempo.minutes ? ('00' + tempo.minutes).slice(-2): "00"}:
                         {tempo.seconds ? ('00' + tempo.seconds).slice(-2): "00"}
@@ -92,6 +102,12 @@ class TempoDeVolta extends React.Component {
             seconds: Math.floor(estimativa%60),
             minutes: Math.floor(estimativa/60),
             hours: Math.floor(estimativa/3600)
+        }
+
+        console.log(tempo.seconds)
+
+        if(tempo.seconds <=0){
+            return <p>00:00:00</p>
         }
 
 
