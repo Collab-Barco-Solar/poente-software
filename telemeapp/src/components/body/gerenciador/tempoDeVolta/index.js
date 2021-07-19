@@ -29,7 +29,7 @@ class TempoDeVolta extends React.Component {
 
         let tempo = {
             seconds: Math.floor(estimativa%60),
-            minutes: Math.floor(estimativa/60),
+            minutes: Math.floor(estimativa/60), //Tem que verificar se tem mais de 60 minutos
             hours: Math.floor(estimativa/3600)
         }
 
