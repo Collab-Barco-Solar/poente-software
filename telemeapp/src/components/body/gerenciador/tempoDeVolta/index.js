@@ -17,11 +17,14 @@ class TempoDeVolta extends React.Component {
         }
     };
 
-    calculaTempoRestanteCorrida(distanciaTotal,numeroDeVoltasCorridas,velocidade,numVoltas){
+    calculaTempoRestanteCorrida(distanciaTotal,numeroDeVoltasCorridas,velocidade,numVoltas,tempoVoltaAtual){
 
         velocidade = velocidade*0.51
+
+        let tempoDeUmaVoltaEmSeg = tempoVoltaAtual?.hours*3600+tempoVoltaAtual?.minutes*60+tempoVoltaAtual?.seconds
+
         let distanciaDeUmaVolta = distanciaTotal/numVoltas
-        let distanciaPercorrida = distanciaDeUmaVolta*numeroDeVoltasCorridas
+        let distanciaPercorrida = (distanciaDeUmaVolta*numeroDeVoltasCorridas) + (tempoDeUmaVoltaEmSeg*velocidade)
         let distanciaRestante = distanciaTotal - distanciaPercorrida
 
         let estimativa = distanciaRestante/velocidade
@@ -185,7 +188,7 @@ class TempoDeVolta extends React.Component {
                                 </div>
                                 <div className="infos--D-P">{contextoGeral.iniciado ? this.calculaTempoRestanteCorrida(
                                     contextoGeral.distanciaTotal,contextoGeral.voltasAtuais,contextoGeral.mediasAtuais.velocidade,
-                                    contextoGeral.voltasTotais
+                                    contextoGeral.voltasTotais,contextoGeral.tempoDasVoltas?.[contextoGeral.tempoDasVoltas.length-1]
                                 ) : "?"}</div>
                                 <p className="infos--D-P">{contextoGeral.iniciado ? (contextoGeral.mediasAtuais.velocidade.toFixed(2))+` nós`: "?"} </p>
                             </div>
