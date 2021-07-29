@@ -50,9 +50,6 @@ class TempoDeVolta extends React.Component {
 
     calculaTempoRestanteDeVolta(tempoDaVoltaAtual, numeroDeVoltasCorridas, tempoTotal,velocidade,distanciaTotal,numVoltas) {
 
-       
-        
-
         let tempoTotalEmSeg = tempoTotal.getTimeValues().hours *3600 + tempoTotal.getTimeValues().minutes *60 + tempoTotal.getTimeValues().seconds
 
 
@@ -122,6 +119,25 @@ class TempoDeVolta extends React.Component {
     }
 
 
+    //salvar o ultimo tempo e as ultimas estimativas antes do barco parado
+    salvaInformacoesAntesParada(tempoDaVoltaAtual, numeroDeVoltasCorridas, tempoTotal,velocidade,distanciaTotal,numVoltas,tempoVoltaAtual){
+        console.log(this.calculaTempoRestanteDeVolta(tempoDaVoltaAtual, numeroDeVoltasCorridas, tempoTotal,velocidade,distanciaTotal,numVoltas))
+        console.log(this.calculaTempoRestanteCorrida(distanciaTotal,numeroDeVoltasCorridas,velocidade,numVoltas,tempoVoltaAtual))
+        console.log(velocidade);
+        console.log(tempoTotal);
+        //salvar em um vetor de strings pois sao tipos diferentes
+    }
+
+
+    calculaTempoRestanteDeVoltaParado(tempoDaVoltaAtual, numeroDeVoltasCorridas, tempoTotal,velocidade,distanciaTotal,numVoltas,tempoVoltaAtual) {
+        this.salvaInformacoesAntesParada(tempoDaVoltaAtual, numeroDeVoltasCorridas, tempoTotal,velocidade,distanciaTotal,numVoltas,tempoVoltaAtual)
+        //crianovocronometro
+        this.calculaTempoRestanteDeVolta(tempoDaVoltaAtual, numeroDeVoltasCorridas, tempoTotal,velocidade,distanciaTotal,numVoltas);
+        
+    }
+
+
+
 
     render() {
         return (
@@ -177,15 +193,25 @@ class TempoDeVolta extends React.Component {
                             </div>
                             <div id="infos--D">
                                 <div className="infos--D-P">
-                                    {contextoGeral.iniciado ? this.calculaTempoRestanteDeVolta(
+                                    {//primeira possibilidade o botao inciado foi clicado e o parado nao
+                                     //segunda: botao iniciado ativo e 
+                                    (contextoGeral.iniciado && !contextoGeral.parado) ? 
+                                    this.calculaTempoRestanteDeVolta(
                                         contextoGeral.tempoDasVoltas?.[contextoGeral.tempoDasVoltas.length-1],
                                         contextoGeral.voltasAtuais,
                                         contextoGeral.timer,
                                         contextoGeral.mediasAtuais.velocidade,
                                         contextoGeral.distanciaTotal,
-                                        contextoGeral.voltasTotais                             
-                                    ) : "?"}
-                                </div>
+                                        contextoGeral.voltasTotais) : 
+                                    (contextoGeral.iniciado && contextoGeral.parado) ?    
+                                    this.calculaTempoRestanteDeVoltaParado(contextoGeral.tempoDasVoltas?.[contextoGeral.tempoDasVoltas.length-1],
+                                        contextoGeral.voltasAtuais,
+                                        contextoGeral.timer,
+                                        contextoGeral.mediasAtuais.velocidade,
+                                        contextoGeral.distanciaTotal,
+                                        contextoGeral.voltasTotais,
+                                        contextoGeral.tempoDasVoltas?.[contextoGeral.tempoDasVoltas.length-1]
+                                        ) : "?"}</div>
                                 <div className="infos--D-P">{contextoGeral.iniciado ? this.calculaTempoRestanteCorrida(
                                     contextoGeral.distanciaTotal,contextoGeral.voltasAtuais,contextoGeral.mediasAtuais.velocidade,
                                     contextoGeral.voltasTotais,contextoGeral.tempoDasVoltas?.[contextoGeral.tempoDasVoltas.length-1]

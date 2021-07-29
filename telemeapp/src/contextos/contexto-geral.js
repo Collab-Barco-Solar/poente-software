@@ -13,6 +13,13 @@ export const ContextoGeral = React.createContext({
     iniciado: false,
     Iniciar: () => {},
 
+
+    //Barco parado
+    alteraParado: () => {},
+    parado: false,
+    ultimoTempo: new Timer(), //ultimo tempo antes parada
+    Parado: () => {},
+
     //Contagem do tempo
     tempoDasVoltas: [],
     alteraTempoVoltas: () => {},

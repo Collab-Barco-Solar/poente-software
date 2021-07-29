@@ -69,18 +69,15 @@ class App extends React.Component {
             this.setState(state => ({iniciado:true}))
         }
 
-
         this.Iniciar = async (TotalVoltas,DistanciaTotal) => {
 
             //condição para o calculo das estimativas, contornando o erro da inicialização dos calculos com 0
             await this.alteraIniciado()
-
+            
 
             await this.alteraVoltasTotais(TotalVoltas);
             await this.alteraVoltasAtuais(0);
             await this.alteraDistanciaTotal(DistanciaTotal);
-
-
             
 
             timer.removeEventListener('secondsUpdated', this.eventHandlerSeconds);
@@ -101,10 +98,6 @@ class App extends React.Component {
             }))
 
             timer.addEventListener('secondsUpdated', this.eventHandlerSeconds);
-
-
-  
-            
           
         }
 
@@ -162,6 +155,15 @@ class App extends React.Component {
             }))
         }
 
+
+        this.alteraParado = async () =>{
+            this.setState(state => ({parado:true}))
+            //inicio o novo cronometro
+            //atualiza as estimativas, pausa ou continua com o barco parado e depois retoma com a ultima estimativa antes do barco parar?
+        }
+
+
+
         this.alteraSwitchButton = () =>{
             if(this.state.switchButton === false){
                 this.setState(state => ({switchButton:true}))
@@ -171,15 +173,11 @@ class App extends React.Component {
         }
         
         
-
-
         this.pausarTimer = () => {
 
             this.state.timer.isRunning() ? this.state.timer.pause() : this.state.timer.start();
         }
 
-
-     
 
 
         this.state = {
@@ -192,6 +190,9 @@ class App extends React.Component {
             alteraIniciado: this.alteraIniciado,
             iniciado: false,
             Iniciar: this.Iniciar,
+
+            alteraParado: this.alteraParado,
+            parado: false,
             
             tempoDasVoltas: [],
             alteraTempoVoltas: this.alteraTempoVoltas,
