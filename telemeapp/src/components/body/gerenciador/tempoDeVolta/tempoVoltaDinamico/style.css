@@ -1,21 +1,21 @@
 .info-tempo{
     color: white;
     display: flex;
+    font-size: 0.8em;
 
 }
 
 
 .info-tempo-key{
-    margin-top: 10px;
+    margin-top: 5px;
     margin-left: 10px;
+    font-size: 1em;
 
 }
 
 .info-tempo-valor{
-    margin-top: 10px;
+    margin-top: 5px;
     display: flex;
     margin-left: 10px;
-
-
-
+    font-size: 1em;
 }
