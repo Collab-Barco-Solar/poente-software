@@ -120,19 +120,20 @@ class TempoDeVolta extends React.Component {
 
 
     //salvar o ultimo tempo e as ultimas estimativas antes do barco parado
-    salvaInformacoesAntesParada(tempoDaVoltaAtual, numeroDeVoltasCorridas, tempoTotal,velocidade,distanciaTotal,numVoltas,tempoVoltaAtual){
+    /*salvaInformacoesAntesParado(tempoDaVoltaAtual, numeroDeVoltasCorridas, tempoTotal,velocidade,distanciaTotal,numVoltas,tempoVoltaAtual){
         console.log(this.calculaTempoRestanteDeVolta(tempoDaVoltaAtual, numeroDeVoltasCorridas, tempoTotal,velocidade,distanciaTotal,numVoltas))
         console.log(this.calculaTempoRestanteCorrida(distanciaTotal,numeroDeVoltasCorridas,velocidade,numVoltas,tempoVoltaAtual))
         console.log(velocidade);
         console.log(tempoTotal);
         //salvar em um vetor de strings pois sao tipos diferentes
-    }
+    }*/
 
-
-    calculaTempoRestanteDeVoltaParado(tempoDaVoltaAtual, numeroDeVoltasCorridas, tempoTotal,velocidade,distanciaTotal,numVoltas,tempoVoltaAtual) {
-        this.salvaInformacoesAntesParada(tempoDaVoltaAtual, numeroDeVoltasCorridas, tempoTotal,velocidade,distanciaTotal,numVoltas,tempoVoltaAtual)
+    //mostrar apenas a ultima estimativa
+    pararEstimativas(tempoDaVoltaAtual, numeroDeVoltasCorridas, tempoTotal,velocidade,distanciaTotal,numVoltas,tempoVoltaAtual) {
+        //this.salvaInformacoesAntesParado(tempoDaVoltaAtual, numeroDeVoltasCorridas, tempoTotal,velocidade,distanciaTotal,numVoltas,tempoVoltaAtual)
         //crianovocronometro
-        this.calculaTempoRestanteDeVolta(tempoDaVoltaAtual, numeroDeVoltasCorridas, tempoTotal,velocidade,distanciaTotal,numVoltas);
+       //this.calculaTempoRestanteDeVolta(tempoDaVoltaAtual, numeroDeVoltasCorridas, tempoTotal,velocidade,distanciaTotal,numVoltas);
+       
         
     }
 
@@ -195,7 +196,7 @@ class TempoDeVolta extends React.Component {
                                 <div className="infos--D-P">
                                     {//primeira possibilidade o botao inciado foi clicado e o parado nao
                                      //segunda: botao iniciado ativo e 
-                                    (contextoGeral.iniciado && !contextoGeral.parado) ? 
+                                    (contextoGeral.iniciado || contextoGeral.parado) ? 
                                     this.calculaTempoRestanteDeVolta(
                                         contextoGeral.tempoDasVoltas?.[contextoGeral.tempoDasVoltas.length-1],
                                         contextoGeral.voltasAtuais,
@@ -203,15 +204,16 @@ class TempoDeVolta extends React.Component {
                                         contextoGeral.mediasAtuais.velocidade,
                                         contextoGeral.distanciaTotal,
                                         contextoGeral.voltasTotais) : 
-                                    (contextoGeral.iniciado && contextoGeral.parado) ?    
-                                    this.calculaTempoRestanteDeVoltaParado(contextoGeral.tempoDasVoltas?.[contextoGeral.tempoDasVoltas.length-1],
+                                    /*(contextoGeral.parado) ?    
+                                    this.pararEstimativas(contextoGeral.tempoDasVoltas?.[contextoGeral.tempoDasVoltas.length-1],
                                         contextoGeral.voltasAtuais,
                                         contextoGeral.timer,
                                         contextoGeral.mediasAtuais.velocidade,
                                         contextoGeral.distanciaTotal,
                                         contextoGeral.voltasTotais,
                                         contextoGeral.tempoDasVoltas?.[contextoGeral.tempoDasVoltas.length-1]
-                                        ) : "?"}</div>
+                                        
+                                        ) :*/ "?"}</div>
                                 <div className="infos--D-P">{contextoGeral.iniciado ? this.calculaTempoRestanteCorrida(
                                     contextoGeral.distanciaTotal,contextoGeral.voltasAtuais,contextoGeral.mediasAtuais.velocidade,
                                     contextoGeral.voltasTotais,contextoGeral.tempoDasVoltas?.[contextoGeral.tempoDasVoltas.length-1]

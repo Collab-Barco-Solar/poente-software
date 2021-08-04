@@ -13,6 +13,8 @@ let timer = new Timer();
 let timerDatabase;
 let bancoEncontrado = false;
 
+let timerBarcoParado = new Timer();
+
 class App extends React.Component {
     constructor(){
         super();
@@ -156,13 +158,48 @@ class App extends React.Component {
         }
 
 
+        this.Parar = async () =>{
+            timerBarcoParado.removeEventListener('secondsUpdated', this.eventHandlerSeconds);
+
+           
+            //Zerar e iniciar cronômetro
+            timerBarcoParado.reset();
+
+            //Atualiza o timer visto pelos outros componentes
+            this.setState(state => ({
+                timerBarcoParado: timerBarcoParado,
+            }));
+
+            timerBarcoParado.addEventListener('secondsUpdated', this.eventHandlerSeconds);
+            console.log(timerBarcoParado);
+        }
+
         this.alteraParado = async () =>{
-            this.setState(state => ({parado:true}))
+            this.setState(state => ({parado:true}));
+            //console.log(this.ultimoTempo)
+            if (this.state.timer.isRunning()){
+                this.state.timer.pause();
+                //inicializa segundo cronometro
+                this.state.timerBarcoParado.start();
+            }else{
+                //pausa o segundo timer 
+                this.state.timerBarcoParado.pause();
+                //salva numa string o tempo que o barco ficou parado 
+                this.tempoParado = (timerBarcoParado.getTimeValues().hours).slice(-2) + ':' + 
+                   (timerBarcoParado.getTimeValues().minutes).slice(-2) + ':' + 
+                   (timerBarcoParado.getTimeValues().seconds).slice(-2);
+
+                //libera o cronometro
+                this.state.timer.start();
+
+            }
+                
             //inicio o novo cronometro
             //atualiza as estimativas, pausa ou continua com o barco parado e depois retoma com a ultima estimativa antes do barco parar?
         }
 
 
+        
 
         this.alteraSwitchButton = () =>{
             if(this.state.switchButton === false){
@@ -171,6 +208,14 @@ class App extends React.Component {
             else this.setState(state =>({switchButton:false}))
     
         }
+        /*
+        this.mudançaBotãoBarcoParado = () =>{
+            if(this.state.switchButton === false){
+                this.setState(state => ({switchButton:true}))
+            }
+            else this.setState(state =>({switchButton:false}))
+    
+        }*/
         
         
         this.pausarTimer = () => {
@@ -192,7 +237,11 @@ class App extends React.Component {
             Iniciar: this.Iniciar,
 
             alteraParado: this.alteraParado,
+            Parar: this.Parar,
             parado: false,
+            tempoParado: "-",
+            mudançaBotaoBarcoParado: this.mudançaBotãoBarcoParado,
+            switchBarcoParado: false,
             
             tempoDasVoltas: [],
             alteraTempoVoltas: this.alteraTempoVoltas,
