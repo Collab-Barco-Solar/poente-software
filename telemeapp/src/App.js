@@ -175,6 +175,7 @@ class App extends React.Component {
         }
 
         this.alteraParado = async () =>{
+            this.Parar();
             this.setState(state => ({parado:true}));
             //console.log(this.ultimoTempo)
             if (this.state.timer.isRunning()){
@@ -240,8 +241,9 @@ class App extends React.Component {
             Parar: this.Parar,
             parado: false,
             tempoParado: "-",
+            timerBarcoParado: new Timer(),
             mudançaBotaoBarcoParado: this.mudançaBotãoBarcoParado,
-            switchBarcoParado: false,
+            //switchBarcoParado: false,
             
             tempoDasVoltas: [],
             alteraTempoVoltas: this.alteraTempoVoltas,

@@ -22,7 +22,7 @@ export const ContextoGeral = React.createContext({
     Parado: () => {},
     timerBarcoParado: new Timer(),
     mudançaBotaoBarcoParado: () => {},
-    switchBarcoParado: false,
+    //switchBarcoParado: false,
 
     //Contagem do tempo
     tempoDasVoltas: [],
