@@ -53,10 +53,12 @@ class Gerenciador extends Component{
                         </div>
                         <div className= "inputs">
                             <div className="entradas--A">
+                                {/* {console.log(contextoGeral.timerBarcoParado.getTimeValues().seconds)} */}
+                            {/* {console.log(contextoGeral.timerBarcoParado.getTimeValues().seconds ? ('00'+contextoGeral.timerBarcoParado.getTimeValues().seconds).slice(-2) : "00")} */}
                                 <Input onChange={this.atualizaDistancia} value={this.state.entradaDistancia} name="Distancia Total" id="distanciaTotal" placeholder="Distância total"/>  
                                 <Botao onClick={() => contextoGeral.Iniciar(this.state.entradaVoltas,this.state.entradaDistancia)} label = "INICIAR"/>
                                 <Botao onClick={() => contextoGeral.pausarTimer()}  label = {contextoGeral.timer.isRunning() ? "PAUSAR" : "RETOMAR"}/>
-                                <Botao onClick={() => contextoGeral.alteraParado()} label = {contextoGeral.timerBarcoParado.isRunning() ? "MOVENDO" : "PARADO"}/>
+                                <Botao onClick={() => contextoGeral.barcoParado()} label = {contextoGeral.timerBarcoParado.isRunning() ? "MOVENDO" : "PARADO"}/>
                             </div>
 
                             <div className="entradas--B">

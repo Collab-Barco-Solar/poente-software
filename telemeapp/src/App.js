@@ -43,6 +43,9 @@ class App extends React.Component {
             this.setState(state => ({
                 timer: timer,
             }));
+            this.setState(state => ({
+                timerBarcoParado: timerBarcoParado,
+            }));
 
             if(this.state.tempoDasVoltas.length !== 0){
                 ////Conta o tempo da volta atual
@@ -158,45 +161,22 @@ class App extends React.Component {
         }
 
 
-        this.Parar = async () =>{
-            timerBarcoParado.removeEventListener('secondsUpdated', this.eventHandlerSeconds);
-
-           
+        this.barcoParado = () =>{
             //Zerar e iniciar cronômetro
-            timerBarcoParado.reset();
+
+            if(!(timerBarcoParado.isRunning())){
+                timerBarcoParado.reset()
+            }else{
+                timerBarcoParado.pause()
+            }
+
+          
 
             //Atualiza o timer visto pelos outros componentes
             this.setState(state => ({
                 timerBarcoParado: timerBarcoParado,
             }));
-
-            timerBarcoParado.addEventListener('secondsUpdated', this.eventHandlerSeconds);
-            console.log(timerBarcoParado);
-        }
-
-        this.alteraParado = async () =>{
-            this.Parar();
-            this.setState(state => ({parado:true}));
-            //console.log(this.ultimoTempo)
-            if (this.state.timer.isRunning()){
-                this.state.timer.pause();
-                //inicializa segundo cronometro
-                this.state.timerBarcoParado.start();
-            }else{
-                //pausa o segundo timer 
-                this.state.timerBarcoParado.pause();
-                //salva numa string o tempo que o barco ficou parado 
-                this.tempoParado = (timerBarcoParado.getTimeValues().hours).slice(-2) + ':' + 
-                   (timerBarcoParado.getTimeValues().minutes).slice(-2) + ':' + 
-                   (timerBarcoParado.getTimeValues().seconds).slice(-2);
-
-                //libera o cronometro
-                this.state.timer.start();
-
-            }
-                
-            //inicio o novo cronometro
-            //atualiza as estimativas, pausa ou continua com o barco parado e depois retoma com a ultima estimativa antes do barco parar?
+           
         }
 
 
@@ -209,19 +189,16 @@ class App extends React.Component {
             else this.setState(state =>({switchButton:false}))
     
         }
-        /*
-        this.mudançaBotãoBarcoParado = () =>{
-            if(this.state.switchButton === false){
-                this.setState(state => ({switchButton:true}))
-            }
-            else this.setState(state =>({switchButton:false}))
-    
-        }*/
         
         
         this.pausarTimer = () => {
 
             this.state.timer.isRunning() ? this.state.timer.pause() : this.state.timer.start();
+        }
+
+        this.resetaTimerBarcoParado = () => {
+            timerBarcoParado.reset()
+            timerBarcoParado.stop()
         }
 
 
@@ -237,12 +214,9 @@ class App extends React.Component {
             iniciado: false,
             Iniciar: this.Iniciar,
 
-            alteraParado: this.alteraParado,
-            Parar: this.Parar,
-            parado: false,
-            tempoParado: "-",
+            barcoParado: this.barcoParado,
+            resetaTimerBarcoParado: this.resetaTimerBarcoParado,
             timerBarcoParado: new Timer(),
-            mudançaBotaoBarcoParado: this.mudançaBotãoBarcoParado,
             //switchBarcoParado: false,
             
             tempoDasVoltas: [],

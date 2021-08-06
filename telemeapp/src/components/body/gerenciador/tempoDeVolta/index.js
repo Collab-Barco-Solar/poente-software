@@ -7,6 +7,7 @@ class TempoDeVolta extends React.Component {
 
     IncrementaVolta(contextoGeral) {
         //Incrementa o número de voltas no contexto
+        contextoGeral.resetaTimerBarcoParado()
         if (contextoGeral.voltasAtuais + 1 > contextoGeral.voltasTotais) {
             console.log("Número de voltas máximo atingido")
         } else {
@@ -17,11 +18,15 @@ class TempoDeVolta extends React.Component {
         }
     };
 
-    calculaTempoRestanteCorrida(distanciaTotal,numeroDeVoltasCorridas,velocidade,numVoltas,tempoVoltaAtual){
+    calculaTempoRestanteCorrida(distanciaTotal,numeroDeVoltasCorridas,velocidade,numVoltas,tempoVoltaAtual,tempoBarcoParado){
 
         velocidade = velocidade*0.51
 
         let tempoDeUmaVoltaEmSeg = tempoVoltaAtual?.hours*3600+tempoVoltaAtual?.minutes*60+tempoVoltaAtual?.seconds
+
+        let tempoBarcoParadoEmSeg = tempoBarcoParado.getTimeValues().hours * 3600 + tempoBarcoParado.getTimeValues().minutes*60+tempoBarcoParado.getTimeValues().seconds
+
+        tempoDeUmaVoltaEmSeg -= tempoBarcoParadoEmSeg
 
         let distanciaDeUmaVolta = distanciaTotal/numVoltas
         let distanciaPercorrida = (distanciaDeUmaVolta*numeroDeVoltasCorridas) + (tempoDeUmaVoltaEmSeg*velocidade)
@@ -48,13 +53,20 @@ class TempoDeVolta extends React.Component {
     }
 
 
-    calculaTempoRestanteDeVolta(tempoDaVoltaAtual, numeroDeVoltasCorridas, tempoTotal,velocidade,distanciaTotal,numVoltas) {
+    calculaTempoRestanteDeVolta(tempoDaVoltaAtual, numeroDeVoltasCorridas, tempoTotal,velocidade,distanciaTotal,numVoltas,tempoBarcoParado) {
 
         let tempoTotalEmSeg = tempoTotal.getTimeValues().hours *3600 + tempoTotal.getTimeValues().minutes *60 + tempoTotal.getTimeValues().seconds
 
 
         let tempoDaVoltaAtualEmSeg = tempoDaVoltaAtual?.hours*3600 + tempoDaVoltaAtual?.minutes*60 + tempoDaVoltaAtual?.seconds
 
+        let tempoBarcoParadoEmSeg = tempoBarcoParado.getTimeValues().hours * 3600 + tempoBarcoParado.getTimeValues().minutes*60+tempoBarcoParado.getTimeValues().seconds
+
+
+        tempoDaVoltaAtualEmSeg -= tempoBarcoParadoEmSeg
+
+        
+        // console.log(tempoBarcoParadoEmSeg)
 
         if(numeroDeVoltasCorridas === 0 || numeroDeVoltasCorridas === 1){
             
@@ -63,6 +75,8 @@ class TempoDeVolta extends React.Component {
             velocidade = velocidade * 0.51 // convertendo nós em metros
 
 
+
+            //tempo da volta atual deve ser sempre o tempo da votlaAtual-tempoDoBarcoParado
             let distanciaPercorrida = velocidade*tempoDaVoltaAtualEmSeg
 
 
@@ -119,23 +133,8 @@ class TempoDeVolta extends React.Component {
     }
 
 
-    //salvar o ultimo tempo e as ultimas estimativas antes do barco parado
-    /*salvaInformacoesAntesParado(tempoDaVoltaAtual, numeroDeVoltasCorridas, tempoTotal,velocidade,distanciaTotal,numVoltas,tempoVoltaAtual){
-        console.log(this.calculaTempoRestanteDeVolta(tempoDaVoltaAtual, numeroDeVoltasCorridas, tempoTotal,velocidade,distanciaTotal,numVoltas))
-        console.log(this.calculaTempoRestanteCorrida(distanciaTotal,numeroDeVoltasCorridas,velocidade,numVoltas,tempoVoltaAtual))
-        console.log(velocidade);
-        console.log(tempoTotal);
-        //salvar em um vetor de strings pois sao tipos diferentes
-    }*/
 
-    //mostrar apenas a ultima estimativa
-    pararEstimativas(tempoDaVoltaAtual, numeroDeVoltasCorridas, tempoTotal,velocidade,distanciaTotal,numVoltas,tempoVoltaAtual) {
-        //this.salvaInformacoesAntesParado(tempoDaVoltaAtual, numeroDeVoltasCorridas, tempoTotal,velocidade,distanciaTotal,numVoltas,tempoVoltaAtual)
-        //crianovocronometro
-       //this.calculaTempoRestanteDeVolta(tempoDaVoltaAtual, numeroDeVoltasCorridas, tempoTotal,velocidade,distanciaTotal,numVoltas);
-       
-        
-    }
+
 
 
 
@@ -193,30 +192,23 @@ class TempoDeVolta extends React.Component {
                                 <p className="infos--C-P">Velocidade Média</p>
                             </div>
                             <div id="infos--D">
+            
                                 <div className="infos--D-P">
-                                    {//primeira possibilidade o botao inciado foi clicado e o parado nao
-                                     //segunda: botao iniciado ativo e 
-                                    (contextoGeral.iniciado || contextoGeral.parado) ? 
+                                    { 
+                                    contextoGeral.iniciado ? 
                                     this.calculaTempoRestanteDeVolta(
                                         contextoGeral.tempoDasVoltas?.[contextoGeral.tempoDasVoltas.length-1],
                                         contextoGeral.voltasAtuais,
                                         contextoGeral.timer,
                                         contextoGeral.mediasAtuais.velocidade,
                                         contextoGeral.distanciaTotal,
-                                        contextoGeral.voltasTotais) : 
-                                    /*(contextoGeral.parado) ?    
-                                    this.pararEstimativas(contextoGeral.tempoDasVoltas?.[contextoGeral.tempoDasVoltas.length-1],
-                                        contextoGeral.voltasAtuais,
-                                        contextoGeral.timer,
-                                        contextoGeral.mediasAtuais.velocidade,
-                                        contextoGeral.distanciaTotal,
                                         contextoGeral.voltasTotais,
-                                        contextoGeral.tempoDasVoltas?.[contextoGeral.tempoDasVoltas.length-1]
-                                        
-                                        ) :*/ "?"}</div>
+                                        contextoGeral.timerBarcoParado) : 
+                                   "?"}</div>
                                 <div className="infos--D-P">{contextoGeral.iniciado ? this.calculaTempoRestanteCorrida(
                                     contextoGeral.distanciaTotal,contextoGeral.voltasAtuais,contextoGeral.mediasAtuais.velocidade,
-                                    contextoGeral.voltasTotais,contextoGeral.tempoDasVoltas?.[contextoGeral.tempoDasVoltas.length-1]
+                                    contextoGeral.voltasTotais,contextoGeral.tempoDasVoltas?.[contextoGeral.tempoDasVoltas.length-1],
+                                    contextoGeral.timerBarcoParado
                                 ) : "?"}</div>
                                 <p className="infos--D-P">{contextoGeral.iniciado ? (contextoGeral.mediasAtuais.velocidade.toFixed(2))+` nós`: "?"} </p>
                             </div>

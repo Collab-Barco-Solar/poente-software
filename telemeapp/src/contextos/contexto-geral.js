@@ -15,13 +15,9 @@ export const ContextoGeral = React.createContext({
 
 
     //Barco parado
-    alteraParado: () => {},
-    Parar: () => {},
-    parado: false,
-    tempoParado: "-", //ultimo tempo antes parada
-    Parado: () => {},
+    barcoParado: () => {},
+    resetaTimerBarcoParado: () => {},
     timerBarcoParado: new Timer(),
-    mudançaBotaoBarcoParado: () => {},
     //switchBarcoParado: false,
 
     //Contagem do tempo
