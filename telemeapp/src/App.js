@@ -75,35 +75,38 @@ class App extends React.Component {
         }
 
         this.Iniciar = async (TotalVoltas,DistanciaTotal) => {
+            //para que o botão iniciar só inicialize quando as informações forem devidademente inseridas
+            if(TotalVoltas > 0 && DistanciaTotal > 0){
+                //condição para o calculo das estimativas, contornando o erro da inicialização dos calculos com 0
+                await this.alteraIniciado()
+                
 
-            //condição para o calculo das estimativas, contornando o erro da inicialização dos calculos com 0
-            await this.alteraIniciado()
-            
+                await this.alteraVoltasTotais(TotalVoltas);
+                await this.alteraVoltasAtuais(0);
+                await this.alteraDistanciaTotal(DistanciaTotal);
+                
 
-            await this.alteraVoltasTotais(TotalVoltas);
-            await this.alteraVoltasAtuais(0);
-            await this.alteraDistanciaTotal(DistanciaTotal);
-            
-
-            timer.removeEventListener('secondsUpdated', this.eventHandlerSeconds);
-
-           
-            //Zerar e iniciar cronômetro
-            timer.reset();
-
-            //Atualiza o timer visto pelos outros componentes
-            this.setState(state => ({
-                timer: timer,
-            }));
+                timer.removeEventListener('secondsUpdated', this.eventHandlerSeconds);
 
             
-            //Zera as voltas
-            this.setState(state => ({
-                tempoDasVoltas: [{seconds: 0, minutes: 0, hours: 0}]
-            }))
+                //Zerar e iniciar cronômetro
+                timer.reset();
 
-            timer.addEventListener('secondsUpdated', this.eventHandlerSeconds);
-          
+                //Atualiza o timer visto pelos outros componentes
+                this.setState(state => ({
+                    timer: timer,
+                }));
+
+                
+                //Zera as voltas
+                this.setState(state => ({
+                    tempoDasVoltas: [{seconds: 0, minutes: 0, hours: 0}]
+                }))
+
+                timer.addEventListener('secondsUpdated', this.eventHandlerSeconds);
+            }else{
+                console.log("Insira as informações de entrada para iniciar a prova");
+            }
         }
 
 
@@ -192,8 +195,15 @@ class App extends React.Component {
         
         
         this.pausarTimer = () => {
+            if(this.state.iniciado){
+                this.state.timer.isRunning() ? this.state.timer.pause() : this.state.timer.start();
 
-            this.state.timer.isRunning() ? this.state.timer.pause() : this.state.timer.start();
+            }
+            else{
+                console.log("Não é possível pausar, a prova ainda não começou!");
+            }
+            //console.log("Não é possível pausar, a prova ainda não começou!");
+            
         }
 
         this.resetaTimerBarcoParado = () => {
