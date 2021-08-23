@@ -130,20 +130,27 @@ class App extends React.Component {
                 temperatura: 0,
             };
             
+            var counterror=0;//conta quantas vezes o banco de dados recebeu algo que nao era numero e nao atrapalhar as médias
             //Passa por todas as linhas dos dados recebidos e soma os valores
             this.state.dadosRecebidos.forEach( (value) => {
-                novasMedias.cBarramento += parseFloat(value.cBarramento);
-                novasMedias.tModulos += parseFloat(value.tModulos);
-                novasMedias.cBaterias += parseFloat(value.cBaterias);
-                novasMedias.tBaterias += parseFloat(value.tBaterias);
-                novasMedias.cBateriasAux += parseFloat(value.cBateriasAux);
-                novasMedias.tBateriasAux += parseFloat(value.tBateriasAux);
-                novasMedias.pPotenciometro += parseFloat(value.pPotenciometro);
-                novasMedias.velocidade += parseFloat(value.velocidade);
-                novasMedias.temperatura += parseFloat(value.temperatura);
+                if(isNumber(novasMedias.cBarramento, novasMedias.tModulos, novasMedias.cBaterias,
+                novasMedias.tBaterias, novasMedias.cBateriasAux, novasMedias.tBateriasAux, 
+                novasMedias.pPotenciometro, novasMedias.velocidade, novasMedias.temperatura)){
+                    novasMedias.cBarramento += parseFloat(value.cBarramento);
+                    novasMedias.tModulos += parseFloat(value.tModulos);
+                    novasMedias.cBaterias += parseFloat(value.cBaterias);
+                    novasMedias.tBaterias += parseFloat(value.tBaterias);
+                    novasMedias.cBateriasAux += parseFloat(value.cBateriasAux);
+                    novasMedias.tBateriasAux += parseFloat(value.tBateriasAux);
+                    novasMedias.pPotenciometro += parseFloat(value.pPotenciometro);
+                    novasMedias.velocidade += parseFloat(value.velocidade);
+                    novasMedias.temperatura += parseFloat(value.temperatura);
+                }
+                else
+                 counterror++;
             });
 
-            var length = this.state.dadosRecebidos.length;
+            var length = this.state.dadosRecebidos.length - counterror;
             //Divide os valores pelo tamanho do vetor para encontrar a média
             novasMedias.cBarramento = novasMedias.cBarramento / length;
             novasMedias.tModulos = novasMedias.tModulos / length;
@@ -163,6 +170,16 @@ class App extends React.Component {
             }))
         }
 
+        //verifica se todos os valores recebidos do BD são numeros
+        function isNumber(d1,d2,d3,d4,d5,d6,d7,d8,d9){
+            
+            if(typeof d1 === "number" && typeof d1 === "number" && typeof d1 === "number"
+                && typeof d1 === "number" && typeof d1 === "number" && typeof d1 === "number"
+                && typeof d1 === "number" && typeof d1 === "number" && typeof d1 === "number")
+                    return true;
+            else 
+                return false;
+          }
 
         this.barcoParado = () =>{
             //Zerar e iniciar cronômetro
