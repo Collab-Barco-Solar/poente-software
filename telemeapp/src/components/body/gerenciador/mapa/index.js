@@ -10,45 +10,13 @@ import 'leaflet-offline';
 import { FiCornerUpLeft, FiFlag, FiPlus, FiEye, FiPlayCircle, FiStopCircle } from "react-icons/fi";
 import Swal from 'sweetalert2'
 import lineColor from './lineColor';
+import positions from './positionsFake';
 
-const positions = [
-    [-20.280080, -40.313748],
-    [-20.280075, -40.313448],
-    [-20.280075, -40.313099],
-    [-20.280034, -40.312767],
-    [-20.280014, -40.312482],
-    [-20.279974, -40.312219],
-    [-20.279924, -40.312010],
-    [-20.279858, -40.311672],
-    [-20.279828, -40.311517],
-    [-20.279753, -40.311281],
-    [-20.279687, -40.311066],
-    [-20.279602, -40.310809],
-    [-20.279521, -40.310615],
-    [-20.279466, -40.310406],
-    [-20.279415, -40.310186],
-    [-20.279385, -40.310009],
-    [-20.279345, -40.309795],
-    [-20.279280, -40.309612],
-    [-20.279244, -40.309446],
-    [-20.279204, -40.309280],
-    [-20.279169, -40.309097],
-    [-20.279149, -40.308851],
-    [-20.279159, -40.308647],
-    [-20.279199, -40.308437],
-    [-20.279259, -40.308282],
-    [-20.279390, -40.308137],
-    [-20.279556, -40.308003],
-    [-20.279727, -40.307885],
-    [-20.279904, -40.307788],
-    [-20.280065, -40.307719],
-    [-20.280256, -40.307649],
-]
 
 let i = 0;
 
 let flags = [];
-let percurso = [];
+let voltaAtual = [];
 const voltas = [];
 
 
@@ -63,6 +31,7 @@ const FlagIcon = L.icon({
 });
 
 
+// Função para adicionar uma bandeira no mapa
 async function addFlagCoords() {
     const { value: formValues } = await Swal.fire({
         title: `Coordenadas`,
@@ -107,13 +76,13 @@ const Mapa = () => {
 
     function recordingRoute(){
         if(startRecording === true && stopRecording === false){
-            percurso.push(positions[i]);
+            voltaAtual.push(positions[i]);
         }
         else if(startRecording === true && stopRecording === true){
-            voltas.push(percurso);
+            voltas.push(voltaAtual);
             let pos = numVoltas;
             pos = pos + 1;
-            percurso = [];
+            voltaAtual = [];
             setNumVoltas(pos);
             setStartRecording(false);
             setStopRecording(false);
@@ -136,6 +105,12 @@ const Mapa = () => {
         map.zoomControl.remove();
     })
 
+
+    // Esse useEffect representa uma simulação do banco de dados
+    // Funcionamento: Ele tá pegando uma coordenada "[-20.280080, -40.313748]" de um vetor de coordenadas fake
+    //                que eu criei no arquivo positionsFake.js. Essa posição que ele pega é salva na variável
+    //                posicaoAtual, usando o setPosicaoAtual. Se for usar o banco de dados real, substituir apenas
+    //                a lógica desse useEffect.
     useEffect(() => {
         setTimeout(() => {
             if(i === 30){
@@ -143,7 +118,6 @@ const Mapa = () => {
             }
             recordingRoute();
             setPosicaoAtual(positions[i]);
-            // console.log(posicaoAtual)
             i++;
         }, 1000)
     },[posicaoAtual])
@@ -162,10 +136,12 @@ const Mapa = () => {
         return null;
     }
 
+    // Mostra a trilha atual do barco
     const BoatRoute = () => {
-        return <Polyline pathOptions={lineColor[numVoltas]} positions={percurso} />
+        return <Polyline pathOptions={lineColor[numVoltas]} positions={voltaAtual} />
     }
 
+    // Mostra as trilhas das voltas selecinadas
     const ShowEspecificRoute = (props) => {
         if(voltas.length > 0){
             return <Polyline pathOptions={lineColor[props.pos]} positions={voltas[props.pos]} />
