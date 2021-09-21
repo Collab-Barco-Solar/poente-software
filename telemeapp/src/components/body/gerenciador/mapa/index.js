@@ -7,17 +7,18 @@ import boat from './boat.jpeg';
 import flag from './flag.png';
 import localforage from 'localforage';
 import 'leaflet-offline';
-import { FiCornerUpLeft, FiFlag, FiPlus, FiEye, FiPlayCircle, FiStopCircle } from "react-icons/fi";
+import { FiCornerUpLeft, FiFlag, FiPlus, FiEye, FiPlayCircle, FiStopCircle, FiUpload, FiDownload } from "react-icons/fi";
 import Swal from 'sweetalert2'
 import lineColor from './lineColor';
 import positions from './positionsFake';
+import { saveAs } from "file-saver";
 
 
 let i = 0;
 
 let flags = [];
 let voltaAtual = [];
-const voltas = [];
+let voltas = [];
 
 
 const BoatIcon = L.icon({
@@ -103,7 +104,7 @@ const Mapa = () => {
     });
         offlineLayer.addTo(map);//add the offline layer
         map.zoomControl.remove();
-    })
+    },[])
 
 
     // Esse useEffect representa uma simulação do banco de dados
@@ -179,6 +180,26 @@ const Mapa = () => {
           }
     }
 
+    function handleDownloadData() {
+        const jsonObj = JSON.stringify(voltas);
+        const blob = new Blob([jsonObj], {type: "application/json"});
+        saveAs(blob, "dados-mapa.json");
+    };
+
+    function handleFileSelect(event) {
+        const reader = new FileReader()
+        reader.onload = handleFileLoad;
+        reader.readAsText(event.target.files[0])
+    }
+    
+    function handleFileLoad(event) {
+        const result = event.target.result
+        const finalObj = JSON.parse(result);
+        // console.log(finalObj);
+        voltas = finalObj;
+        setNumVoltas(finalObj.length);
+    }
+
 
     return(
         <div className="container" id="map-id" style={{backgroundColor: '#393640'}}>
@@ -204,6 +225,23 @@ const Mapa = () => {
                         color="#FFFFFF"
                         size={25} 
                         onClick={() => selectEspecificRoute()}
+                    />
+
+                    <div>
+                        <label htmlFor="arquivo">
+                            <FiUpload
+                                color="#FFFFFF"
+                                size={22} 
+                                type="file"
+                            />    
+                        </label>
+                        <input type="file" name="arquivo" id="arquivo" onChange={handleFileSelect}/>
+                    </div>
+
+                    <FiDownload
+                        color="#FFFFFF"
+                        size={22} 
+                        onClick={() => handleDownloadData()}
                     />
                 </div>
 
