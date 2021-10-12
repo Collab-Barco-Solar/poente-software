@@ -10,7 +10,7 @@
     "concurrently": "^5.3.0",
     "cross-env": "^7.0.2",
     "easytimer.js": "^4.3.2",
-    "electron": "^10.4.4",
+    "electron": "^11.5.0",
     "electron-is-dev": "^1.2.0",
     "leaflet": "^1.7.1",
     "leaflet-offline": "^1.1.0",
