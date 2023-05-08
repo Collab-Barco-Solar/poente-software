@@ -24,7 +24,7 @@
     "react-switch": "^6.0.0",
     "reactstrap": "^8.7.1",
     "recharts": "^2.0.9",
-    "sqlite3": "^5.0.0",
+    "sqlite3": "^5.1.5",
     "styled-components": "^5.2.1",
     "sweetalert2": "^10.16.7",
     "wait-on": "^5.2.1",
